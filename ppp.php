@@ -113,6 +113,59 @@
 .carousel-caption .btn {
     font-size: 1.5rem; /* Adjust this value to change the size of the title and button */
 }
+.logo-img {
+    width: 45%;
+    height: auto;
+}
+.icon-scroll {
+    border-radius: 25px;
+    box-shadow: inset 0 0 0 2px #2f9ba7;
+    display: block;
+    height: 44px;
+    left: 50%;
+    left: auto;
+    margin: 10px auto 0;
+    position: absolute;
+    position: relative;
+    width: 29px;
+}
+
+.icon-scroll::before {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-name: scroll;
+    background: #2f9ba7;
+    border-radius: 4px;
+    content: "";
+    height: 5px;
+    left: 50%;
+    margin-left: -3px;
+    position: absolute;
+    top: 4px;
+    width: 5px;
+}
+
+a {
+    background-color: transparent;
+    color: #2f9ba7;
+}
+
+a {
+    text-decoration: none;
+}
+@keyframes scroll {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+}
+
+
+
 
 
 
@@ -120,10 +173,13 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <a href="#" class="logo">YourBrand</a>
-        <button type="button" class="btn btn-primary">Sign In</button>
-    </header>
+<header class="header">
+    <a href="#" class="logo">
+        <img src="./img/logoOfMySiteWeb.png" alt="YourBrand Logo" class="logo-img">
+    </a>
+    <button type="button" class="btn btn-primary">Sign In</button>
+</header>
+
     <main class="container-fluid">
     <section class="section">
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -163,8 +219,10 @@
 
 
 <section class="section d-flex flex-column align-items-center">
-    <h1 class="text-center" style="color: #1b6f61; font-size: 2rem;">Ce que vous pouvez faire avec Doctori</h1>
-    <i class="fa-solid fa-user-doctor" style="color: #1b6f61; font-size: 2rem;"></i>
+    <h1 class="text-center" style="color: #2f9ba6; font-size: 2rem;">Ce que vous pouvez faire avec Doctori</h1>
+    <a href="#marketing" id="marketing" class="icon-scroll"></a>
+
+
 </section>
 
 <section class="section">
