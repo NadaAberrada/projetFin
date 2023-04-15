@@ -212,6 +212,16 @@
         .btn-primary:hover {
             background-color: #287d8c;
         }
+
+        .other_doc_item {
+            border: 1px solid #c7c8ca;
+            border-radius: 4px;
+
+            margin-bottom: 15px;
+            padding: 15px;
+            max-width: 421px;
+
+        }
     </style>
 </head>
 
@@ -264,8 +274,6 @@
         <section class="section d-flex flex-column align-items-center">
             <h1 class="text-center" style="color: #2f9ba6; font-size: 2rem;">Ce que vous pouvez faire avec Doctori</h1>
             <a href="#marketing" id="marketing" class="icon-scroll"></a>
-
-
         </section>
 
         <section class="section">
@@ -371,7 +379,7 @@
                 </div>
             </div>
         </section>
-        < <section class="section">
+        <section class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -379,27 +387,118 @@
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
+        <section class="section d-flex flex-column align-items-center">
+            <h1 class="text-center" style="color: #2f9ba6; font-size: 2rem;">Ils sont les ambassadeurs de DabaDoc</h1>
+
+
+
+        </section>
+        <section class="section">
+            <div class="row">
+                <!-- Repeat the following card structure for each card -->
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <div class="card-body text-center">
+                            <div class="icon-circle">
+                                <img src="./img/nzha.jpg" alt="Image description" style="border-radius: 50%; width: 100%;">
+                            </div>
+                            <h3 class="card-title">Dr. Nezha El Hattab El Ibrahimi
+                                Pédiatre</h3>
+                            <p class="card-text" style=" font-size: 20px;">Ça fait plus de 4 ans que nous utilisons DabaDoc dans notre cabinet et mes patients sont très satisfaits </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of card structure -->
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <div class="card-body text-center">
+                            <div class="icon-circle">
+                                <img src="./img/leila.jpg" alt="Image description" style="border-radius: 50%; width: 100%;">
+                            </div>
+                            <h3 class="card-title">Dr. Leila Tazi Daoudi<br>
+                                Allergologue</h3>
+
+                            <p class="card-text" style=" font-size: 20px;">DabaDoc est un véritable avantage pour s'organiser et pouvoir consulter son planning sans être au cabinet.<br></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of card structure -->
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <div class="card-body text-center">
+                            <div class="icon-circle">
+                                <img src="./img/ali.jpg" alt="Image description" style="border-radius: 50%; width: 100%;">
+                            </div>
+                            <h3 class="card-title">Dr.Ali El Kohen
+                                Traumatologue,Orthopédiste</h3>
+
+                            <p class="card-text" style=" font-size: 20px;">C’est une équipe efficace et compétente. Les rendez-vous sont très bien gérés, (...) C’est un outil indispensable pour la gestion d’un cabinet médical.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="mt-5 section_block_5 py-3" style="background-color: #2f9ba6;">
+                <p class="text-white text-center mb-3" style="font-size: 30px;">
+                    <i class="fas fa-phone-alt"></i>
+                    05 28 28 47 37
+                </p>
+                <p class="text-white text-center mb-0" style="font-size: 28px;">
+                    Une question ? Appelez-nous ou contactez-nous par mail
+                </p>
+            </div>
+        </section>
+
+
 
     </main>
-    <footer class="footer">
+
+    <footer style="background-color: #f8f8f8;">
+        <div class="container py-3  text-start">
+            <div class="row mx-md-5 mt-5 ">
+                <div class="col-12 col-lg-4 ">
+
+                    <h4 class="mb-4">DocMeet</h4>
+                    <p class="">
+                        <span class="">Phone:</span> +234 23 9873237<br>
+                        <span class="">Email:</span> DocMeetWeb@email.com
+                    </p>
+                    <h4 class="mb-3 mt-5" style="padding-bottom:3%">Follow Us</h4>
+                    <a href="#" class="me-5"><i class="fab fa-facebook-square fa-3x" style="color:#2f9ba6; "></i></a>
+                    <a href="#" class="me-5"><i class="fab fa-twitter-square fa-3x" style="color:#2f9ba6;"></i></a>
+                    <a href="#" class="me-5"><i class="fab fa-instagram-square fa-3x" style="color:#2f9ba6;"></i></a>
+
+
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="other_doc_item">Useful Links</div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="other_doc_item"> what ever</div>
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+    <section class="section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h4>Column 1</h4>
-                    <p>Content for footer column 1.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Column 2</h4>
-                    <p>Content for footer column 2.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Column 3</h4>
-                    <p>Content for footer column 3.</p>
+                <div class="col-md-12">
+                    <h2 class="text-center mb-4" style="color: #2f9ba7;">Difficile de trouver un RDV de médecin ?</h2>
+                    <p class="lead text-center mb-5">Doctori est un outil innovant qui vous permet de trouver rapidement un médecin en ligne et de prendre RDV en temps réel. Retrouvez les praticiens de votre ville et prenez rendez-vous gratuitement et en un seul clic. Sur Doctori, repérez un médecin à proximité de chez vous, trouvez toutes les informations utiles : spécialités, informations d’accès, tarifs de consultation, choisissez le créneau qui vous convient et prenez RDV en ligne gratuitement et immédiatement. Dentistes, généralistes, ophtalmologues… : Plus besoin d’appels et d’attente. Votre prise de RDV est à présent simple, rapide et efficace.</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+    <div class="mt-5  py-4" style="background-color: gray;">
+        <p class="text-white text-center mb-0 fs-5">© Copyright Doctori 2023 - Tous droits réservés.</p>
+    </div>
+
 </body>
 
 </html>
