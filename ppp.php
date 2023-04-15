@@ -222,6 +222,20 @@
             max-width: 421px;
 
         }
+        ul {
+  list-style-type: none;
+  margin-left: 1em;
+}
+
+ul li::before {
+  content: "•";
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  color: #2f9ba7;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
     </style>
 </head>
 
