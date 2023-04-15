@@ -103,6 +103,19 @@
     font-size: 2rem;
   
 }
+.carousel-caption {
+    left: 20%; /* Adjust this value to change the horizontal position of the title and button */
+    right: auto;
+    transform: translateY(-50%);
+}
+
+.carousel-caption h3,
+.carousel-caption .btn {
+    font-size: 1.5rem; /* Adjust this value to change the size of the title and button */
+}
+
+
+
 
     </style>
 </head>
@@ -117,12 +130,24 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="./img/bg_search.jpg" class="d-block w-100" alt="Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Title 1</h3>
+                    <button class="btn btn-primary">Button 1</button>
+                </div>
             </div>
             <div class="carousel-item">
                 <img src="./img/doctorHeader.jpg" class="d-block w-100" alt="Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Title 2</h3>
+                    <button class="btn btn-primary">Button 2</button>
+                </div>
             </div>
             <div class="carousel-item">
                 <img src="./img/famelProfil.png" class="d-block w-100" alt="Image 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Title 3</h3>
+                    <button class="btn btn-primary">Button 3</button>
+                </div>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -135,6 +160,8 @@
         </button>
     </div>
 </section>
+
+
 <section class="section d-flex flex-column align-items-center">
     <h1 class="text-center" style="color: #1b6f61; font-size: 2rem;">Ce que vous pouvez faire avec Doctori</h1>
     <i class="fa-solid fa-user-doctor" style="color: #1b6f61; font-size: 2rem;"></i>
