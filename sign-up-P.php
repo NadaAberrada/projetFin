@@ -10,46 +10,65 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <style>
+  @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         html, body {
-    height: 100%;
-    background-image: url('./img/doctorHeader.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+            height: 100%;
+        }
 
-/* .overlay {
-    background-color: rgba(255, 255, 255, 0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-} */
+        body {
+            background: linear-gradient(135deg, #83a4d4, #b6fbff);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+        }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
 
-.form-wrapper {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
+        .form-wrapper {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
 
-.logo {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #4a4a4a;
-}
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        .btn-primary {
+            background-color: #2f9ba7;
+            font-size: 20px;
+            width: 30%;
+        }
+
+        .btn-primary:hover {
+            background-color: #287d8c;
+        }
 
     </style>
 </head>
@@ -57,7 +76,8 @@
     <div class="overlay"></div>
     <div class="container form-container">
         <div class="form-wrapper">
-            <h2 class="logo">YourBrand</h2>
+            <h2 class="logo">                    <img src="./img/logoOfMySiteWeb.png" alt="" srcset="">
+</h2>
             <form>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
