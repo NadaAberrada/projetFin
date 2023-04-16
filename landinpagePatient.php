@@ -28,6 +28,13 @@
 
         } */
 
+        .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+       
 
 
         .bg-image {
@@ -193,10 +200,10 @@
 
 <body>
 
-    <header>
+    <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f8f8f8;height: 13vh;border-bottom: 1Px solid grey;">
             <div class="container-fluid">
-                <img src="./image/logo.png" alt="" srcset="" style="width: 100px; margin-right: 50px" />
+                <img src="./img/logoOfMySiteWeb.png" alt="" srcset="" style="width: 20%; " />
                 <button class="navbar-toggler " style="background-color: #2f9ba6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon  "></span>
                 </button>
@@ -204,7 +211,7 @@
                     <div class="navbar-nav ms-auto">
                         <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Compte patient</a>
                         <a class="nav-link navbar-text active me-5" aria-current="page" href="#" style="color:#1b2856">Compte médecin</a>
-                        <a class="nav-link navbar-text active question" aria-current="page" href="#" style="background-color: #2f9ba6;color:fff;border-radius: 10px; ">Vous êtes médecin ?</a>
+                        <a class="nav-link navbar-text active question" aria-current="page" href="#" style="background-color: #2f9ba6;color:fff;border-radius: 5px; ">Vous êtes médecin ?</a>
                     </div>
                 </div>
             </div>
