@@ -49,9 +49,10 @@
         .section {
             background-color: white;
             padding: 30px;
-            /* margin-bottom: 30px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+             margin-bottom: 30px;
+             margin-top: 30px;
+    /* border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */ */
         }
 
         .footer {
@@ -343,7 +344,7 @@ ul li::before {
                         <img src="./img/agenda.png" alt="Image description">
                     </div>
                     <div class="col-md-7">
-                        <h2>Un agenda personnalisé adapté à votre activité</h2>
+                        <h3>Un agenda personnalisé adapté à votre activité</h3>
                         <ul>
                             <li>Gestion simplifié des rendez-vous médicaux en ligne</li>
                             <li>Gérer vos horaires et motifs de consultation en un seul clic</li>
@@ -359,7 +360,7 @@ ul li::before {
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h2>Une forte présence sur internet grâce à votre page web</h2>
+                        <h3>Une forte présence sur internet grâce à votre page web</h3>
                         <ul>
                             <li>Publiez les informations clés avec vos patients : Spécialité,<br> domaines d’expertise, tarifs, horaires, informations d’accès</li>
                             <li>Soignez votre e-réputation avec des outils innovants</li>
@@ -382,7 +383,7 @@ ul li::before {
                         <img src="./img/section3.jpg" alt="Image description" style=" width: 85%;">
                     </div>
                     <div class="col-md-7">
-                        <h2>Dossier Patient Numérique : Sécurité & Accessibilité pour les Pros de Santé</h2>
+                        <h3>Dossier Patient Numérique : Sécurité & Accessibilité pour les Pros de Santé</h3>
                         <ul>
                             <li>Accès sécurisé et crypté pour protéger les données sensibles.</li>
                             <li>Disponibilité 24/7 pour consulter les dossiers à tout moment.</li>
