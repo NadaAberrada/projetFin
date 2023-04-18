@@ -128,16 +128,6 @@
                         <input type="password" class="form-control" id="password" required>
                     </div>
                 </div>
-
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm ez le mot de passe</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
-                </div>
                 <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="doctorType" id="generalist" value="generalist" required>
