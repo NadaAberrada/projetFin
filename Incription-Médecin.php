@@ -83,68 +83,139 @@
         <div class="form-wrapper">
             <h2 class="logo"> <img src="./img/logoOfMySiteWeb.png" alt="" srcset="">
             </h2>
-            <form>
+            <form method="post" action="">
                 <div class="row mb-3">
                     <div class="col">
                         <label for="fullName" class="form-label">Nom complet</label>
-                        <input type="text" class="form-control" id="fullName" required>
+                        <input type="text" name="fullname" class="form-control" id="fullName" required>
                     </div>
                     <div class="col">
                         <label for="email" class="form-label">Adresse e-mail</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="phone" class="form-label">Numéro de téléphone</label>
-                        <input type="tel" class="form-control" id="phone" required>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
                     </div>
                     <div class="col">
                         <label for="city" class="form-label">Ville</label>
-                        <select class="form-select" id="city" required>
+                        <select class="form-select" id="city" name="citynameD" required>
                             <option selected disabled>Choisissez une ville</option>
-                            <!-- Add more cities as needed -->
-                            <option>Casablanca</option>
-                            <option>Rabat</option>
-                            <option>Fès</option>
-                            <option>Marrakech</option>
+                            <option value="Casablanca">Casablanca</option>
+                            <option value="Rabat">Rabat</option>
+                            <option value="Fès">Fès</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Agadir">Agadir</option>
+                            <option value="Tangier">Tanger</option>
+                            <option value="Meknes">Meknès</option>
+                            <option value="Oujda">Oujda</option>
+                            <option value="Kenitra">Kénitra</option>
+                            <option value="Tétouan">Tétouan</option>
+                            <option value="Safi">Safi</option>
+                            <option value="Khouribga">Khouribga</option>
+                            <option value="Beni Mellal">Beni Mellal</option>
+                            <option value="Mohammedia">Mohammedia</option>
+                            <option value="El Jadida">El Jadida</option>
+                            <option value="Nador">Nador</option>
+                            <option value="Ksar El Kebir">Ksar El Kébir</option>
+                            <option value="Settat">Settat</option>
+                            <option value="Larache">Larache</option>
+                            <option value="Taza">Taza</option>
+                            <option value="Sale">Salé</option>
+                            <option value="autre">autre</option>
                         </select>
+
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="specialty" class="form-label">Spécialité</label>
-                        <select class="form-select" id="specialty" required>
+                        <select class="form-select" id="specialty" name="specialty" required>
                             <option selected disabled>Choisissez une spécialité</option>
-                            <!-- Add more specialties as needed -->
-                            <option>Cardiologie</option>
-                            <option>Chirurgie générale</option>
-                            <option>Dermatologie</option>
-                            <option>Gynécologie</option>
+                            <option value="Allergologie">Allergologie</option>
+                            <option value="Anesthésiologie">Anesthésiologie</option>
+                            <option value="Cardiologie">Cardiologie</option>
+                            <option value="Chirurgie générale">Chirurgie générale</option>
+                            <option value="Chirurgie plastique">Chirurgie plastique</option>
+                            <option value="Dermatologie">Dermatologie</option>
+                            <option value="Endocrinologie">Endocrinologie</option>
+                            <option value="Gastroentérologie">Gastroentérologie</option>
+                            <option value="Gériatrie">Gériatrie</option>
+                            <option value="Gynécologie">Gynécologie</option>
+                            <option value="Hématologie">Hématologie</option>
+                            <option value="Immunologie">Immunologie</option>
+                            <option value="Infectiologie">Infectiologie</option>
+                            <option value="Médecine du sport">Médecine du sport</option>
+                            <option value="Médecine interne">Médecine interne</option>
+                            <option value="Néphrologie">Néphrologie</option>
+                            <option value="Neurologie">Neurologie</option>
+                            <option value="Obstétrique">Obstétrique</option>
+                            <option value="Oncologie">Oncologie</option>
+                            <option value="Ophtalmologie">Ophtalmologie</option>
+                            <option value="Orthopédie">Orthopédie</option>
+                            <option value="Oto-rhino-laryngologie">Oto-rhino-laryngologie</option>
+                            <option value="Pédiatrie">Pédiatrie</option>
+                            <option value="Pneumologie">Pneumologie</option>
+                            <option value="Psychiatrie">Psychiatrie</option>
+                            <option value="Radiologie">Radiologie</option>
+                            <option value="Rhumatologie">Rhumatologie</option>
+                            <option value="Urologie">Urologie</option>
                         </select>
+
                     </div>
                     <div class="col">
                         <label for="password" class="form-label">Mot de passe</label>
-                        <input type="password" class="form-control" id="password" required>
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="doctorType" id="generalist" value="generalist" required>
                         <label class="form-check-label" for="generalist">En cochant cette case, vous déclarez accepter
-                            les Conditions Générales de Doctori.</label>
+                            <span style="color: #2f9ba7;"> Conditions Générales</span> de BookMyDoctor.</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="doctorType" id="specialist" value="specialist" required>
-                        <label class="form-check-label" for="specialist">J'accepte la politique de confidentialité</label>
+                        <input class="form-check-input" type="radio" name="doctorTypee" id="specialist" value="specialist" required>
+                        <label class="form-check-label" for="specialist">J'accepte <span style="color: #2f9ba7;">politique de confidentialité</span> </label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-3 w-100">S'inscrire</button>
-                <p class="text-center">Vous avez déjà un compte? <a href="#">Se connecter</a></p>
+                <button type="submit" name="submit" class="btn btn-primary mb-3 w-100">S'inscrire</button>
+                <p class="text-center">Vous avez déjà un compte? <a href="./sign-in-D.php">Se connecter</a></p>
             </form>
         </div>
     </div>
-    <!-- Add the existing CSS from the previous answer -->
+    <?php
+    // Database connection
+    $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if (isset($_POST['submit'])) {
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+        $specialty = $_POST['specialty'];
+        $citynameD = $_POST['citynameD'];
+
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Check for duplicate email
+        $check_email = "SELECT * FROM doctors WHERE email = ?";
+        $check_stmt = $conn->prepare($check_email);
+        $check_stmt->execute([$email]);
+        if ($check_stmt->rowCount() > 0) {
+            echo "Email already exists!";
+        } else {
+            $sql = "INSERT INTO doctors (fullname, email, phone, password, specialty, cabinet, citynameD, imageD, schedule) VALUES (?, ?, ?, ?, ?, NULL, ?, NULL, NULL)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$fullname, $email, $phone, $password_hash, $specialty, $citynameD]);
+            echo "Inscription réussie!";
+        }
+    }
+    ?>
+
 </body>
 
 </html>
