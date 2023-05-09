@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>
+    <title>Inscription Médecine</title>
     <!-- Add Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- Add Bootstrap JS -->
@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary mb-3 w-100">S'inscrire</button>
-                <p class="text-center">Vous avez déjà un compte? <a href="./sign-in-D.php">Se connecter</a></p>
+                <p class="text-center">Vous avez déjà un compte? <a href="./sign-in-D.php">S'inscrire </a></p>
             </form>
         </div>
     </div>
