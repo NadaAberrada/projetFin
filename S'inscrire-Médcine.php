@@ -138,16 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Incorrect email or password.";
     }
 
-    // If rememberMe checkbox is checked, store email and password in cookies
-    if ($rememberMe) {
-        setcookie('email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-        setcookie('password', $password, time() + (86400 * 30), "/");
-    } else {
-        // Clear cookies if rememberMe is not checked
-        setcookie('email', '', time() - 3600, "/");
-        setcookie('password', '', time() - 3600, "/");
-    }
+// If rememberMe checkbox is checked, store email and password in cookies
+if ($rememberMe) {
+    setcookie('doctor_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+    setcookie('doctor_password', $password, time() + (86400 * 30), "/");
+} else {
+    // Clear cookies if rememberMe is not checked
+    setcookie('doctor_email', '', time() - 3600, "/");
+    setcookie('doctor_password', '', time() - 3600, "/");
 }
+}   
 
 
     ?>
