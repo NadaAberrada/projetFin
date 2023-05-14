@@ -1,0 +1,163 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.bg-image {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 66vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 1335px) {
+  .bg-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bg-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media screen and (max-width: 991.25px) {
+  .navbar-nav {
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .navbar-nav .me-5 {
+    padding-left: 30%;
+  }
+
+  .navbar-nav .question {
+    padding-left: 30%;
+  }
+  .sousTitre {
+    padding-left: 10%;
+  }
+}
+
+.sousTitre {
+  word-spacing: 1.2px;
+  font-family: bentonsans_extralight;
+}
+
+.fa-stack:hover .fa-square {
+  border-color: #a61057 !important;
+}
+
+.fa-stack:hover .fa-dollar-sign {
+  color: #a61057 !important;
+}
+
+.fa-stack:hover .fa-user {
+  color: #a61057 !important;
+}
+
+.fa-stack:hover .fa-calendar-alt {
+  color: #a61057 !important;
+}
+
+.fa-stack:hover .fa-stethoscope {
+  color: #a61057 !important;
+}
+
+.fa-stack {
+  font-size: 2.5em;
+}
+
+.icon-title {
+  margin-top: 5px;
+  font-weight: thin;
+}
+
+.medecin_box {
+  background-color: #2f9ba6;
+  background-image: url(./img/doc.png);
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  color: #fff;
+  font-family: bentonsansregular;
+  font-size: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 536px;
+  margin: auto;
+}
+
+.md_title {
+  color: #2f9ba6;
+  /* font-family: terminal_dosissemibold; */
+  font-size: 4vw;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.md_title span {
+  color: #6d6e71;
+  font-family: bentonsans_extralight;
+  font-size: 2.1vw;
+}
+
+@media screen and (max-width: 600px) {
+  .md_title {
+    font-size: 6vw;
+  }
+  .md_title span {
+    font-size: 5vw;
+  }
+  .t {
+    margin-top: 20px;
+  }
+}
+
+.rejoin-link {
+  border: 2px solid #fff;
+  border-radius: 2px;
+  color: #fff;
+
+  margin-bottom: 30px;
+  margin-top: 32px;
+  padding: 18px 85px;
+  text-decoration: none !important;
+  display: block;
+  max-width: 272px;
+}
+.rejoin-link:hover {
+  color: #fff;
+  background: #084147;
+}
+
+.title-home {
+  color: #2f9ba6;
+  display: inline-block;
+  font-family: terminal_dosissemibold, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.other_doc_item {
+  border: 1px solid #c7c8ca;
+  border-radius: 4px;
+
+  margin-bottom: 15px;
+  padding: 15px;
+  max-width: 421px;
+}
+
+.od_img {
+  background-color: #eee;
+  border-radius: 4px;
+  display: block;
+  height: 77px;
+  margin-left: 8%;
+  overflow: hidden;
+  width: 77px;
+}

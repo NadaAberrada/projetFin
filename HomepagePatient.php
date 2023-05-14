@@ -12,31 +12,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="./bar.css" rel="stylesheet" />
-    <style>
-        /* section {
-            overflow: hidden;
+    <link href="./formPatientRe.css" rel="stylesheet" />
+    <link href="./PatientCSS.css" rel="stylesheet" />
 
-        } */
-
-
-        /* footer {
-            background-color: #f7e1c1;
-            clear: both;
-
-
-
-        } */
-
+    <!-- <style>
         .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-       
-
-
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         .bg-image {
 
             background-position: bottom;
@@ -70,17 +54,11 @@
             }
 
             .navbar-nav .me-5 {
-
-
-                padding-left: 40%;
-
+                 padding-left: 40%;
             }
 
             .navbar-nav .question {
-
-
-                padding-left: 40%;
-
+                  padding-left: 40%;
             }
         }
 
@@ -140,7 +118,7 @@
 
         .md_title {
             color: #2f9ba6;
-            font-family: terminal_dosissemibold;
+            /* font-family: terminal_dosissemibold; */
             font-size: 4vw;
             margin-bottom: 20px;
             text-align: center;
@@ -153,19 +131,21 @@
         }
 
         .rejoin-link {
-            background-color: #2f9ba6;
             border: 2px solid #fff;
             border-radius: 2px;
             color: #fff;
-            font-family: terminal_dosissemibold;
-            font-size: 20px;
+          
             margin-bottom: 30px;
             margin-top: 32px;
-            padding: 13px 61px;
+            padding: 18px 85px;
             text-decoration: none !important;
             display: block;
-
             max-width: 272px;
+        }
+        .rejoin-link:hover {
+            color: #fff;
+            background: #084147;
+           
         }
 
         .title-home {
@@ -195,7 +175,7 @@
             overflow: hidden;
             width: 77px;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -225,7 +205,7 @@
             un médecin
         </h1>
 
-        <p class="sousTitre fw-lighter   " style=" font-size: 35px;">Près de chez vous et prenez rendez-vous en ligne</p>
+        <p class="sousTitre fw-lighter " style=" font-size: 35px;">Près de chez vous et prenez rendez-vous en ligne</p>
 
         <div class="s01">
             <form>
@@ -248,8 +228,8 @@
     </div>
 
 
-    <div class="section_block_2 d-flex flex-wrap justify-content-center justify-content-lg-around mt-4 text-center" style="box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);; padding-bottom: 2%">
-        <div class="icon-container mb-3 mb-lg-0 mr-lg-5">
+    <div class="section_block_2 d-flex flex-wrap justify-content-center justify-content-lg-around mt-4 text-center" style="box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25); padding-bottom: 5%; padding-top: 2%">
+        <div class="icon-container  mb-3 mb-lg-0 col-6 col-lg-3">
             <span class="fa-stack fa-lg">
                 <i class="fas fa-square fa-stack-2x" style="color: white; border: 3px solid #2f9ba6; border-radius: 15px;"></i>
                 <i class="fas fa-dollar-sign fa-stack-1x" style="color: #2f9ba6;"></i>
@@ -257,7 +237,7 @@
             <div class="icon-title mt-2">Un service <br>100% Gratuit</div>
         </div>
 
-        <div class="icon-container mb-3 mb-lg-0 mr-lg-5">
+        <div class="icon-container mb-3  mb-3 mb-lg-0 col-6 col-lg-3">
             <span class="fa-stack fa-lg">
                 <i class="fas fa-square fa-stack-2x" style="color: white; border: 3px solid #2f9ba6; border-radius: 15px;"></i>
                 <i class="fas fa-user fa-stack-1x" style="color: #2f9ba6;"></i>
@@ -265,7 +245,7 @@
             <div class="icon-title mt-2">Obtenez <br>votre espace<br> patient dédié</div>
         </div>
 
-        <div class="icon-container mb-3 mb-lg-0 mr-lg-5">
+        <div class="icon-container  mb-3 mb-lg-0 col-6 col-lg-3">
             <span class="fa-stack fa-lg">
                 <i class="fas fa-square fa-stack-2x" style="color: white; border: 3px solid #2f9ba6; border-radius: 15px;"></i>
                 <i class="far fa-calendar-alt fa-stack-1x" style="color: #2f9ba6;"></i>
@@ -273,7 +253,7 @@
             <div class="icon-title mt-2">Prenez <br>rendez-vous en<br> ligne 24h/24</div>
         </div>
 
-        <div class="icon-container">
+        <div class="icon-container  mb-3 mb-lg-0 col-6 col-lg-3">
             <span class="fa-stack fa-lg">
                 <i class="fas fa-square fa-stack-2x" style="color: white; border: 3px solid #2f9ba6; border-radius: 15px;"></i>
                 <i class="fas fa-stethoscope fa-stack-1x" style="color: #2f9ba6;"></i>
@@ -284,7 +264,7 @@
 
 
 
-    <div class="section_block_3  mt-5" style="padding-bottom: 2%;  ">
+    <div class="section_block_3  mt-5" style="padding-bottom: 4%; padding-top: 2% ">
         <div class="row mx-md-5">
             <div class="col-12 col-md-6" mx-auto>
                 <div class="div_medecin">
@@ -293,11 +273,11 @@
                         Médecin ?
                     </h2>
                     <div class="medecin_box">
-                        <p class="mt-4" style="margin-bottom: 8%;">S'inscrire sur Doctori,<br>
+                        <p class="mt-4" style="margin-bottom: 8%;">S'inscrire sur BooKMYDoctor<br>
                             est la meilleure façon de développer<br>
                             l'activité de votre cabinet
                         </p>
-                        <a href="#" class="rejoin-link">Rejoindre Doctori</a>
+                        <a href="#" class="rejoin-link">Rejoindre </a>
                     </div>
                 </div>
 
@@ -307,15 +287,15 @@
 
 
             <div class="col-12 col-md-6">
-                <h2 class="md_title" style="color:#a61057">
+                <h2 class="md_title t" style="color:#a61057">
                     Difficile
                     <span> de trouver un RDV de médecin ?</span>
 
                 </h2>
 
-                <p class="fs-5 mt-2"> Doctori est un outil innovant qui vous permet de trouver rapidement un médecin en ligne et de prendre RDV en temps réel.
+                <p class="fs-5 mt-4"> BooKMYDoctor est un outil innovant qui vous permet de trouver rapidement un médecin en ligne et de prendre RDV en temps réel.
                     Retrouvez les praticiens de votre ville et prenez rendez-vous gratuitement et en un seul clic.
-                    Sur Doctori, repérez un médecin à proximité de chez vous, trouvez toutes les informations utiles : spécialités,
+                    Sur BooKMYDoctor, repérez un médecin à proximité de chez vous, trouvez toutes les informations utiles : spécialités,
                     informations d’accès, tarifs de consultation, choisissez le créneau qui vous convient et prenez RDV en ligne gratuitement et immédiatement.
                     Dentistes, généralistes, ophtalmologues… : Plus besoin d’appels et d’attente. Votre prise de RDV est à présent simple, rapide et efficace.</p>
             </div>
@@ -397,7 +377,7 @@
             </div>
 
             <div class="mt-5  py-4" style="background-color: gray;">
-                <p class="text-white text-center mb-0">© Copyright Doctori 2023 - Tous droits réservés.</p>
+                <p class="text-white text-center mb-0">© Copyright BooKMYDoctor 2023 - Tous droits réservés.</p>
             </div>
         </footer>
 

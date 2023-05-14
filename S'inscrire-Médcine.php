@@ -76,8 +76,73 @@
         }
     </style>
 </head>
+<?php
+$error = '';
+// Database connection
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error connecting to the database: " . $e->getMessage());
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $rememberMe = isset($_POST['rememberMe']) ? $_POST['rememberMe'] : '';
+
+    // Check if email is already registered
+    // Get the user record based on the email address
+    $stmt = $conn->prepare("SELECT * FROM doctors WHERE email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0) {
+        // Fetch the user record
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Verify the password against the stored hash
+        if (password_verify($password, $user['password'])) {
+            // Login successful, redirect to a protected page or set the session
+            $error = "Logged in successfully!";
+            // 3mel li bghiti hnaya
+        } else {
+            $error = "Incorrect email or password.";
+        }
+    } else {
+        $error = "Email not registred";
+    }
+
+    // If rememberMe checkbox is checked, store email and password in cookies
+    if ($rememberMe) {
+        setcookie('doctor_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+        setcookie('doctor_password', $password, time() + (86400 * 30), "/");
+    } else {
+        // Clear cookies if rememberMe is not checked
+        setcookie('doctor_email', '', time() - 3600, "/");
+        setcookie('doctor_password', '', time() - 3600, "/");
+    }
+}
+?>
 
 <body>
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php echo $error; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container form-container">
         <div class="form-wrapper">
             <h2 class="logo">
@@ -102,62 +167,15 @@
             </form>
         </div>
     </div>
-    <?php
-    // Database connection
-    try {
-        $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Error connecting to the database: " . $e->getMessage());
-    }
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $rememberMe = isset($_POST['rememberMe']) ? $_POST['rememberMe'] : '';
-
-    // Check if email is already registered
-    // Get the user record based on the email address
-    $stmt = $conn->prepare("SELECT * FROM doctors WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        // Fetch the user record
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Verify the password against the stored hash
-        if (password_verify($password, $user['password'])) {
-            // Login successful, redirect to a protected page or set the session
-            echo "Logged in successfully!";
-        } else {
-            echo "Incorrect email or password.";
-        }
-    } else {
-        echo "Incorrect email or password.";
-    }
-
-// If rememberMe checkbox is checked, store email and password in cookies
-if ($rememberMe) {
-    setcookie('doctor_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-    setcookie('doctor_password', $password, time() + (86400 * 30), "/");
-} else {
-    // Clear cookies if rememberMe is not checked
-    setcookie('doctor_email', '', time() - 3600, "/");
-    setcookie('doctor_password', '', time() - 3600, "/");
-}
-}   
-
-
-    ?>
-
-
-
-
-
-
-
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
+        if (error) {
+            const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+            errorModal.show();
+        }
+    });
+</script>
 
 </html>

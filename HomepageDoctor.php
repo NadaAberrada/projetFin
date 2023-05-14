@@ -49,10 +49,11 @@
         .section {
             background-color: white;
             padding: 30px;
-             margin-bottom: 30px;
-             margin-top: 30px;
-    /* border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */ */
+            margin-bottom: 30px;
+            margin-top: 30px;
+            /* border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+            */
         }
 
         .footer {
@@ -223,20 +224,21 @@
             max-width: 421px;
 
         }
-        ul {
-  list-style-type: none;
-  margin-left: 1em;
-}
 
-ul li::before {
-  content: "•";
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-  color: #2f9ba7;
-  font-weight: bold;
-  font-size: 2.5rem;
-}
+        ul {
+            list-style-type: none;
+            margin-left: 1em;
+        }
+
+        ul li::before {
+            content: "•";
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            color: #2f9ba7;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
     </style>
 </head>
 
@@ -287,7 +289,7 @@ ul li::before {
 
 
         <section class="section d-flex flex-column align-items-center">
-            <h1 class="text-center" style="color: #2f9ba6; font-size: 2rem;">Ce que vous pouvez faire avec Doctori</h1>
+            <h1 class="text-center" style="color: #2f9ba6; font-size: 2rem;">Ce que vous pouvez faire avec BooKMYDoctor</h1>
             <a href="#marketing" id="marketing" class="icon-scroll"></a>
         </section>
 
@@ -505,13 +507,13 @@ ul li::before {
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="text-center mb-4" style="color: #2f9ba7;">Difficile de trouver un RDV de médecin ?</h2>
-                    <p class="lead text-center mb-5">Doctori est un outil innovant qui vous permet de trouver rapidement un médecin en ligne et de prendre RDV en temps réel. Retrouvez les praticiens de votre ville et prenez rendez-vous gratuitement et en un seul clic. Sur Doctori, repérez un médecin à proximité de chez vous, trouvez toutes les informations utiles : spécialités, informations d’accès, tarifs de consultation, choisissez le créneau qui vous convient et prenez RDV en ligne gratuitement et immédiatement. Dentistes, généralistes, ophtalmologues… : Plus besoin d’appels et d’attente. Votre prise de RDV est à présent simple, rapide et efficace.</p>
+                    <p class="lead text-center mb-5">BooKMYDoctor est un outil innovant qui vous permet de trouver rapidement un médecin en ligne et de prendre RDV en temps réel. Retrouvez les praticiens de votre ville et prenez rendez-vous gratuitement et en un seul clic. Sur BooKMYDoctor, repérez un médecin à proximité de chez vous, trouvez toutes les informations utiles : spécialités, informations d’accès, tarifs de consultation, choisissez le créneau qui vous convient et prenez RDV en ligne gratuitement et immédiatement. Dentistes, généralistes, ophtalmologues… : Plus besoin d’appels et d’attente. Votre prise de RDV est à présent simple, rapide et efficace.</p>
                 </div>
             </div>
         </div>
     </section>
     <div class="mt-5  py-4" style="background-color: gray;">
-        <p class="text-white text-center mb-0 fs-5">© Copyright Doctori 2023 - Tous droits réservés.</p>
+        <p class="text-white text-center mb-0 fs-5">© Copyright BooKMYDoctor 2023 - Tous droits réservés.</p>
     </div>
 
 </body>

@@ -1,4 +1,5 @@
 <?php
+$error='';
 // Database connection
 try {
     $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');

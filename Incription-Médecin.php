@@ -1,3 +1,49 @@
+<?php
+$error='';
+try {
+    // Database connection
+    $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if (isset($_POST['submit'])) {
+        $fullname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+        $specialty = $_POST['specialty'];
+        $citynameD = $_POST['citynameD'];
+
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Check for duplicate email
+        $check_email = "SELECT * FROM doctors WHERE email = ?";
+        $check_stmt = $conn->prepare($check_email);
+        $check_stmt->execute([$email]);
+        if ($check_stmt->rowCount() > 0) {
+            $error='Email already exists!';
+        } else {
+            $sql = "INSERT INTO doctors (fullname, email, phone, password, specialty, cabinet, citynameD, imageD, schedule) VALUES (?, ?, ?, ?, ?, NULL, ?, NULL, NULL)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([$fullname, $email, $phone, $password_hash, $specialty, $citynameD]);
+            // echo "Inscription réussie!";
+
+            setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+            setcookie('medcine_password', $password, time() + (86400 * 30), "/");
+            header("Location: Incription-Médecin.php");
+            exit();
+        }
+    }
+} catch (PDOException $e) {
+    $error= 'Connection failed: ' . $e->getMessage();
+}
+?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,6 +124,24 @@
 </head>
 
 <body>
+<?php if (isset($error)) : ?>
+        <div class="modal" tabindex="-1" id="errorModal" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Error</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><?php echo $error; ?></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="overlay"></div>
     <div class="container form-container">
         <div class="form-wrapper">
@@ -186,36 +250,15 @@
             </form>
         </div>
     </div>
-    <?php
-    // Database connection
-    $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (isset($_POST['submit'])) {
-        $fullname = $_POST['fullname'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $password = $_POST['password'];
-        $specialty = $_POST['specialty'];
-        $citynameD = $_POST['citynameD'];
-
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Check for duplicate email
-        $check_email = "SELECT * FROM doctors WHERE email = ?";
-        $check_stmt = $conn->prepare($check_email);
-        $check_stmt->execute([$email]);
-        if ($check_stmt->rowCount() > 0) {
-            echo "Email already exists!";
-        } else {
-            $sql = "INSERT INTO doctors (fullname, email, phone, password, specialty, cabinet, citynameD, imageD, schedule) VALUES (?, ?, ?, ?, ?, NULL, ?, NULL, NULL)";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute([$fullname, $email, $phone, $password_hash, $specialty, $citynameD]);
-            echo "Inscription réussie!";
-        }
-    }
-    ?>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            <?php if (isset($error)) : ?>
+                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>
