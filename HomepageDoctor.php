@@ -11,235 +11,8 @@
     <!-- Add Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
-    <style>
-        html,
-        body {
-            height: 100%;
-            background-image: url('your-image-url-here');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-        }
-
-        .header {
-            position: sticky;
-            top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 15px 30px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-        }
-
-        .header .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #4a4a4a;
-            text-decoration: none;
-        }
-
-        .container {
-
-            margin: 0 auto;
-        }
-
-        .section {
-            background-color: white;
-            padding: 30px;
-            margin-bottom: 30px;
-            margin-top: 30px;
-            /* border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
-            */
-        }
-
-        .footer {
-            background-color: #ffffff;
-            padding: 30px;
-            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .custom-card {
-            background-color: white;
-            color: black;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0);
-        }
-
-        .custom-card:hover {
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
-        }
-
-
-        /* .custom-card::after {
-
-}  */
-
-        .custom-btn {
-            background-color: #2f9ba7;
-            color: #ffffff;
-            font-size: 18px;
-            padding: 12px 24px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .custom-btn:hover {
-            background-color: #267f89;
-            text-decoration: none;
-        }
-
-
-        .icon-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f8f9fa;
-            margin: 0 auto;
-        }
-
-        .icon-circle i {
-            font-size: 2rem;
-
-        }
-
-        .carousel-caption {
-            left: 20%;
-            /* Adjust this value to change the horizontal position of the title and button */
-            right: auto;
-            transform: translateY(-50%);
-        }
-
-        .carousel-caption h3,
-        .carousel-caption .btn {
-            font-size: 1.5rem;
-            /* Adjust this value to change the size of the title and button */
-        }
-
-        .logo-img {
-            width: 45%;
-            height: auto;
-        }
-
-        .icon-scroll {
-            border-radius: 25px;
-            box-shadow: inset 0 0 0 2px #2f9ba7;
-            display: block;
-            height: 44px;
-            left: 50%;
-            left: auto;
-            margin: 10px auto 0;
-            position: absolute;
-            position: relative;
-            width: 29px;
-        }
-
-        .icon-scroll::before {
-            animation-duration: 2s;
-            animation-iteration-count: infinite;
-            animation-name: scroll;
-            background: #2f9ba7;
-            border-radius: 4px;
-            content: "";
-            height: 5px;
-            left: 50%;
-            margin-left: -3px;
-            position: absolute;
-            top: 4px;
-            width: 5px;
-        }
-
-        a {
-            background-color: transparent;
-            color: #2f9ba7;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        @keyframes scroll {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-        }
-
-        .icon-circle {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 160px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: #2f9ba7;
-            color: #fff;
-            margin-bottom: 35px;
-        }
-
-        .section img {
-            width: 70%;
-
-        }
-
-        .section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .section ul {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-
-        .btn-primary {
-            background-color: #2f9ba7;
-            font-size: 20px;
-            width: 30%;
-        }
-
-        .btn-primary:hover {
-            background-color: #287d8c;
-        }
-
-        .other_doc_item {
-            border: 1px solid #c7c8ca;
-            border-radius: 4px;
-
-            margin-bottom: 15px;
-            padding: 15px;
-            max-width: 421px;
-
-        }
-
-        ul {
-            list-style-type: none;
-            margin-left: 1em;
-        }
-
-        ul li::before {
-            content: "•";
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            color: #2f9ba7;
-            font-weight: bold;
-            font-size: 2.5rem;
-        }
-    </style>
+    <link href="./DoctorCSS.css" rel="stylesheet" />
+   
 </head>
 
 <body>
@@ -303,7 +76,8 @@
                                 <i class="fas fa-calendar-alt" style="font-size: 70px;"></i>
                             </div>
                             <h3 class="card-title">Agenda</h3>
-                            <p class="card-text" style=" font-size: 20px;">Optimiser la gestion de votre emploi du temps et de vos rendez-vous en temps réel avec notre outil facile à utiliser.</p>
+                            <p class="card-text" style=" font-size: 20px;">Optimiser la gestion de votre emploi du temps et de vos rendez-vous en temps réel 
+                            avec notre outil facile à utiliser.</br>  </br> </p>
                         </div>
                     </div>
                 </div>
@@ -349,7 +123,7 @@
                         <h3>Un agenda personnalisé adapté à votre activité</h3>
                         <ul>
                             <li>Gestion simplifié des rendez-vous médicaux en ligne</li>
-                            <li>Gérer vos horaires et motifs de consultation en un seul clic</li>
+                            <li>Gérer vos horaires et motifs de consultation en un seul click</li>
                             <li>Consulter en un clic à vos prochaines rendez-vous</li>
                             <li>Gérez votre agenda depuis votre ordinateur, tablette ou smartphone</li>
                         </ul>
@@ -422,7 +196,7 @@
                             </div>
                             <h3 class="card-title">Dr. Nezha El Hattab El Ibrahimi
                                 Pédiatre</h3>
-                            <p class="card-text" style=" font-size: 20px;">Ça fait plus de 4 ans que nous utilisons DabaDoc dans notre cabinet et mes patients sont très satisfaits </p>
+                            <p class="card-text" style=" font-size: 20px;">Ça fait plus de 4 ans que nous utilisons DabaDoc dans notre cabinet et mes patients sont très satisfaits.</br>  </br> </p>
                         </div>
                     </div>
                 </div>
@@ -436,7 +210,7 @@
                             <h3 class="card-title">Dr. Leila Tazi Daoudi<br>
                                 Allergologue</h3>
 
-                            <p class="card-text" style=" font-size: 20px;">DabaDoc est un véritable avantage pour s'organiser et pouvoir consulter son planning sans être au cabinet.<br></p>
+                            <p class="card-text" style=" font-size: 20px;">DabaDoc est un véritable avantage pour s'organiser et pouvoir consulter son planning sans être au cabinet.</br>  </br></p>
                         </div>
                     </div>
                 </div>
