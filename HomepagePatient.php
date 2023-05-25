@@ -189,8 +189,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-right:6%;">
                     <div class="navbar-nav ms-auto">
-                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Compte patient</a>
-                        <a class="nav-link navbar-text active me-5" aria-current="page" href="#" style="color:#1b2856">Compte médecin</a>
+                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Espace patient</a>
+                        <!-- <a class="nav-link navbar-text active me-5" aria-current="page" href="#" style="color:#1b2856">Espace médecin</a> -->
                         <a class="nav-link navbar-text active question" aria-current="page" href="#" style="background-color: #2f9ba6;color:fff;border-radius: 5px; ">Vous êtes médecin ?</a>
                     </div>
                 </div>

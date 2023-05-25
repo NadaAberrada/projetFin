@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link href="./DoctorCSS.css" rel="stylesheet" />
-   
+
 </head>
 
 <body>
@@ -76,8 +76,8 @@
                                 <i class="fas fa-calendar-alt" style="font-size: 70px;"></i>
                             </div>
                             <h3 class="card-title">Agenda</h3>
-                            <p class="card-text" style=" font-size: 20px;">Optimiser la gestion de votre emploi du temps et de vos rendez-vous en temps réel 
-                            avec notre outil facile à utiliser.</br>  </br> </p>
+                            <p class="card-text" style=" font-size: 20px;">Optimiser la gestion de votre emploi du temps et de vos rendez-vous en temps réel
+                                avec notre outil facile à utiliser.</br> </br> </p>
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,8 @@
                             </div>
                             <h3 class="card-title">Dr. Nezha El Hattab El Ibrahimi
                                 Pédiatre</h3>
-                            <p class="card-text" style=" font-size: 20px;">Ça fait plus de 4 ans que nous utilisons DabaDoc dans notre cabinet et mes patients sont très satisfaits.</br>  </br> </p>
+                            <p class="card-text" style=" font-size: 20px;">
+                            Ça fait plus de 4 ans que nous utilisons BooKMYDoctor dans notre cabinet et mes patients sont très satisfaits.</br> </br> </p>
                         </div>
                     </div>
                 </div>
@@ -210,7 +211,7 @@
                             <h3 class="card-title">Dr. Leila Tazi Daoudi<br>
                                 Allergologue</h3>
 
-                            <p class="card-text" style=" font-size: 20px;">DabaDoc est un véritable avantage pour s'organiser et pouvoir consulter son planning sans être au cabinet.</br>  </br></p>
+                            <p class="card-text" style=" font-size: 20px;">BooKMYDoctor est un véritable avantage pour s'organiser et pouvoir consulter son planning sans être au cabinet.</br> </br></p>
                         </div>
                     </div>
                 </div>
@@ -253,10 +254,10 @@
             <div class="row mx-md-5 mt-5 ">
                 <div class="col-12 col-lg-4 ">
 
-                    <h4 class="mb-4">DocMeet</h4>
+                    <h4 class="mb-4">BooKMYDoctor</h4>
                     <p class="">
                         <span class="">Phone:</span> +234 23 9873237<br>
-                        <span class="">Email:</span> DocMeetWeb@email.com
+                        <span class="">Email:</span> BooKMYDoctorWeb@email.com
                     </p>
                     <h4 class="mb-3 mt-5" style="padding-bottom:3%">Follow Us</h4>
                     <a href="#" class="me-5"><i class="fab fa-facebook-square fa-3x" style="color:#2f9ba6; "></i></a>

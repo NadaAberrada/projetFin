@@ -7,7 +7,7 @@
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 66vh;
+  height: 82vh;
   width: 100%;
 }
 
@@ -45,7 +45,7 @@
 
 .sousTitre {
   word-spacing: 1.2px;
-  font-family: bentonsans_extralight;
+  /* font-family: bentonsans_extralight; */
 }
 
 .fa-stack:hover .fa-square {
@@ -84,7 +84,7 @@
   background-repeat: no-repeat;
   border-radius: 8px;
   color: #fff;
-  font-family: bentonsansregular;
+  /* font-family: bentonsansregular; */
   font-size: 20px;
   padding: 30px;
   width: 100%;
@@ -102,8 +102,8 @@
 
 .md_title span {
   color: #6d6e71;
-  font-family: bentonsans_extralight;
-  font-size: 2.1vw;
+  /* font-family: bentonsans_extralight; */
+  font-size: 23px;
 }
 
 @media screen and (max-width: 600px) {
@@ -138,7 +138,7 @@
 .title-home {
   color: #2f9ba6;
   display: inline-block;
-  font-family: terminal_dosissemibold, sans-serif;
+  /* font-family: terminal_dosissemibold, sans-serif; */
   font-size: 30px;
   font-weight: 600;
 }

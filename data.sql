@@ -11,11 +11,11 @@ CREATE TABLE doctors (
   email VARCHAR(100) NOT NULL UNIQUE,
   phone VARCHAR(20) NOT NULL,
   password VARCHAR(255) NOT NULL,
-    specialty_id INT NOT NULL,
+    specialty INT NOT NULL,
   cabinet VARCHAR(100) NOT NULL,
  citynameD VARCHAR(255) NOT NULL,
     imageD MEDIUMBLOB null ,
-  schedule TEXT NOT NULL
+  localisation TEXT 
 );
 
 -- Patients table
