@@ -154,7 +154,7 @@
                             <div class="icon-circle">
                                 <i class="fas fa-calendar-alt" style="font-size: 50px;"></i>
                             </div>
-                            <h4 class="card-title">attirer les patients</h4>
+                            <h4 class="card-title">Attirer les patients</h4>
                             <p class="card-text fs-5">Affichez votre expertise et votre expérience dans votre domaine médical pour attirer les patients et établir votre crédibilité.</br> </br> </p>
                         </div>
                     </div>
