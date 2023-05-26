@@ -5,6 +5,9 @@ body {
 
   background-color: #fff;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   box-sizing: border-box;
@@ -28,7 +31,7 @@ body {
   width: 100%;
 }
 
-@media screen and (max-width: 1335px) {
+@media screen and (max-width: 1335px) {i
   .bg-image {
     background-size: cover;
     background-position: left;
@@ -152,6 +155,20 @@ body {
   color: #ffffff;
   font-size: 18px;
   padding: 1.9vh 0.5vw;
+
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+}
+.btnFooter {
+  background-color: #a61057;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 1.7vh 0.3vw;
 
   border-radius: 5px;
   border: none;
@@ -393,9 +410,7 @@ a {
   color: #fbc02d;
 }
 
-.carousel-item p {
-  font-size: 16px;
-}
+
 
 .carousel-control-prev-icon, 
 .carousel-control-next-icon {
@@ -403,3 +418,34 @@ a {
   border-radius: 50%;
   padding: 10px;
 }
+
+.btn-primary {
+  background-color: #a61057;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #381726;
+ 
+}
+
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 30px;
+}
+
+.footer-links a {
+  color: black;
+}
+
