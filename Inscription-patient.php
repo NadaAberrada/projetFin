@@ -1,15 +1,15 @@
 <?php
 $error='';
-// Database connection
+// Connexion à la base de données
 try {
-    $conn = new PDO("mysql:host=localhost;dbname=projetfin;port=3306;charset=UTF8", 'root', '');
+    $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Error connecting to the database: " . $e->getMessage());
+    die("Erreur lors de la connexion à la base de données : " . $e->getMessage());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the form data
+    // Récupérer les données du formulaire
     $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
     $tele = $_POST['tele'];
@@ -17,206 +17,264 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Hash the password
+    // Hasher le mot de passe
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert user data into the database
+    // Insérer les données de l'utilisateur dans la base de données
     try {
-        $stmt = $conn->prepare("INSERT INTO patients (name, lastname , email, password_hash,phone, citynameP) VALUES (:prenom, :nom, :email, :password, :tele, :ville)");
+        $profilimgData = null;
+        if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
+          $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
+        }
+
+        $stmt = $conn->prepare("INSERT INTO patients (nameP, lastnameP, emailP, passwordP, phoneP, citynameP, imageP) VALUES (:prenom, :nom, :email, :password, :tele, :ville, :img)");
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
         $stmt->bindParam(':tele', $tele);
         $stmt->bindParam(':ville', $ville);
-
+        $stmt->bindParam(':img', $profilimgData, PDO::PARAM_LOB);
 
         $stmt->execute();
 
-        // Store email and password in cookies
-        setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+        // Stocker l'email et le mot de passe dans les cookies
+        setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 jour
         setcookie('patient_password', $password, time() + (86400 * 30), "/");
 
-        // Redirect to the desired page
+        // Rediriger vers la page souhaitée
         header("Location: Incription-Médecin.php");
         exit();
     } catch (PDOException $e) {
-        $error = "Error inserting user data: " . $e->getMessage();
+        $error = "Erreur lors de l'insertion des données de l'utilisateur : " . $e->getMessage();
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-</head>
-<style>
-    @keyframes gradientBackground {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0% 50%;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsEhcYf-NZNlL6-FVHfT1GT3XAth8EJk4&callback=initMap" async defer></script> -->
+  <style>
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+      font-size: 1rem;
+      line-height: 2.15;
+      padding-left: .75em;
+      padding-right: .75em;
     }
 
-    html,
+    .card-registration .select-arrowx {
+      top: 13px;
+    }
+
     body {
-        height: 100%;
-    }
+      background-color: #aeb2b5;
 
-    body {
-        background: linear-gradient(135deg, #83a4d4, #b6fbff);
-        background-size: 400% 400%;
-        animation: gradientBackground 15s ease infinite;
-    }
-
-    .form-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-
-    .form-wrapper {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 400px;
-    }
-
-    .logo {
-        font-size: 36px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        color: #4a4a4a;
-    }
-
-    .logo img {
-        max-width: 100%;
-        height: auto;
+      font-family: 'Poppins', sans-serif;
     }
 
     .btn-primary {
-        background-color: #2f9ba7;
-        font-size: 20px;
-        width: 30%;
+      background-color: #2f9ba7;
+
     }
 
     .btn-primary:hover {
-        background-color: #287d8c;
+      background-color: #287d8c;
     }
-</style>
+
+    #map {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
 
 <body>
-    <?php if (isset($error)) : ?>
-        <div class="modal" tabindex="-1" id="errorModal" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Error</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><?php echo $error; ?></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+
+
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php echo $error; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
-
-    <!-- Your form goes here -->
-    <div class="overlay"></div>
-    <div class="container form-container">
-        <div class="form-wrapper">
-            <h2 class="logo"> <img src="./img/logoOfMySiteWeb.png" alt="" srcset="">
-            </h2>
-            <form method="post" action="Inscription-patient.php">
-                <div class="row mb-3">
-                    <div class="col"><label for="Prénom" class="form-label">Prénom</label>
-                        <input type="text" class="form-control" id="Prénom" name="prenom" required>
-                    </div>
-
-                    <div class="col"><label for="Nom" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="Nom" name="nom" required>
-                    </div>
-
-
-
-                </div>
-                <div class="row mb-3">
-                    <div class="col"><label for="tele" class="form-label">tele</label>
-                        <input type="text" class="form-control" id="tele" name="tele" required>
-                    </div>
-                    <div class="col"><label for="ville" class="form-label">ville</label>
-                        <select class="form-select" id="ville" name="ville" required>
-                            <option selected disabled>Choisissez une ville</option>
-                            <option value="Casablanca">Casablanca</option>
-                            <option value="Rabat">Rabat</option>
-                            <option value="Fès">Fès</option>
-                            <option value="Marrakech">Marrakech</option>
-                            <option value="Agadir">Agadir</option>
-                            <option value="Tangier">Tanger</option>
-                            <option value="Meknes">Meknès</option>
-                            <option value="Oujda">Oujda</option>
-                            <option value="Kenitra">Kénitra</option>
-                            <option value="Tétouan">Tétouan</option>
-                            <option value="Safi">Safi</option>
-                            <option value="Khouribga">Khouribga</option>
-                            <option value="Beni Mellal">Beni Mellal</option>
-                            <option value="Mohammedia">Mohammedia</option>
-                            <option value="El Jadida">El Jadida</option>
-                            <option value="Nador">Nador</option>
-                            <option value="Ksar El Kebir">Ksar El Kébir</option>
-                            <option value="Settat">Settat</option>
-                            <option value="Larache">Larache</option>
-                            <option value="Taza">Taza</option>
-                            <option value="Sale">Salé</option>
-                            <option value="autre">autre</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary mb-3 w-100">S'inscrire</button>
-                <p class="text-center">Vous avez déjà un compte? <a href="./S'inscrire-patient.php">S'inscrire</a></p>
-            </form>
-        </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            <?php if (isset($error)) : ?>
-                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                errorModal.show();
-            <?php endif; ?>
-        });
-    </script>
+  
+
+
+  <form class="h-100" method="POST" action="" enctype="multipart/form-data">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="./img/patientPic.jpg" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height:100%" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <a href="./landingpage.php" class="navbar-brand d-flex align-items-center mt-3">
+                    <img src="./img/logoDocMeet.png" alt="" srcset="" width="30%" class="position-relative top-0 start-50 translate-middle mt-5">
+                  </a>
+                  <h4 class="mb-5 text-center">Débloquez le plein potentiel de votre santé<br>Inscrivez-vous dès maintenant !</h4>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" name="prenom" class="form-control form-control-lg" id="Prénom" required>
+                        <label class="form-label" for="Prénom">Prénom</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" class="form-control form-control-lg" id="Nom" name="nom" required>
+                        <label class="form-label" for="email">Nom</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="tel" class="form-control form-control-lg" id="tele" name="tele" required>
+                        <label for="tele" class="form-label">Numéro de téléphone</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                         
+                      
+                      <input type="email" id="email" placeholder="Email" name="email" class="form-control form-control-lg" style=" height: 38px;" required />
+
+                       
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div iv class="col-md-6 mb-4">
+                      <div class="form-outline">
+                      <select class="form-select" id="city" name="ville" required>
+                          <option selected disabled>Choisissez une ville</option>
+                          <option value="Casablanca">Casablanca</option>
+                          <option value="Rabat">Rabat</option>
+                          <option value="Fès">Fès</option>
+                          <option value="Marrakech">Marrakech</option>
+                          <option value="Agadir">Agadir</option>
+                          <option value="Tangier">Tanger</option>
+                          <option value="Meknes">Meknès</option>
+                          <option value="Oujda">Oujda</option>
+                          <option value="Kenitra">Kénitra</option>
+                          <option value="Tétouan">Tétouan</option>
+                          <option value="Safi">Safi</option>
+                          <option value="Khouribga">Khouribga</option>
+                          <option value="Beni Mellal">Beni Mellal</option>
+                          <option value="Mohammedia">Mohammedia</option>
+                          <option value="El Jadida">El Jadida</option>
+                          <option value="Nador">Nador</option>
+                          <option value="Ksar El Kebir">Ksar El Kébir</option>
+                          <option value="Settat">Settat</option>
+                          <option value="Larache">Larache</option>
+                          <option value="Taza">Taza</option>
+                          <option value="Sale">Salé</option>
+                        </select>
+                    
+                      </div>
+
+                    </div>
+                    <div class="col-md-6 mb-4">
+                    <label class="form-control" for="inputGroupFile02">Profil image </label>
+                      <input type="file" id="inputGroupFile02" name="profilimg" style="display: none; ">
+
+                    </div>
+
+                  </div>
+               
+                    <div class="mb-4">
+                     
+                     
+                      <input type="password" id="password" placeholder="Password" name="password" class="form-control form-control-lg" style=" height: 38px;" required />
+
+                    </div>
+
+           
+                  
+
+
+                  <!-- In your HTML file -->
+
+
+
+                  <div class="d-flex justify-content-end pt-3">
+                    <button type="submit" name="submit" class="btn btn-primary btn-block">Inscrivez-vous</button>
+                  </div>
+
+                  <div class="text-center mt-3 small">
+                    <p class="">Vous avez déjà un compte? <a href="./ConnexionMédcine.php">Connecter </a></p>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationModalLabel">Choose your location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <input type="hidden" id="location" name="location">
+          </div>
+          <div class="modal-body">
+            <div id="map"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="saveLocationBtn" data-bs-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+ 
+
+
+ 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
+        if (error) {
+            const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+            errorModal.show();
+        }
+    });
+</script>
 </body>
 
 </html>
