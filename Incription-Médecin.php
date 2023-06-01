@@ -6,42 +6,42 @@ try {
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   if (isset($_POST['submit'])) {
-    // Retrieve form inputs
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     $specialty = $_POST['specialty'];
     $citynameD = $_POST['citynameD'];
+    $genre = $_POST['genre'];
+    $cin = $_POST['cin'];
 
     $location = isset($_POST['location']) ? $_POST['location'] : '';
-
-    // Convert location to the desired format
     $location = str_replace(['{', '}', 'lat', 'lng', ':', '"', ' '], '', $location);
     $location = str_replace(',', ', ', $location);
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    // Handle the cpem file upload
     $cpemData = null;
     if (isset($_FILES['cpem']) && $_FILES['cpem']['error'] == UPLOAD_ERR_OK) {
       $cpemData = fopen($_FILES['cpem']['tmp_name'], 'rb');
     }
 
-    // Handle the profilimg file upload
     $profilimgData = null;
     if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
       $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
     }
 
-    // Check for duplicate email
-    $check_email = "SELECT * FROM doctors WHERE emailD = ?";
-    $check_stmt = $conn->prepare($check_email);
-    $check_stmt->execute([$email]);
+    // Check if doctor with the same email, CIN, or phone number already exists
+    $check_query = "SELECT * FROM doctors WHERE emailD = :email OR cin = :cin OR phoneD = :phone";
+    $check_stmt = $conn->prepare($check_query);
+    $check_stmt->bindParam(':email', $email);
+    $check_stmt->bindParam(':cin', $cin);
+    $check_stmt->bindParam(':phone', $phone);
+    $check_stmt->execute();
     if ($check_stmt->rowCount() > 0) {
-      $error = 'Email already exists!';
+      $error = 'Doctor with the same email, CIN, or phone number already exists.';
     } else {
-      $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, rating, localisation, websiteLink, cpemimg) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, ?)";
+      $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, rating, localisation, websiteLink, cpemimg,gender,cin ,confirm) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, ?,?,?,NULL)";
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(1, $fullname);
       $stmt->bindParam(2, $email);
@@ -52,6 +52,8 @@ try {
       $stmt->bindParam(7, $profilimgData, PDO::PARAM_LOB);
       $stmt->bindParam(8, $location);
       $stmt->bindParam(9, $cpemData, PDO::PARAM_LOB);
+      $stmt->bindParam(10, $genre);
+      $stmt->bindParam(11, $cin);
       $stmt->execute();
 
       setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
@@ -65,6 +67,7 @@ try {
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +149,6 @@ try {
     }
   </script>
 
-
   <form class="h-100" method="POST" action="" enctype="multipart/form-data">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -218,7 +220,20 @@ try {
                     <div iv class="col-md-6 mb-4">
                       <div class="form-outline">
 
-                        <select class="form-select" id="specialty" name="specialty" required>
+                        <select class="form-select" id="genre" name="genre" required>
+                          <option selected disabled>Choisissez le genre</option>
+                          <option value="Femme">Femme</option>
+                          <option value="Homme">Homme</option>
+                        </select>
+                      </div>
+                      
+
+                    </div>
+
+                    <div iv class="col-md-6 mb-4">
+                      <div class="form-outline">
+
+                      <select class="form-select" id="specialty" name="specialty" required>
                           <option selected disabled>Choisissez une spécialité</option>
                           <option value="Allergologie">Allergologie</option>
                           <option value="Anesthésiologie">Anesthésiologie</option>
@@ -249,13 +264,19 @@ try {
                           <option value="Rhumatologie">Rhumatologie</option>
                           <option value="Urologie">Urologie</option>
                         </select>
-
                       </div>
-
                     </div>
+
                     <div class="col-md-6 mb-4">
                       <label class="form-control" for="inputGroupFile01">CPEM </label>
                       <input type="file" id="inputGroupFile01" name="cpem" style="display: none;">
+                    </div>
+
+
+                    <div class="col-md-6 mb-4">
+                    <input type="Text" id="cin" placeholder="CIN" name="cin" class="form-control form-control-lg" style=" height: 38px;" required />
+
+                      
                     </div>
 
                   </div>

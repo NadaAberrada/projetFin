@@ -1,6 +1,8 @@
 
 
-
+<?php 
+session_start(); 
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js" defer></script>
+ 
 
   <style>
     .card-registration .select-input.form-control[readonly]:not([disabled]) {
@@ -45,7 +48,7 @@
   </style>
 </head>
 <?php
-$error = '';
+$error='';
 // Database connection
 try {
     $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
@@ -54,42 +57,46 @@ try {
     die("Error connecting to the database: " . $e->getMessage());
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $rememberMe = isset($_POST['rememberMe']) ? $_POST['rememberMe'] : '';
+    // $rememberMe = isset($_POST['rememberMe']) ? true : false;
 
-    // Check if email is already registered
-    // Get the user record based on the email address
-    $stmt = $conn->prepare("SELECT * FROM doctors WHERE emailD = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+    // Retrieve the hashed password from the database
+    try {
+        $stmt = $conn->prepare("SELECT * FROM admins WHERE emailA	 = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-    if ($stmt->rowCount() > 0) {
-        // Fetch the user record
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() == 1) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $hashed_password = $user['passwordA'];
 
-        // Verify the password against the stored hash
-        if (password_verify($password, $user['passwordD'])) {
-            // Login successful, redirect to a protected page or set the session
-            $error = "Logged in successfully!";
-            // 3mel li bghiti hnaya
+            if (password_verify($password, $hashed_password)) {
+
+              $_SESSION['iddoctor'] = $user['doctorID'];
+                // If rememberMe checkbox is checked, store email and password in cookies
+                // if ($rememberMe) {
+                //     setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+                //     setcookie('patient_password', $password, time() + (86400 * 30), "/");
+                // } else {
+                //     // Clear cookies if rememberMe is not checked
+                //     setcookie('patient_email', '', time() - 3600, "/");
+                //     setcookie('patient_password', '', time() - 3600, "/");
+                // }
+
+                // Redirect to the desired page after a successful login
+                header("Location: dashboardAdmin.php");
+                exit;
+
+            } else {
+                $error = "Invalid password!";
+            }
         } else {
-            $error = "Incorrect email or password.";
+            $error = "User not found!";
         }
-    } else {
-        $error = "Email not registred";
-    }
-
-    // If rememberMe checkbox is checked, store email and password in cookies
-    if ($rememberMe) {
-        setcookie('doctor_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-        setcookie('doctor_password', $password, time() + (86400 * 30), "/");
-    } else {
-        // Clear cookies if rememberMe is not checked
-        setcookie('doctor_email', '', time() - 3600, "/");
-        setcookie('doctor_password', '', time() - 3600, "/");
+    } catch (PDOException $e) {
+        $error = "Error fetching user data: " . $e->getMessage();
     }
 }
 ?>
@@ -117,14 +124,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="card card-registration my-4">
             <div class="row g-0">
               <div class="col-xl-6 d-none d-xl-block">
-                <img src="./img/medcinPic.jpg" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; " />
+                <img src="./img/HealthAdmin.jpg" alt="Sample photo" class="img-fluid W-100" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black mt-5">
-                  <a href="../Page Visiteure/Guest.php" class="navbar-brand d-flex align-items-center">
-                    <img src="./img/logoDocMeet.png" alt="" srcset="" width="30%" class="position-relative top-0 start-50 translate-middle mt-5">
+                  <a href="./landingpage.php" class="navbar-brand d-flex align-items-center">
+                    <img src="./img/logoDocMeet.png" alt="" srcset="" width="30%" class="position-relative top-0 start-50 translate-middle ">
                   </a>
-                  <h4 class="mb-5 text-center">Découvrez de nouvelles perspectives médicales <br> Connectez-vous !</h4>
+                  <h4 class="mb-5 text-center">Gérer la santé avec confiance</br> Accès au portail administrateur</h4>
+
 
 
                   <div class="form-outline mb-4">
@@ -136,18 +144,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" class="form-control form-control-lg" name="password" required>
                     <label class="form-label" for="password">Mot De Passe</label>
                   </div>
-                  <div class="mb-3 form-check">
+                  <!-- <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
-                </div>
+                </div> -->
                   <div class="d-flex justify-content-end pt-3">
                     <button type="submit" class="btn btn-primary btn-block">Connecter</button>
                   </div>
 
 
-                  <div class="text-center mt-3 small">
-                  Vous n'avez pas de compte ? <a href="./Incription-Médecin.php">Inscrivez-Vous</a>
-                  </div>
+                
                 </div>
               </div>
             </div>

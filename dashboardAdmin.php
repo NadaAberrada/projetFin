@@ -1,328 +1,387 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Dashboard Template Â· Bootstrap v5.3</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.108.0">
+  <title>Dashboard Template Â· Bootstrap v5.3</title>
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    
 
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+    .b-example-divider {
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .card {
+      background-color: #f8f9fa;
+      border: none;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+
+
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+      border-radius: 0.5rem;
+    }
+
+    .btn-primary {
+      border-radius: 0.5rem;
+    }
+    body {
+ 
+ font-family: 'Poppins', sans-serif;
+
+}
+
+    /* .navbar-toggler{
+      margin-top: 12vh;
+      margin-left: 10vh;
+    } */
+    /* .navbar-nav{
+      margin-left: 8vh;
+    } */
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+  <header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #f8f8f8;">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="./landingpage.php"> <img src="./img/logoDocMeet.png" alt="" srcset="" width="30%">
+    </a>
+    <button class="navbar-toggler position-absolute  d-md-none collapsed" type="button" data-bs-toggle="collapse" style=" background-color: #267f89; right: 0; margin-right:1.5rem;" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-nav  ">
+      <div class="nav-item text-nowrap">
+        <a class="nav-link px-3 text-secondary " href="SignOut.php">se déconnecter</a>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">
+                <span data-feather="home" class="align-text-bottom"></span>
+                Statistique
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./searchpatientDash.php">
+                <span data-feather="file" class="align-text-bottom"></span>
+                Liste des patients
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./DoctorSearchDash.php">
+                <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                Liste des Docteurs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./confirmMedine.php">
+                <span data-feather="users" class="align-text-bottom"></span>
+                confirmer les médecins
+              </a>
+            </li>
+
+          </ul>
+
+
+
+
+        </div>
+      </nav>
+
+
+      <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center ">
+        <?php
+        // Database connection
+        try {
+          $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+          die("Error connecting to the database: " . $e->getMessage());
         }
-      }
 
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
+        // Count total patients
+        $stmtPatients = $conn->query("SELECT COUNT(*) FROM patients");
+        $totalPatients = $stmtPatients->fetchColumn();
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+        // Count total doctors
+        $stmtDoctors = $conn->query("SELECT COUNT(*) FROM doctors");
+        $totalDoctors = $stmtDoctors->fetchColumn();
+        // Count confirmed doctors
+        $stmtConfirmedDoctors = $conn->query("SELECT COUNT(*) FROM doctors WHERE confirm = 'oui'");
+        $totalConfirmedDoctors = $stmtConfirmedDoctors->fetchColumn();
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
+        // Count unconfirmed doctors
+        $stmtUnconfirmedDoctors = $conn->query("SELECT COUNT(*) FROM doctors WHERE confirm = 'non'");
+        $totalUnconfirmedDoctors = $stmtUnconfirmedDoctors->fetchColumn();
+        ?>
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
+        <div class="row mt-5 justify-content-center">
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Total Patients</h5>
+                <p class="card-text"><?php echo $totalPatients; ?></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Total Doctors</h5>
+                <p class="card-text"><?php echo $totalDoctors; ?></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Confirmed Doctors</h5>
+                <p class="card-text"><?php echo $totalConfirmedDoctors; ?></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Unconfirmed Doctors</h5>
+                <p class="card-text"><?php echo $totalUnconfirmedDoctors; ?></p>
+              </div>
+            </div>
+          </div>
 
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
+        </div>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
-  </head>
-  <body>
-    
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+
+        <?php
+        // Database connection
+        try {
+          $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+          die("Error connecting to the database: " . $e->getMessage());
+        }
+
+        // Get the search input value
+        $searchCity = isset($_GET['searchCity']) ? $_GET['searchCity'] : '';
+
+        // Query to retrieve the count of doctors in each city
+        $stmt = $conn->prepare("
+    SELECT citynameD, COUNT(*) AS doctor_count
+    FROM doctors
+    WHERE citynameD LIKE :searchCity
+    GROUP BY citynameD
+");
+        $stmt->bindValue(':searchCity', '%' . $searchCity . '%');
+        $stmt->execute();
+        $doctorsByCity = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Query to retrieve the count of patients in each city
+        $stmt = $conn->prepare("
+    SELECT citynameP, COUNT(*) AS patient_count
+    FROM patients
+    WHERE citynameP LIKE :searchCity
+    GROUP BY citynameP
+");
+        $stmt->bindValue(':searchCity', '%' . $searchCity . '%');
+        $stmt->execute();
+        $patientsByCity = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Combine the city data from doctors and patients
+        $cities = array_merge(array_column($doctorsByCity, 'citynameD'), array_column($patientsByCity, 'citynameP'));
+        $cities = array_unique($cities);
+
+        ?>
+
+        <div class="row justify-content-center mb-5 mt-5">
+          <div class="col-md-7">
+            <div class="card-body">
+              <h2 class="card-title text-center mb-5">Statistiques de la Ville</h2>
+              <form action="" method="GET" class="input-group">
+                <input type="text" class="form-control" placeholder="Entrer une ville" name="searchCity" value="<?php echo htmlspecialchars($searchCity); ?>">
+                <button class="btn btn-primary" type="submit">Chercher</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-10">
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">City</th>
+                    <th scope="col">Doctors</th>
+                    <th scope="col">Patients</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  foreach ($cities as $city) {
+                    $doctorCount = 0;
+                    $patientCount = 0;
+
+                    foreach ($doctorsByCity as $doctorRow) {
+                      if ($doctorRow['citynameD'] === $city) {
+                        $doctorCount = $doctorRow['doctor_count'];
+                        break;
+                      }
+                    }
+
+                    foreach ($patientsByCity as $patientRow) {
+                      if ($patientRow['citynameP'] === $city) {
+                        $patientCount = $patientRow['patient_count'];
+                        break;
+                      }
+                    }
+
+                    echo "
+                  <tr>
+                    <td>$city</td>
+                    <td>$doctorCount</td>
+                    <td>$patientCount</td>
+                  </tr>
+              ";
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        </tbody>
+        </table>
     </div>
   </div>
-</header>
-
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3 sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home" class="align-text-bottom"></span>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file" class="align-text-bottom"></span>
-              Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart" class="align-text-bottom"></span>
-              Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users" class="align-text-bottom"></span>
-              Customers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Reports
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers" class="align-text-bottom"></span>
-              Integrations
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
-          </button>
-        </div>
-      </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-      <h2>Section title</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>text</td>
-              <td>random</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>placeholder</td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,007</td>
-              <td>placeholder</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>irrelevant</td>
-            </tr>
-            <tr>
-              <td>1,008</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,009</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,010</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,011</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,012</td>
-              <td>text</td>
-              <td>placeholder</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,013</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>visual</td>
-            </tr>
-            <tr>
-              <td>1,014</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,015</td>
-              <td>random</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>text</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
   </div>
-</div>
+
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
 
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  </body>
+
+
+  </main>
+
+  <canvas class="my-4 w-100" id="myChart" width="900" height="380">
+
+
+
+  </canvas>
+
+
+  </main>
+  </div>
+  </div>
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+  <script src="dashboard.js"></script>
+</body>
+
 </html>
