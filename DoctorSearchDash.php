@@ -230,15 +230,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
         $offset = ($currentPage - 1) * $perPage;
         $paginatedDoctors = array_slice($doctors, $offset, $perPage);
         ?>
+        <h4 class="card-title mb-5 mt-5" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%">Statistiques de la Ville</h4>
 
         <div class="row justify-content-center mb-5 mt-5">
           <div class="col-md-8">
             <div class="card-body">
-              <h1 class="mt-5 mb-5 dashboard-1">Chercher Docteur</h1>
               <div class="d-flex">
                 <form action="" method="POST" class="input-group">
                   <input type="text" class="form-control" placeholder="Entrer Email ou CIN" name="searchEmail">
-                  <button class="btn btn-primary" type="submit">chercher</button>
+                  <button class="btn btn-primary" type="submit" style="background-color:  #267f89;">chercher</button>
                 </form>
                 <form action="" method="GET" class="input-group ms-3">
                   <select class="form-control" id="specialtyFilter" name="specialty" onchange="this.form.submit()">
@@ -286,7 +286,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                   <table class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">Full Name</th>
+                        <th scope="col">Nome Complète</th>
                         <th scope="col">Email</th>
                         <th scope="col">CIN</th>
                         <th scope="col">Phone</th>
@@ -299,7 +299,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                     <tbody>
                       <?php foreach ($paginatedDoctors as $doctor) : ?>
                         <tr>
-                          <td><?php echo "Dr".$doctor['fullname']; ?></td>
+                          <td><?php echo "Dr"." ".$doctor['fullname']; ?></td>
                           <td><?php echo $doctor['emailD']; ?></td>
                           <td><?php echo $doctor['cin']; ?></td>
                           <td><?php echo $doctor['phoneD']; ?></td>

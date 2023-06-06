@@ -30,36 +30,40 @@ try {
     if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
       $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
     }
-
-    // Check if doctor with the same email, CIN, or phone number already exists
-    $check_query = "SELECT * FROM doctors WHERE emailD = :email OR cin = :cin OR phoneD = :phone";
-    $check_stmt = $conn->prepare($check_query);
-    $check_stmt->bindParam(':email', $email);
-    $check_stmt->bindParam(':cin', $cin);
-    $check_stmt->bindParam(':phone', $phone);
-    $check_stmt->execute();
-    if ($check_stmt->rowCount() > 0) {
-      $error = 'Doctor with the same email, CIN, or phone number already exists.';
+    if (!preg_match("/^((\+|00)212|0)[567]\d{8}$/", $phone)) {
+      $error = 'Numéro de téléphone invalide. Veuillez saisir un numéro de téléphone marocain valide.';
     } else {
-      $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, rating, localisation, websiteLink, cpemimg,gender,cin ,confirm) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, ?,?,?,NULL)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bindParam(1, $fullname);
-      $stmt->bindParam(2, $email);
-      $stmt->bindParam(3, $phone);
-      $stmt->bindParam(4, $password_hash);
-      $stmt->bindParam(5, $specialty);
-      $stmt->bindParam(6, $citynameD);
-      $stmt->bindParam(7, $profilimgData, PDO::PARAM_LOB);
-      $stmt->bindParam(8, $location);
-      $stmt->bindParam(9, $cpemData, PDO::PARAM_LOB);
-      $stmt->bindParam(10, $genre);
-      $stmt->bindParam(11, $cin);
-      $stmt->execute();
+      $check_query = "SELECT * FROM doctors WHERE emailD = :email OR cin = :cin OR phoneD = :phone";
+      $check_stmt = $conn->prepare($check_query);
+      $check_stmt->bindParam(':email', $email);
+      $check_stmt->bindParam(':cin', $cin);
+      $check_stmt->bindParam(':phone', $phone);
+      $check_stmt->execute();
+      if ($check_stmt->rowCount() > 0) {
+        // Check if doctor with the same email, CIN, or phone number already exists
 
-      setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-      setcookie('medcine_password', $password, time() + (86400 * 30), "/");
-      header("Location: Incription-Médecin.php");
-      exit();
+        $error = "Un médecin avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
+      } else {
+        $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, rating, localisation, websiteLink, cpemimg,gender,cin ,confirm) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, ?,?,?,NULL)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $fullname);
+        $stmt->bindParam(2, $email);
+        $stmt->bindParam(3, $phone);
+        $stmt->bindParam(4, $password_hash);
+        $stmt->bindParam(5, $specialty);
+        $stmt->bindParam(6, $citynameD);
+        $stmt->bindParam(7, $profilimgData, PDO::PARAM_LOB);
+        $stmt->bindParam(8, $location);
+        $stmt->bindParam(9, $cpemData, PDO::PARAM_LOB);
+        $stmt->bindParam(10, $genre);
+        $stmt->bindParam(11, $cin);
+        $stmt->execute();
+
+        setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+        setcookie('medcine_password', $password, time() + (86400 * 30), "/");
+        header("Location: Incription-Médecin.php");
+        exit();
+      }
     }
   }
 } catch (PDOException $e) {
@@ -105,7 +109,7 @@ try {
     }
 
     .btn-primary {
-      background-color: #2f9ba7;
+      background-color: #a61057;
 
     }
 
@@ -123,22 +127,22 @@ try {
 <body>
 
 
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php echo $error; ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <?php echo $error; ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
 
   <script>
     // Code for saving location and submitting the form
@@ -226,14 +230,14 @@ try {
                           <option value="Homme">Homme</option>
                         </select>
                       </div>
-                      
+
 
                     </div>
 
                     <div iv class="col-md-6 mb-4">
                       <div class="form-outline">
 
-                      <select class="form-select" id="specialty" name="specialty" required>
+                        <select class="form-select" id="specialty" name="specialty" required>
                           <option selected disabled>Choisissez une spécialité</option>
                           <option value="Allergologie">Allergologie</option>
                           <option value="Anesthésiologie">Anesthésiologie</option>
@@ -274,9 +278,9 @@ try {
 
 
                     <div class="col-md-6 mb-4">
-                    <input type="Text" id="cin" placeholder="CIN" name="cin" class="form-control form-control-lg" style=" height: 38px;" required />
+                      <input type="Text" id="cin" placeholder="CIN" name="cin" class="form-control form-control-lg" style=" height: 38px;" required />
 
-                      
+
                     </div>
 
                   </div>
@@ -343,7 +347,7 @@ try {
       </div>
     </div>
   </form>
- 
+
 
   <script>
     let map, marker;
@@ -387,13 +391,13 @@ try {
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsEhcYf-NZNlL6-FVHfT1GT3XAth8EJk4&callback=initMap"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
-        if (error) {
-            const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
-            errorModal.show();
-        }
+      const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
+      if (error) {
+        const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+        errorModal.show();
+      }
     });
-</script>
+  </script>
 </body>
 
 </html>

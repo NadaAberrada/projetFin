@@ -20,7 +20,25 @@ body {
     width: 100%;
   max-width: 1500%;
   }
+  .Detail {
+    background-color: #a61057;
+    white-space: nowrap;
+    border-radius: .7px;
+    font-size: 16px;
+    color: #fff;
+    transition: all .2s ease-out, color .2s ease-out;
+    border: 0;
+    cursor: pointer;
+    -webkit-border-radius: .7px;
+    -moz-border-radius: .7px;
+    -ms-border-radius: .7px;
+    -o-border-radius: .7px;
+}
+.Detail:hover {
+  background-color:#2f9ba6;
+  color: #fff;
   
+}
   
   
   .s01 form .inner-form {
@@ -78,8 +96,53 @@ body {
   .s01 form .inner-form .input-field.second-wrap {
     width: 32.77%;
     min-width: 180px;
+    position: relative;
+    
   }
+
+  .s01 form .inner-form .input-field.second-wrap::after {
+    content: '\f078';
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #9a9a9a;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.s01 form .inner-form .input-field.second-wrap select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff;
+  border-radius: .5px;
+  border: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 32px;
+  font-size: 20px;
+  position: relative;
+  z-index: 2;
+}
   
+.s01 form .inner-form .input-field.second-wrap select::-ms-expand {
+  display: none;
+}
+
+.s01 form .inner-form .input-field.second-wrap select option {
+  color: #9a9a9a;
+  font-size: 20px;
+}
+
+.s01 form .inner-form .input-field.second-wrap select:hover,
+.s01 form .inner-form .input-field.second-wrap select:focus {
+  box-shadow: none;
+  outline: 0;
+}
+
   .s01 form .inner-form .input-field.third-wrap {
     width: 180px;
     margin-right: 0;
@@ -172,6 +235,7 @@ body {
     }
     .s01 form .inner-form .input-field.second-wrap {
       width: calc(50% - 10px);
+      
       min-width: auto;
     }
     .s01 form .inner-form .input-field.third-wrap {

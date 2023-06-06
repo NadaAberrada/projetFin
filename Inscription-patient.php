@@ -1,61 +1,66 @@
 <?php
-$error='';
+$error = '';
 try {
-    $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erreur lors de la connexion à la base de données : " . $e->getMessage());
+  die("Erreur lors de la connexion à la base de données : " . $e->getMessage());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $prenom = $_POST['prenom'];
-    $nom = $_POST['nom'];
-    $tele = $_POST['tele'];
-    $ville = $_POST['ville'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $genre = $_POST['genre'];
-    $cin = $_POST['cin'];
+  $prenom = $_POST['prenom'];
+  $nom = $_POST['nom'];
+  $tele = $_POST['tele'];
+  $ville = $_POST['ville'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $genre = $_POST['genre'];
+  $cin = $_POST['cin'];
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    try {
-        // Check if user with the same email, CIN, or phone number already exists
-        $stmt = $conn->prepare("SELECT * FROM patients WHERE emailP = :email OR cin = :cin OR phoneP = :tele");
+  try {
+    // Check if user with the same email, CIN, or phone number already exists
+    $stmt = $conn->prepare("SELECT * FROM patients WHERE emailP = :email OR cin = :cin OR phoneP = :tele");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':cin', $cin);
+    $stmt->bindParam(':tele', $tele);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+      $error = "User with the same email, CIN, or phone number already exists.";
+    } else {
+      $profilimgData = null;
+      if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
+        $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
+      }
+      if ($check_stmt->rowCount() > 0) {
+        // Check if doctor with the same email, CIN, or phone number already exists
+
+        $error = "Un médecin avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
+      } else {
+        $stmt = $conn->prepare("INSERT INTO patients (nameP, lastnameP, emailP, passwordP, phoneP, citynameP, imageP,cin,gender) VALUES (:prenom, :nom, :email, :password, :tele, :ville, :img,:cin,:gender)");
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':cin', $cin);
+        $stmt->bindParam(':password', $hashed_password);
         $stmt->bindParam(':tele', $tele);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':img', $profilimgData, PDO::PARAM_LOB);
+        $stmt->bindParam(':cin', $cin);
+        $stmt->bindParam(':gender', $genre);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
-            $error = "User with the same email, CIN, or phone number already exists.";
-        } else {
-            $profilimgData = null;
-            if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
-              $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
-            }
 
-            $stmt = $conn->prepare("INSERT INTO patients (nameP, lastnameP, emailP, passwordP, phoneP, citynameP, imageP,cin,gender) VALUES (:prenom, :nom, :email, :password, :tele, :ville, :img,:cin,:gender)");
-            $stmt->bindParam(':prenom', $prenom);
-            $stmt->bindParam(':nom', $nom);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $hashed_password);
-            $stmt->bindParam(':tele', $tele);
-            $stmt->bindParam(':ville', $ville);
-            $stmt->bindParam(':img', $profilimgData, PDO::PARAM_LOB);
-            $stmt->bindParam(':cin', $cin);
-            $stmt->bindParam(':gender', $genre);
-            $stmt->execute();
+        setcookie('patient_email', $email, time() + (86400 * 30), "/");
+        setcookie('patient_password', $password, time() + (86400 * 30), "/");
 
-            setcookie('patient_email', $email, time() + (86400 * 30), "/");
-            setcookie('patient_password', $password, time() + (86400 * 30), "/");
-
-            header("Location: landingpage.php");
-            exit();
-        }
-    } catch (PDOException $e) {
-        $error = "Erreur lors de l'insertion des données de l'utilisateur : " . $e->getMessage();
+        header("Location: landingpage.php");
+        exit();
+      }
     }
+  } catch (PDOException $e) {
+    $error = "Erreur lors de l'insertion des données de l'utilisateur : " . $e->getMessage();
+  }
 }
 ?>
 
@@ -98,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .btn-primary {
-      background-color: #2f9ba7;
+      background-color: #a61057;
 
     }
 
@@ -116,24 +121,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php echo $error; ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <?php echo $error; ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-  
+
 
 
   <form class="h-100" method="POST" action="" enctype="multipart/form-data">
@@ -165,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </div>
                     </div>
                   </div>
-                
+
 
 
                   <div class="row">
@@ -177,11 +182,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                         
-                      
-                      <input type="email" id="email" placeholder="Email" name="email" class="form-control form-control-lg" style=" height: 38px;" required />
 
-                       
+
+                        <input type="email" id="email" placeholder="Email" name="email" class="form-control form-control-lg" style=" height: 38px;" required />
+
+
 
                       </div>
                     </div>
@@ -194,20 +199,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                      <input type="Text" id="cin"  name="cin" class="form-control form-control-lg" style=" height: 38px;" required />
+                        <input type="Text" id="cin" name="cin" class="form-control form-control-lg" style=" height: 38px;" required />
                         <label for="cin" class="form-label">CIN</label>
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                         
-                      <select class="form-select" id="genre" name="genre" required>
+
+                        <select class="form-select" id="genre" name="genre" required>
                           <option selected disabled>Choisissez le genre</option>
                           <option value="Femme">Femme</option>
                           <option value="Homme">Homme</option>
                         </select>
 
-                       
+
 
                       </div>
                     </div>
@@ -223,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="row">
                     <div iv class="col-md-6 mb-4">
                       <div class="form-outline">
-                      <select class="form-select" id="city" name="ville" required>
+                        <select class="form-select" id="city" name="ville" required>
                           <option selected disabled>Choisissez une ville</option>
                           <option value="Casablanca">Casablanca</option>
                           <option value="Rabat">Rabat</option>
@@ -247,27 +252,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           <option value="Taza">Taza</option>
                           <option value="Sale">Salé</option>
                         </select>
-                    
+
                       </div>
 
                     </div>
                     <div class="col-md-6 mb-4">
-                    <label class="form-control" for="inputGroupFile02">Profil image </label>
+                      <label class="form-control" for="inputGroupFile02">Profil image </label>
                       <input type="file" id="inputGroupFile02" name="profilimg" style="display: none; ">
 
                     </div>
 
                   </div>
-               
-                    <div class="mb-4">
-                     
-                     
-                      <input type="password" id="password" placeholder="Password" name="password" class="form-control form-control-lg" style=" height: 38px;" required />
 
-                    </div>
+                  <div class="mb-4">
 
-           
-                  
+
+                    <input type="password" id="password" placeholder="Password" name="password" class="form-control form-control-lg" style=" height: 38px;" required />
+
+                  </div>
+
+
+
 
 
                   <!-- In your HTML file -->
@@ -281,7 +286,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="text-center mt-3 small">
                     <p class="">Vous avez déjà un compte? <a href="./ConnexionMédcine.php">Connecter </a></p>
                   </div>
-                
+
                 </div>
               </div>
             </div>
@@ -308,19 +313,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </form>
- 
 
 
- 
+
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
-        if (error) {
-            const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
-            errorModal.show();
-        }
+      const error = <?php echo isset($error) ? json_encode($error) : 'null'; ?>;
+      if (error) {
+        const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+        errorModal.show();
+      }
     });
-</script>
+  </script>
 </body>
 
 </html>

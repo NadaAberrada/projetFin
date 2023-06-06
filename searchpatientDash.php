@@ -173,14 +173,14 @@ body {
         $offset = ($currentPage - 1) * $perPage;
         $paginatedPatients = array_slice($patients, $offset, $perPage);
         ?>
+        <h4 class="card-title mb-5 mt-5 dashboard-1" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%;">Chercher Patient</h4>
 
         <div class="row justify-content-center mb-5 mt-5">
           <div class="col-md-7">
             <div class="card-body">
-              <h1 class=" mb-5 dashboard-1">Chercher Patient</h1>
               <form action="" method="POST" class="input-group">
                 <input type="text" class="form-control" placeholder="Entrer Email ou CIN" name="searchEmail">
-                <button class="btn btn-primary" type="submit">chercher</button>
+                <button class="btn btn-primary" type="submit" style="background-color:  #267f89;">chercher</button>
               </form>
             </div>
           </div>
@@ -214,7 +214,7 @@ body {
                         <td><?php echo $patient['citynameP']; ?></td>
                         <td><?php echo $patient['gender']; ?></td>
                         <td>
-                          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#patientModal<?php echo $patient['patientID']; ?>">View Image</button>
+                          <button class="btn btn-primary btn-sm" style="background-color:  #267f89;" data-bs-toggle="modal" data-bs-target="#patientModal<?php echo $patient['patientID']; ?>">Image Profile</button>
                         </td>
                       </tr>
                       <!-- Patient Modal -->

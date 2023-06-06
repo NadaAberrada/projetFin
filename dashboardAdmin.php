@@ -106,20 +106,17 @@
 
     .btn-primary {
       border-radius: 0.5rem;
+      background-color: #267f89;
     }
+
     body {
- 
- font-family: 'Poppins', sans-serif;
 
-}
+      font-family: 'Poppins', sans-serif;
 
-    /* .navbar-toggler{
-      margin-top: 12vh;
-      margin-left: 10vh;
-    } */
-    /* .navbar-nav{
-      margin-left: 8vh;
-    } */
+    }
+
+    
+
   </style>
 
 
@@ -152,25 +149,25 @@
         <div class="position-sticky pt-3 sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+              <a class="nav-link active"  aria-current="page" href="./dashboardAdmin.php">
                 <span data-feather="home" class="align-text-bottom"></span>
                 Statistique
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./searchpatientDash.php">
+              <a class="nav-link"  href="./searchpatientDash.php">
                 <span data-feather="file" class="align-text-bottom"></span>
                 Liste des patients
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./DoctorSearchDash.php">
+              <a class="nav-link"  href="./DoctorSearchDash.php">
                 <span data-feather="shopping-cart" class="align-text-bottom"></span>
                 Liste des Docteurs
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./confirmMedine.php">
+              <a class="nav-link"  href="./confirmMedine.php">
                 <span data-feather="users" class="align-text-bottom"></span>
                 confirmer les médecins
               </a>
@@ -185,7 +182,6 @@
       </nav>
 
 
-      <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center ">
         <?php
         // Database connection
@@ -217,31 +213,31 @@
             <div class="card mb-4">
               <div class="card-body">
                 <h5 class="card-title">Total Patients</h5>
-                <p class="card-text"><?php echo $totalPatients; ?></p>
+                <p class="card-text" style="color:  #267f89;"><?php echo $totalPatients; ?></p>
               </div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="card mb-4">
               <div class="card-body">
-                <h5 class="card-title">Total Doctors</h5>
-                <p class="card-text"><?php echo $totalDoctors; ?></p>
+                <h5 class="card-title">Total Doctuers</h5>
+                <p class="card-text" style="color:  #267f89;"><?php echo $totalDoctors; ?></p>
               </div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="card mb-4">
               <div class="card-body">
-                <h5 class="card-title">Confirmed Doctors</h5>
-                <p class="card-text"><?php echo $totalConfirmedDoctors; ?></p>
+                <h5 class="card-title">Confirmé Doctuers</h5>
+                <p class="card-text" style="color:  #267f89;"><?php echo $totalConfirmedDoctors; ?></p>
               </div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="card mb-4">
               <div class="card-body">
-                <h5 class="card-title">Unconfirmed Doctors</h5>
-                <p class="card-text"><?php echo $totalUnconfirmedDoctors; ?></p>
+                <h5 class="card-title">Non confirmé Docteurs</h5>
+                <p class="card-text" style="color:  #267f89;"><?php echo $totalUnconfirmedDoctors; ?></p>
               </div>
             </div>
           </div>
@@ -272,6 +268,35 @@
         $stmt->execute();
         $doctorsByCity = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
+        $stmt = $conn->prepare("
+        SELECT citynameD, COUNT(*) AS confirmed_doctor_count
+        FROM doctors
+        WHERE citynameD LIKE :searchCity AND confirm = 'oui'
+        GROUP BY citynameD
+      ");
+        $stmt->bindValue(':searchCity', '%' . $searchCity . '%');
+        $stmt->execute();
+        $confirmedDoctorsByCity = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+        $stmt = $conn->prepare("
+      SELECT citynameD, COUNT(*) AS nonconfirmed_doctor_count
+      FROM doctors
+      WHERE citynameD LIKE :searchCity AND confirm = 'non'
+      GROUP BY citynameD
+    ");
+        $stmt->bindValue(':searchCity', '%' . $searchCity . '%');
+        $stmt->execute();
+        $nonConfirmedDoctorsByCity = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+
         // Query to retrieve the count of patients in each city
         $stmt = $conn->prepare("
     SELECT citynameP, COUNT(*) AS patient_count
@@ -289,10 +314,12 @@
 
         ?>
 
+
+        <h4 class="card-title mb-5 mt-5" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%">Statistiques de la Ville</h4>
         <div class="row justify-content-center mb-5 mt-5">
           <div class="col-md-7">
             <div class="card-body">
-              <h2 class="card-title text-center mb-5">Statistiques de la Ville</h2>
+              <!-- <h2 class="card-title mb-5" style="text-align: left; border-bottom: 1px solid #3498db;">Statistiques de la Ville</h2> -->
               <form action="" method="GET" class="input-group">
                 <input type="text" class="form-control" placeholder="Entrer une ville" name="searchCity" value="<?php echo htmlspecialchars($searchCity); ?>">
                 <button class="btn btn-primary" type="submit">Chercher</button>
@@ -307,20 +334,29 @@
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">City</th>
-                    <th scope="col">Doctors</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Docteurs Confirmé</th>
+                    <th scope="col">Docteurs non Confirmé</th>
                     <th scope="col">Patients</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   foreach ($cities as $city) {
-                    $doctorCount = 0;
+                    $confirmedDoctorCount = 0;
+                    $nonConfirmedDoctorCount = 0;
                     $patientCount = 0;
 
-                    foreach ($doctorsByCity as $doctorRow) {
+                    foreach ($confirmedDoctorsByCity as $doctorRow) {
                       if ($doctorRow['citynameD'] === $city) {
-                        $doctorCount = $doctorRow['doctor_count'];
+                        $confirmedDoctorCount = $doctorRow['confirmed_doctor_count'];
+                        break;
+                      }
+                    }
+
+                    foreach ($nonConfirmedDoctorsByCity as $doctorRow) {
+                      if ($doctorRow['citynameD'] === $city) {
+                        $nonConfirmedDoctorCount = $doctorRow['nonconfirmed_doctor_count'];
                         break;
                       }
                     }
@@ -331,11 +367,11 @@
                         break;
                       }
                     }
-
                     echo "
                   <tr>
                     <td>$city</td>
-                    <td>$doctorCount</td>
+                    <td>$confirmedDoctorCount</td>
+                    <td>$nonConfirmedDoctorCount</td>
                     <td>$patientCount</td>
                   </tr>
               ";
@@ -365,11 +401,6 @@
 
   </main>
 
-  <canvas class="my-4 w-100" id="myChart" width="900" height="380">
-
-
-
-  </canvas>
 
 
   </main>

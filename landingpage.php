@@ -45,7 +45,7 @@
 
     <div class="bg-image  d-flex align-items-center flex-column" style="background-image: url('./img/backgroundImage.png');color:white">
         <div class="titleback position-absolute bottom-0 end-0" style="margin: 50px 0.5rem 3rem;">
-            <h1 class="display-4 fw-bold text-center grandtitre">
+            <h1 class="display-4 fw-bold text-center grandtitre ">
                 <span class="fw-lighter">Trouvez</span>
                 un médecin
             </h1>
@@ -332,36 +332,38 @@
 
     <section class="py-8  " style="margin-bottom: 5rem;">
         <div class="container">
-        <div class="row">
+            <div class="row">
 
-<div class="col-lg-6 order-1 order-lg-1 text-lg-start text-center">
-    <div class="container position-relative">
-        <img class="w-85 img-fluid d-block mx-auto mx-lg-0 mb-lg-5" src="./img/very-good-smiling-confident-asian-female-doctor-showing-okay-ok-sign-approval-confirm-smth-saying-removebg-preview.png" alt="..." />
-    </div>
-</div>
+                <div class="col-lg-6 order-1 order-lg-1 text-lg-start text-center">
+                    <div class="container position-relative">
+                        <img class="w-85 img-fluid d-block mx-auto mx-lg-0 mb-lg-5" src="./img/very-good-smiling-confident-asian-female-doctor-showing-okay-ok-sign-approval-confirm-smth-saying-removebg-preview.png" alt="..." />
+                    </div>
+                </div>
 
-<div class="col-lg-6 order-2 order-lg-2 mt-5 mb-lg-0">
-    <form class="row g-3">
-        <div class="col-md-6">
-            <label class="visually-hidden" for="inputName">Nom</label>
-            <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" />
-        </div>
-        <div class="col-md-6">
-            <label class="form-label visually-hidden" for="inputEmail">Email</label>
-            <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" />
-        </div>
-        <div class="col-md-12">
-            <label class="form-label visually-hidden" for="validationTextarea">Message</label>
-            <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required"></textarea>
-        </div>
-        <div class="col-12">
-            <div class="d-grid">
-                <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
+                <div class="col-lg-6 order-2 order-lg-2 mb-lg-0">
+                    <h2 class="text-center mb-5">Contact nos</h2>
+                    <form class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="visually-hidden" for="inputName">Nom</label>
+                            <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label visually-hidden" for="inputEmail">Email</label>
+                            <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label visually-hidden" for="validationTextarea">Message</label>
+                            <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-grid">
+                                <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
-</div>
 
 
         </div>
@@ -382,7 +384,7 @@
                 <div class="col-12 col-lg-4 mb-5">
                     <h4 class="mb-4">DocMeet</h4>
                     <p>
-                        <span class="">Phone : +234 23 9873237</span> </br></br>
+                        <span class="">Phone : +212 625063853</span> </br></br>
                         <span class="">Email : docmeetweb@email.com</span>
                     </p>
                     <h4 class=" mt-4 " style="padding-bottom:3%">Follow Us</h4>
@@ -403,8 +405,12 @@
                 </div>
                 <div class="col-12 col-lg-4 ">
                     <div class="footer-column">
-                        <button type="button" class="btnFooter mt-5 col-5 col-lg-5 ">S'inscrire</button></br>
-                        <button type="button" class="btnFooter mt-5 col-5 col-lg-5">S'identifier</button>
+                        <a href="./inscriptionquestion.php">
+                            <button type="button" class="btnFooter mt-5 col-5 col-lg-5 ">
+                                S'inscrire
+                            </button></a></br>
+                        <a href="./connexionquestion.php"> <button type="button" class="btnFooter mt-5 col-5 col-lg-5">S'identifier</button>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@
       font-family: 'Poppins', sans-serif;
     }
     .btn-primary {
-      background-color: #2f9ba7;
+      background-color: #a61057;
 
     }
 

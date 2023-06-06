@@ -154,9 +154,10 @@ try {
       </nav>
 
       <div class="container col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center">
-        <h1 class="mt-5 mb-5 dashboard-1">Confirm Doctors</h1>
+      <h4 class="card-title mb-5 mt-5" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%">Confirmé Docteurs</h4>
+
         <div class="row">
-          <div class="col-7 mb-4 position-relative top-50 start-50 translate-middle">
+          <div class="col-7 mb-4  mt-5 position-relative top-50 start-50 translate-middle">
             <form action="" method="GET" class=" d-flex" >
               <input class="form-control me-2 " type="search" name="search" placeholder="Search by email or CIN" aria-label="Search">
               <button class="btn" style="background-color: #267f89;color:white" type="submit">Chercher</button>
