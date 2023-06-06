@@ -42,8 +42,8 @@ if (isset($_POST['doctorId'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 15rem;
+            height: 15rem;
             border-radius: 50%;
         }
 
@@ -125,8 +125,8 @@ if (isset($_POST['doctorId'])) {
 
     <div class="container py-5">
         <div class="row">
-            <div class="col-lg-4 d-flex justify-content-center justify-content-lg-start">
-                <img src="<?php echo $result['imageP']; ?>" class="profile-img" alt="Doctor's Picture">
+            <div class="col-lg-4 d-flex justify-content-center justify-content-lg-start">            
+                <img src="image.php?doctorId=<?php echo $doctorId; ?>" class="profile-img " alt="Doctor's Picture">
             </div>
             <div class="col-lg-8">
                 <h2 class="display-4 mb-3"><?php echo $result['fullname']; ?></h2>
@@ -165,18 +165,18 @@ if (isset($_POST['doctorId'])) {
         <div class="row mt-5  p-4">
             <div class="col-lg-6 border">
                 <h3 class="border-bottom">Contact Doctor</h3>
-                <form method="post" action="contact_doctor.php">
+                <form id="myForm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
                     </div>
                     <input type="hidden" name="doctorId" value="<?php echo $result['doctorID']; ?>" />
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -216,12 +216,66 @@ if (isset($_POST['doctorId'])) {
         </div>
     </div>
 
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Message Status</h4>
+      </div>
+      <div class="modal-body">
+        <!-- This is where we'll display the status message -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <footer class="py-3 bg-custom text-center">
         <p class="mb-0">© 2023 HealthCare Corp. All rights reserved.</p>
     </footer>
     <script>
+$(document).ready(function() {
+    $("#myForm").on('submit', function(e) {
+        e.preventDefault();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var message = $("#message").val();
+        var doctorId = $("input[name=doctorId]").val();
+
+        // Simple email format validation
+        var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        if (!email.match(emailRegex)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        $.ajax({
+            url: 'contact_doctor.php',
+            method: 'post',
+            data: {
+                name: name,
+                email: email,
+                message: message,
+                doctorId: doctorId
+            },
+            success: function(data) {
+                $('.modal-body').html(data);
+                $('#myModal').modal('show');
+            },
+            error: function(err) {
+                $('.modal-body').html("An error occurred.");
+                $('#myModal').modal('show');
+            }
+        });
+    });
+});
+
+
+
         //show the code
         $(document).ready(function() {
             var doctorId = $('.stars-rating').data('doctor-id');
