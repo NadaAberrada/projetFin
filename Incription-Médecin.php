@@ -1,4 +1,5 @@
 <?php
+session_start();
 $error = '';
 try {
   // Database connection
@@ -58,10 +59,13 @@ try {
         $stmt->bindParam(10, $genre);
         $stmt->bindParam(11, $cin);
         $stmt->execute();
+        $last_id = $conn->lastInsertId();
+        $_SESSION['DoctorID'] = $last_id;
 
         setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
         setcookie('medcine_password', $password, time() + (86400 * 30), "/");
-        header("Location: Incription-Médecin.php");
+        header("Location:DoctorDash.php");
+
         exit();
       }
     }

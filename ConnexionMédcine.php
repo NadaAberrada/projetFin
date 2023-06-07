@@ -45,6 +45,7 @@
   </style>
 </head>
 <?php
+session_start();
 $error = '';
 // Database connection
 try {
@@ -74,6 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['passwordD'])) {
             // Login successful, redirect to a protected page or set the session
             $error = "Logged in successfully!";
+            $_SESSION['DoctorID'] = $user['doctorID'];
+            header("Location:DoctorDash.php");
+           
             // 3mel li bghiti hnaya
         } else {
             $error = "Incorrect email or password.";
@@ -81,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "Email not registred";
     }
+
 
     // If rememberMe checkbox is checked, store email and password in cookies
     if ($rememberMe) {

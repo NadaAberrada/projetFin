@@ -1,3 +1,22 @@
+<?php
+session_start();
+try {
+  $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  die("Connection failed: " . $e->getMessage());
+}
+
+if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
+  $DoctorId = $_SESSION['DoctorID'];
+  $stmt = $pdo->prepare("SELECT * FROM doctors WHERE doctorId = :id");
+  $stmt->execute([':id' => $DoctorId]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -181,39 +200,153 @@
       </nav>
 
 
+
+
+
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center ">
 
-        <div class="container rounded bg-white mt-5">
+        <div class="container rounded bg-white ">
           <div class="row">
             <div class="col-md-4 border-right">
               <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" src="./img/ali.jpg" width="200">
+                <img class="rounded-circle mt-5" src="image.php?doctorId=<?php echo $DoctorId; ?>" width="200">
               </div>
             </div>
+
             <div class="col-md-8">
               <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <button class="btn btn-primary position-relative top-0 end-0 ">Edit Profile</button>
+
+                  <button class="btn btn-primary ms-auto" id="edit-profile-btn">Edit Profile</button>
                 </div>
                 <div class="row mt-2">
-                  <div class="col-md-6"><input type="text" class="form-control" placeholder="first name" value="John"></div>
-                  <div class="col-md-6"><input type="text" class="form-control" value="Doe" placeholder="Doe"></div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="name" value="<?php echo $result['fullname']; ?>" disabled>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="email" value="<?php echo $result['emailD']; ?>" disabled>
+                  </div>
                 </div>
                 <div class="row mt-3">
-                  <div class="col-md-6"><input type="text" class="form-control" placeholder="Email" value="john_doe12@bbb.com"></div>
-                  <div class="col-md-6"><input type="text" class="form-control" value="+19685969668" placeholder="Phone number"></div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" value="<?php echo $result['cin']; ?>" disabled>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="phone" value="<?php echo $result['phoneD']; ?>" disabled>
+                  </div>
                 </div>
                 <div class="row mt-3">
-                  <div class="col-md-6"><input type="text" class="form-control" placeholder="address" value="D-113, right avenue block, CA,USA"></div>
-                  <div class="col-md-6"><input type="text" class="form-control" value="USA" placeholder="Country"></div>
+                  <div class="col-md-6"><input type="text" id="city-input" class="form-control" value="<?php echo $result['citynameD']; ?>" disabled>
+
+                    <!-- City name as select -->
+                    <select class="form-select d-none" id="city-select" name="citynameD">
+                      <option selected disabled value="">Choisissez une ville</option>
+                      <option value="Casablanca">Casablanca</option>
+                      <option value="Rabat">Rabat</option>
+                      <option value="Fès">Fès</option>
+                      <option value="Marrakech">Marrakech</option>
+                      <option value="Agadir">Agadir</option>
+                      <option value="Tangier">Tanger</option>
+                      <option value="Meknes">Meknès</option>
+                      <option value="Oujda">Oujda</option>
+                      <option value="Kenitra">Kénitra</option>
+                      <option value="Tétouan">Tétouan</option>
+                      <option value="Safi">Safi</option>
+                      <option value="Khouribga">Khouribga</option>
+                      <option value="Beni Mellal">Beni Mellal</option>
+                      <option value="Mohammedia">Mohammedia</option>
+                      <option value="El Jadida">El Jadida</option>
+                      <option value="Nador">Nador</option>
+                      <option value="Ksar El Kebir">Ksar El Kébir</option>
+                      <option value="Settat">Settat</option>
+                      <option value="Larache">Larache</option>
+                      <option value="Taza">Taza</option>
+                      <option value="Sale">Salé</option>
+                    </select>
+
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" value="<?php echo $result['specialty']; ?>" disabled>
+                  </div>
                 </div>
                 <div class="row mt-3">
-                  <div class="col-md-6"><input type="text" class="form-control" placeholder="Bank Name" value="Bank of America"></div>
-                  <div class="col-md-6"><input type="text" class="form-control" value="043958409584095" placeholder="Account Number"></div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="websiteLink" placeholder="si vous avez un siteWeb,mettez le lien ici" value="<?php echo $result['websiteLink']; ?>" disabled>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" value="<?php echo $result['gender']; ?>" disabled>
+                  </div>
                 </div>
-                <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                <div class="row mt-3">
+                  <div class="col-md-6">
+                    <div style="width: 100%; height: 125px;">
+                    <div id="map"></div>  
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?php echo  $result['localisation']; ?>&z=15&output=embed" aria-label="Embedded Google Map"></iframe>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="description" placeholder="Rédigez une description de vous-même" value="<?php echo $result['description']; ?>" style="height: 20vh;" disabled>
+                  </div>
+                </div>
+
+
+                <!-- <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
               </div>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+              $(document).ready(function() {
+                $("#edit-profile-btn").click(function() {
+                  var isEdit = $(this).text() === "Edit Profile"; // check if the button is in "Edit" mode
+
+                  if (isEdit) {
+                    // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
+                    $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", false);
+                    $("#city-input").addClass('d-none');
+                    $("#city-select").removeClass('d-none').val($("#city-input").val());
+
+                    $(this).text("Save");
+                  } else {
+                    // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
+                    $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", true);
+                    $("#city-input").val($("#city-select").val()).removeClass('d-none');
+                    $("#city-select").addClass('d-none');
+                   
+                    $(this).text("Edit Profile");
+
+                    // gather all data
+                    let data = {
+                      name: $("input[name='name']").val(),
+                      email: $("input[name='email']").val(),
+                      phone: $("input[name='phone']").val(),
+          
+                      websiteLink: $("input[name='websiteLink']").val(),
+                      description: $("input[name='description']").val(),
+                      citynameD: isEdit ? $("#city").val() : $("#city-select").val(),
+
+                    };
+
+                    // send AJAX POST request to update profile
+                    $.ajax({
+                      url: './update_profile.php',
+                      type: 'POST',
+                      data: data,
+                      success: function(response) {
+                        // handle success
+                        console.log(response);
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                        // handle error
+                        console.log(textStatus, errorThrown);
+                      }
+                    });
+                  }
+                });
+              });
+            </script>
+
+
+
           </div>
         </div>
         <section>

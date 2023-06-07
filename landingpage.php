@@ -429,7 +429,43 @@
 
 
 
+<script>
+    $(document).ready(function() {
+    $("#myForm").on('submit', function(e) {
+        e.preventDefault();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var message = $("#message").val();
+        var doctorId = $("input[name=doctorId]").val();
 
+        // Simple email format validation
+        var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        if (!email.match(emailRegex)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+ 
+        $.ajax({
+            url: 'contact_doctor.php',
+            method: 'post',
+            data: {
+                name: name,
+                email: email,
+                message: message,
+                doctorId: doctorId
+            },
+            success: function(data) {
+                $('.modal-body').html(data);
+                $('#myModal').modal('show');
+            },
+            error: function(err) {
+                $('.modal-body').html("An error occurred.");
+                $('#myModal').modal('show');
+            }
+        });
+    });
+});
+</script>
 </body>
 
 
