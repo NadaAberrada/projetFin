@@ -17,11 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $localisation = $_POST['localisation'];
 
-    $sql = "UPDATE doctors SET fullname = ?, emailD = ?, phoneD = ?, citynameD = ?, websiteLink = ?, description = ?, localisation = ? WHERE doctorID = ?";
+    $image = null;
+    if (isset($_FILES['profile_img']) && $_FILES['profile_img']['tmp_name']) {
+        // Get image data from file
+        $image = file_get_contents($_FILES['profile_img']['tmp_name']);
+    }
+
+    $sql = "UPDATE doctors SET fullname = ?, emailD = ?, phoneD = ?, citynameD = ?, websiteLink = ?, description = ?, localisation = ?, imageD = ? WHERE doctorID = ?";
 
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $email, $phone, $citynameD, $websiteLink, $description, $localisation, $DoctorId]); 
+        $stmt->execute([$name, $email, $phone, $citynameD, $websiteLink, $description, $localisation, $image, $DoctorId]);
 
         echo "Profile updated successfully";
     } catch(PDOException $e) {
