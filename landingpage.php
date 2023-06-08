@@ -11,10 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="./landingpage.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
 
 
 </head>
@@ -342,26 +341,26 @@
 
                 <div class="col-lg-6 order-2 order-lg-2 mb-lg-0">
                     <h2 class="text-center mb-5">Contact nos</h2>
-                    <form class="row g-3">
+                    <form class="row g-3" id="contactForm">
+    <div class="col-md-6">
+        <label class="visually-hidden" for="inputName">Nom</label>
+        <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" name="name" />
+    </div>
+    <div class="col-md-6">
+        <label class="form-label visually-hidden" for="inputEmail">Email</label>
+        <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" name="email" />
+    </div>
+    <div class="col-md-12">
+        <label class="form-label visually-hidden" for="validationTextarea">Message</label>
+        <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required" name="message"></textarea>
+    </div>
+    <div class="col-12">
+        <div class="d-grid">
+            <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
+        </div>
+    </div>
+</form>
 
-                        <div class="col-md-6">
-                            <label class="visually-hidden" for="inputName">Nom</label>
-                            <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" />
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label visually-hidden" for="inputEmail">Email</label>
-                            <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" />
-                        </div>
-                        <div class="col-md-12">
-                            <label class="form-label visually-hidden" for="validationTextarea">Message</label>
-                            <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required"></textarea>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-grid">
-                                <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
 
@@ -415,7 +414,22 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="myModalLabel">Message Status</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -429,42 +443,26 @@
 
 
 
-<script>
-    $(document).ready(function() {
-    $("#myForm").on('submit', function(e) {
+    <script>
+$(document).ready(function(){
+    $("#contactForm").submit(function(e){
         e.preventDefault();
-        var name = $("#name").val();
-        var email = $("#email").val();
-        var message = $("#message").val();
-        var doctorId = $("input[name=doctorId]").val();
 
-        // Simple email format validation
-        var emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-        if (!email.match(emailRegex)) {
-            alert("Please enter a valid email address.");
-            return;
-        }
- 
         $.ajax({
-            url: 'contact_doctor.php',
-            method: 'post',
-            data: {
-                name: name,
-                email: email,
-                message: message,
-                doctorId: doctorId
-            },
-            success: function(data) {
-                $('.modal-body').html(data);
-                $('#myModal').modal('show');
-            },
-            error: function(err) {
-                $('.modal-body').html("An error occurred.");
+            url: 'contact_landpage.php',  // Change this to your PHP script URL
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response){
+                // Fill the modal body with the response
+                $('#myModal .modal-body').html(response);
+
+                // Show the modal
                 $('#myModal').modal('show');
             }
         });
     });
 });
+
 </script>
 </body>
 

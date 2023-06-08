@@ -5,24 +5,93 @@ try {
 } catch (PDOException $e) {
   die("Error connecting to the database: " . $e->getMessage());
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
+// Include the PHPMailer files
+require './vendor/phpmailer/phpmailer/src/Exception.php';
+require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require './vendor/phpmailer/phpmailer/src/SMTP.php';
 
 // Handle Confirm button click
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirmBtn'])) {
-  $doctorID = $_POST['doctorID'];
+    $doctorID = $_POST['doctorID'];
 
-  try {
-    $stmt = $conn->prepare("UPDATE doctors SET confirm = 'oui' WHERE doctorID = :doctorID");
-    $stmt->bindValue(':doctorID', $doctorID, PDO::PARAM_INT);
-    $stmt->execute();
+    try {
+        // Update confirmation status
+        $stmt = $conn->prepare("UPDATE doctors SET confirm = 'oui' WHERE doctorID = :doctorID");
+        $stmt->bindValue(':doctorID', $doctorID, PDO::PARAM_INT);
+        $stmt->execute();
 
-    // Redirect back to the same page after processing the form
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-  } catch (PDOException $e) {
-    die("Error updating confirm status: " . $e->getMessage());
-  }
+        // Fetch doctor's email and name from the database
+        $stmt = $conn->prepare("SELECT emailD, fullname FROM doctors WHERE doctorID = :doctorID");
+        $stmt->bindValue(':doctorID', $doctorID, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
+        $doctorEmail = $doctor['emailD'];
+        $doctorName = $doctor['fullname'];
+
+        // Create a new PHPMailer instance
+        $mail = new PHPMailer;
+
+        // Set PHPMailer to use SMTP
+        $mail->isSMTP();
+
+        // Specify the SMTP host
+        $mail->Host = 'smtp.gmail.com';
+
+        // Enable SMTP authentication
+        $mail->SMTPAuth = true;
+
+        // SMTP username and password
+        $mail->Username = 'aberrada.nada.solicode@gmail.com';
+        $mail->Password = 'nwsitixpgfiwlity';
+
+        // Enable TLS encryption
+        $mail->SMTPSecure = 'tls';
+
+        // Specify the SMTP port
+        $mail->Port = 587;
+
+        // Set the email subject
+        $mail->Subject = "Doctor Confirmation";
+
+        // Set HTML email
+        $mail->isHTML(true);
+
+        // Set the email body
+        $mail->Body = "
+            <h1>Hello, $doctorName</h1>
+            <p>You have been confirmed. You can now access the doctor's panel.</p>
+            <p><a href='http://your-site.com/login' style='padding: 10px; color: white; background-color: #007BFF; text-decoration: none;'>Login Here</a></p>
+            <p>Best regards,</p>
+            <p>Admin</p>
+        ";
+
+        // Set who the message is to be sent from
+        $mail->setFrom($mail->Username, 'Admin');
+
+        // Set who the message is to be sent to
+        $mail->addAddress($doctorEmail);
+
+        // Send the email
+        if (!$mail->send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+            echo "Message sent!";
+        }
+
+        // Redirect back to the same page after processing the form
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } catch (PDOException $e) {
+        die("Error updating confirm status: " . $e->getMessage());
+    } catch (Exception $e) {
+        die("Error sending email: " . $e->getMessage());
+    }
 }
+
 
 // Handle Decline button click
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['declineBtn'])) {
@@ -69,6 +138,8 @@ try {
 
 <head>
   <title>Confirm Doctors</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <style>
     body {
@@ -328,7 +399,35 @@ echo '</nav>';
 ?>
           </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script>
+// $(document).ready(function(){
+//     $('form').on('submit', function(e){
+//         e.preventDefault();
+
+//         var doctorID = $(this).find('input[name="doctorID"]').val();
+        
+//         $.ajax({
+//             url: 'confirmdocmail.php', // Change this to your PHP script URL
+//             type: 'POST',
+//             data: {doctorId: doctorID},
+//             success: function(response){
+//                 // This is the response from the PHP script
+//                 // You can use it to update the page or show a notification, etc.
+
+//                 // For example, you can fill a modal with the response and show it
+//                 $('#myModal .modal-body').html(response);
+//                 $('#myModal').modal('show');
+//             },
+//             error: function(jqXHR, textStatus, errorThrown){
+//                 console.error(textStatus, errorThrown);
+//             }
+//         });
+//     });
+// });
+
+</script>
         <!-- Optional: Place to the bottom of scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>

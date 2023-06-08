@@ -28,7 +28,6 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
   <meta name="generator" content="Hugo 0.108.0">
   <title>Dashboard Template Â· Bootstrap v5.3</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -37,9 +36,11 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsEhcYf-NZNlL6-FVHfT1GT3XAth8EJk4&callback=initMap" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 
-
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 
   <style>
     .bd-placeholder-img {
@@ -134,11 +135,11 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
       font-family: 'Poppins', sans-serif;
 
     }
+    #map {
+      width: 100%;
+      height: 300px;
+    }
   </style>
-
-
-  <!-- Custom styles for this template -->
-  <link href="dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -216,8 +217,10 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
             <div class="col-md-8">
               <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn btn-secondary ms-auto d-none" id="cancel-edit-btn">Cancel</button>
 
                   <button class="btn btn-primary ms-auto" id="edit-profile-btn">Edit Profile</button>
+
                 </div>
                 <div class="row mt-2">
                   <div class="col-md-6">
@@ -234,7 +237,7 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
                   <div class="col-md-6">
                     <input type="text" class="form-control" name="phone" value="<?php echo $result['phoneD']; ?>" disabled>
                   </div>
-                </div>
+                </div>    
                 <div class="row mt-3">
                   <div class="col-md-6"><input type="text" id="city-input" class="form-control" value="<?php echo $result['citynameD']; ?>" disabled>
 
@@ -279,10 +282,11 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-6">
-                    <div style="width: 100%; height: 125px;">
-                    <div id="map"></div>  
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?php echo  $result['localisation']; ?>&z=15&output=embed" aria-label="Embedded Google Map"></iframe>
-                    </div>
+                  <div style="width: 100%; height: 125px;">
+    <div id="map" class="d-none"></div>
+    <iframe id="map-iframe" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?php echo  $result['localisation']; ?>&z=15&output=embed" aria-label="Embedded Google Map"></iframe>
+</div>
+
                   </div>
                   <div class="col-md-6">
                     <input type="text" class="form-control" name="description" placeholder="Rédigez une description de vous-même" value="<?php echo $result['description']; ?>" style="height: 20vh;" disabled>
@@ -295,54 +299,85 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
+let map, marker;
+
+let savedPosition = {
+    lat: parseFloat('<?php echo explode(",", $result["localisation"])[0]; ?>'),
+    lng: parseFloat('<?php echo explode(",", $result["localisation"])[1]; ?>')
+};
+
+function initMap() {
+    const initialPosition = savedPosition;
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: initialPosition,
+        zoom: 6,
+    });
+    marker = new google.maps.Marker({
+        position: initialPosition,
+        map: map,
+        draggable: true,
+    });
+
+    marker.addListener("dragend", function(event) {
+        savedPosition = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+        };
+    });
+} 
+
               $(document).ready(function() {
-                $("#edit-profile-btn").click(function() {
-                  var isEdit = $(this).text() === "Edit Profile"; // check if the button is in "Edit" mode
+    $("#edit-profile-btn").click(function() {
+        var isEdit = $(this).text() === "Edit Profile"; 
 
-                  if (isEdit) {
-                    // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
-                    $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", false);
-                    $("#city-input").addClass('d-none');
-                    $("#city-select").removeClass('d-none').val($("#city-input").val());
+        if (isEdit) {
+            // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
+            $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", false);
+            $("#city-input").addClass('d-none');
+            $("#city-select").removeClass('d-none').val($("#city-input").val());
+            $("#map").removeClass('d-none');
+            $("#map-iframe").addClass('d-none');
 
-                    $(this).text("Save");
-                  } else {
-                    // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
-                    $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", true);
-                    $("#city-input").val($("#city-select").val()).removeClass('d-none');
-                    $("#city-select").addClass('d-none');
-                   
-                    $(this).text("Edit Profile");
+            $(this).text("Save");
+        } else {
+            // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
+            $("input[name='name'], input[name='email'], input[name='phone'], select[name='citynameD'], input[name='websiteLink'], input[name='description']").prop("disabled", true);
+            $("#city-input").val($("#city-select").val()).removeClass('d-none');
+            $("#city-select").addClass('d-none');
+            $("#map").addClass('d-none');
+            $("#map-iframe").removeClass('d-none');
+            
+            $(this).text("Edit Profile");
 
-                    // gather all data
-                    let data = {
-                      name: $("input[name='name']").val(),
-                      email: $("input[name='email']").val(),
-                      phone: $("input[name='phone']").val(),
-          
-                      websiteLink: $("input[name='websiteLink']").val(),
-                      description: $("input[name='description']").val(),
-                      citynameD: isEdit ? $("#city").val() : $("#city-select").val(),
+            // gather all data
+            let data = {
+                name: $("input[name='name']").val(),
+                email: $("input[name='email']").val(),
+                phone: $("input[name='phone']").val(),
+                websiteLink: $("input[name='websiteLink']").val(),
+                description: $("input[name='description']").val(),
+                citynameD: isEdit ? $("#city").val() : $("#city-select").val(),
+                localisation: savedPosition.lat + ',' + savedPosition.lng,
+            };
 
-                    };
+            // send AJAX POST request to update profile
+            $.ajax({
+                url: './update_profile.php',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    // handle success
+                    console.log(response);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // handle error
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        }
+    });
+});
 
-                    // send AJAX POST request to update profile
-                    $.ajax({
-                      url: './update_profile.php',
-                      type: 'POST',
-                      data: data,
-                      success: function(response) {
-                        // handle success
-                        console.log(response);
-                      },
-                      error: function(jqXHR, textStatus, errorThrown) {
-                        // handle error
-                        console.log(textStatus, errorThrown);
-                      }
-                    });
-                  }
-                });
-              });
             </script>
 
 
@@ -453,15 +488,6 @@ if (isset($_SESSION['DoctorID']) && !empty($_SESSION['DoctorID'])) {
       </table>
     </div>
   </div>
-
-
-
-
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-  <script src="dashboard.js"></script>
 </body>
 
 </html>
