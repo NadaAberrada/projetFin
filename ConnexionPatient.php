@@ -46,6 +46,7 @@
 </head>
 <?php
 $error='';
+session_start();
 // Database connection
 try {
     $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
@@ -70,18 +71,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashed_password = $user['passwordP'];
 
             if (password_verify($password, $hashed_password)) {
+              $_SESSION['patientID'] = $user['patientID'];
+              $_SESSION['commentsenderID'] = "patient";
+
+
                 // If rememberMe checkbox is checked, store email and password in cookies
-                if ($rememberMe) {
-                    setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-                    setcookie('patient_password', $password, time() + (86400 * 30), "/");
-                } else {
-                    // Clear cookies if rememberMe is not checked
-                    setcookie('patient_email', '', time() - 3600, "/");
-                    setcookie('patient_password', '', time() - 3600, "/");
-                }
+                // if ($rememberMe) {
+                //     setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+                //     setcookie('patient_password', $password, time() + (86400 * 30), "/");
+                // } else {
+                //     // Clear cookies if rememberMe is not checked
+                //     setcookie('patient_email', '', time() - 3600, "/");
+                //     setcookie('patient_password', '', time() - 3600, "/");
+                // }
+
 
                 // Redirect to the desired page after a successful login
-                header("Location: patient_dashboard.php");
+                header("Location: HomepagePatient.php");
                 exit;
 
             } else {

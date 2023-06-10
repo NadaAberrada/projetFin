@@ -1,4 +1,5 @@
 <?php
+session_start();
 $error = '';
 try {
   $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
@@ -50,11 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':cin', $cin);
         $stmt->bindParam(':gender', $genre);
         $stmt->execute();
+        $_SESSION['patientID'] = $user['patientID'];
+        $_SESSION['commentsenderID'] = "patient";
+
+
 
         setcookie('patient_email', $email, time() + (86400 * 30), "/");
         setcookie('patient_password', $password, time() + (86400 * 30), "/");
 
-        header("Location: landingpage.php");
+        header("Location: HomepagePatient.php");
         exit();
       }
     }

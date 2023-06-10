@@ -1,4 +1,5 @@
 <?php
+session_start();
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -7,6 +8,7 @@ try {
 }
 if (isset($_POST['doctorId'])) {
     $doctorId = $_POST['doctorId'];
+   $_SESSION["iddoctor"]= $doctorId;
     $stmt = $pdo->prepare("SELECT * FROM doctors WHERE doctorId = :id");
     $stmt->execute([':id' => $doctorId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -21,6 +23,12 @@ if (isset($_POST['doctorId'])) {
 
 
 ?>
+<?php 
+//boostrab
+include('header.php');
+?>
+<script src="./js/comments.js"></script>
+
 
 
 
@@ -234,9 +242,32 @@ if (isset($_POST['doctorId'])) {
   </div>
 </div>
 
-    <footer class="py-3 bg-custom text-center">
+<?php include('container.php');?>
+	<div class="container">		
+		<h2>Example: Comment System with Ajax, PHP & MySQL</h2>		
+		<br>		
+		<form method="POST" id="commentForm">
+			
+			<div class="form-group">
+				<textarea name="comment" id="comment" class="form-control" placeholder="Enter Comment" rows="5" required></textarea>
+			</div>
+			<span id="message"></span>
+			<br>
+			<div class="form-group">
+				<input type="hidden" name="commentId" id="commentId" value="0" />
+				<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Post Comment" />
+			</div>
+		</form>		
+		<br>
+		<div id="showComments"></div>   
+</div>	
+
+
+
+
+    <!-- <footer class="py-3 bg-custom text-center">
         <p class="mb-0">© 2023 HealthCare Corp. All rights reserved.</p>
-    </footer>
+    </footer> -->
     <script>
 $(document).ready(function() {
     $("#myForm").on('submit', function(e) {

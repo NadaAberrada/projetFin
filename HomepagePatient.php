@@ -110,7 +110,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
 
         <p class="sousTitre fw-lighter text-capitalize " searchResults style=" font-size: 35px;"></p>
 
-        <div class="s01" ">
+        <div class="s01" >
             <form method=" post">
 
             <div class="inner-form">
