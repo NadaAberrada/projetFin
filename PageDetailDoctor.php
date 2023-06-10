@@ -108,7 +108,7 @@ include('header.php');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-right:6%;">
                     <div class="navbar-nav ms-auto">
-                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">page d'accueil</a>
+                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="./HomepagePatient.php" style="color:#1b2856">page d'accueil</a>
                         <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Landing Page</a>
                         <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Contact nos</a>
 

@@ -1,4 +1,8 @@
 <?php
+session_start();
+$patientID = $_SESSION['patientID'];
+$patientname="Null";
+$patientname= $_SESSION['patientName'];
 
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
@@ -36,6 +40,8 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             $sql .= " AND citynameD = :citynameD";
             $params[":citynameD"] = $searchCity;
         }
+        $patientID = $_SESSION['patientID'];
+        
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -71,6 +77,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f8f8f8;height: 13vh;">
             <div class="container-fluid">
+
                 <img src="./img/logoDocMeet.png" alt="" srcset="" style="width: 7vw; " />
                 <button class="navbar-toggler " style="background-color: #2f9ba6" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon  "></span>
@@ -85,14 +92,17 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                         <!-- Profile picture section -->
                         <div class="nav-item dropdown me-5 ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="./img/ali.jpg" alt="Profile picture" style="width: 2vw; border-radius: 50%;">
+                                <img src="imagePatient.php?patientID=<?php echo $_SESSION['patientID']; ?>" alt="Profile picture" style="width: 2vw; height: 2vw; border-radius: 50%;">
+                               <span class="ps-2" style="color: black;"><?php echo  $patientname; ?></span> 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="./patientProfil.php">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Docteurs favoris</a></li>
+                                <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                                <li><a class="dropdown-item" href="./SignOutPatient.php">Déconnecter</a></li>
                             </ul>
                         </div>
+
                         <!-- End profile picture section -->
                     </div>
                 </div>
@@ -110,82 +120,82 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
 
         <p class="sousTitre fw-lighter text-capitalize " searchResults style=" font-size: 35px;"></p>
 
-        <div class="s01" >
+        <div class="s01">
             <form method=" post">
 
-            <div class="inner-form">
-                <div class="input-field first-wrap">
-                    <input id="search" name="searchName" type="text" placeholder="Nom ou/et prenom " />
+                <div class="inner-form">
+                    <div class="input-field first-wrap">
+                        <input id="search" name="searchName" type="text" placeholder="Nom ou/et prenom " />
+                    </div>
+                    <div class="input-field second-wrap ">
+
+                        <select id="location" name="searchSpecialty" class="select-field">
+                            <option selected disabled>Spécialité</option>
+                            <option value="Allergologie">Allergologie</option>
+                            <option value="Anesthésiologie">Anesthésiologie</option>
+                            <option value="Cardiologie">Cardiologie</option>
+                            <option value="Chirurgie générale">Chirurgie générale</option>
+                            <option value="Chirurgie plastique">Chirurgie plastique</option>
+                            <option value="Dermatologie">Dermatologie</option>
+                            <option value="Endocrinologie">Endocrinologie</option>
+                            <option value="Gastroentérologie">Gastroentérologie</option>
+                            <option value="Gériatrie">Gériatrie</option>
+                            <option value="Gynécologie">Gynécologie</option>
+                            <option value="Hématologie">Hématologie</option>
+                            <option value="Immunologie">Immunologie</option>
+                            <option value="Infectiologie">Infectiologie</option>
+                            <option value="Médecine du sport">Médecine du sport</option>
+                            <option value="Médecine interne">Médecine interne</option>
+                            <option value="Néphrologie">Néphrologie</option>
+                            <option value="Neurologie">Neurologie</option>
+                            <option value="Obstétrique">Obstétrique</option>
+                            <option value="Oncologie">Oncologie</option>
+                            <option value="Ophtalmologie">Ophtalmologie</option>
+                            <option value="Orthopédie">Orthopédie</option>
+                            <option value="Oto-rhino-laryngologie">Oto-rhino-laryngologie</option>
+                            <option value="Pédiatrie">Pédiatrie</option>
+                            <option value="Pneumologie">Pneumologie</option>
+                            <option value="Psychiatrie">Psychiatrie</option>
+                            <option value="Radiologie">Radiologie</option>
+                            <option value="Rhumatologie">Rhumatologie</option>
+                            <option value="Urologie">Urologie</option>
+                        </select>
+
+                    </div>
+                    <div class="input-field second-wrap ">
+
+                        <select id="location" name="searchCity" class="select-field" placeholder="location">
+                            <option selected disabled>Ville</option>
+                            <option value="Casablanca">Casablanca</option>
+                            <option value="Rabat">Rabat</option>
+                            <option value="Fès">Fès</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Agadir">Agadir</option>
+                            <option value="Tangier">Tanger</option>
+                            <option value="Meknes">Meknès</option>
+                            <option value="Oujda">Oujda</option>
+                            <option value="Kenitra">Kénitra</option>
+                            <option value="Tétouan">Tétouan</option>
+                            <option value="Safi">Safi</option>
+                            <option value="Khouribga">Khouribga</option>
+                            <option value="Beni Mellal">Beni Mellal</option>
+                            <option value="Mohammedia">Mohammedia</option>
+                            <option value="El Jadida">El Jadida</option>
+                            <option value="Nador">Nador</option>
+                            <option value="Ksar El Kebir">Ksar El Kébir</option>
+                            <option value="Settat">Settat</option>
+                            <option value="Larache">Larache</option>
+                            <option value="Taza">Taza</option>
+                            <option value="Sale">Salé</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-field third-wrap">
+                        <button class="btn-search" type="submit" onclick="searchDoctors()"><i class="fas fa-search"></i> Rechercher</button>
+                    </div>
                 </div>
-                <div class="input-field second-wrap ">
-
-                    <select id="location" name="searchSpecialty" class="select-field">
-                        <option selected disabled>Spécialité</option>
-                        <option value="Allergologie">Allergologie</option>
-                        <option value="Anesthésiologie">Anesthésiologie</option>
-                        <option value="Cardiologie">Cardiologie</option>
-                        <option value="Chirurgie générale">Chirurgie générale</option>
-                        <option value="Chirurgie plastique">Chirurgie plastique</option>
-                        <option value="Dermatologie">Dermatologie</option>
-                        <option value="Endocrinologie">Endocrinologie</option>
-                        <option value="Gastroentérologie">Gastroentérologie</option>
-                        <option value="Gériatrie">Gériatrie</option>
-                        <option value="Gynécologie">Gynécologie</option>
-                        <option value="Hématologie">Hématologie</option>
-                        <option value="Immunologie">Immunologie</option>
-                        <option value="Infectiologie">Infectiologie</option>
-                        <option value="Médecine du sport">Médecine du sport</option>
-                        <option value="Médecine interne">Médecine interne</option>
-                        <option value="Néphrologie">Néphrologie</option>
-                        <option value="Neurologie">Neurologie</option>
-                        <option value="Obstétrique">Obstétrique</option>
-                        <option value="Oncologie">Oncologie</option>
-                        <option value="Ophtalmologie">Ophtalmologie</option>
-                        <option value="Orthopédie">Orthopédie</option>
-                        <option value="Oto-rhino-laryngologie">Oto-rhino-laryngologie</option>
-                        <option value="Pédiatrie">Pédiatrie</option>
-                        <option value="Pneumologie">Pneumologie</option>
-                        <option value="Psychiatrie">Psychiatrie</option>
-                        <option value="Radiologie">Radiologie</option>
-                        <option value="Rhumatologie">Rhumatologie</option>
-                        <option value="Urologie">Urologie</option>
-                    </select>
-
-                </div>
-                <div class="input-field second-wrap ">
-
-                    <select id="location" name="searchCity" class="select-field" placeholder="location">
-                        <option selected disabled>Ville</option>
-                        <option value="Casablanca">Casablanca</option>
-                        <option value="Rabat">Rabat</option>
-                        <option value="Fès">Fès</option>
-                        <option value="Marrakech">Marrakech</option>
-                        <option value="Agadir">Agadir</option>
-                        <option value="Tangier">Tanger</option>
-                        <option value="Meknes">Meknès</option>
-                        <option value="Oujda">Oujda</option>
-                        <option value="Kenitra">Kénitra</option>
-                        <option value="Tétouan">Tétouan</option>
-                        <option value="Safi">Safi</option>
-                        <option value="Khouribga">Khouribga</option>
-                        <option value="Beni Mellal">Beni Mellal</option>
-                        <option value="Mohammedia">Mohammedia</option>
-                        <option value="El Jadida">El Jadida</option>
-                        <option value="Nador">Nador</option>
-                        <option value="Ksar El Kebir">Ksar El Kébir</option>
-                        <option value="Settat">Settat</option>
-                        <option value="Larache">Larache</option>
-                        <option value="Taza">Taza</option>
-                        <option value="Sale">Salé</option>
-                    </select>
-
-                </div>
-
-
-                <div class="input-field third-wrap">
-                    <button class="btn-search" type="submit" onclick="searchDoctors()"><i class="fas fa-search"></i> Rechercher</button>
-                </div>
-            </div>
             </form>
         </div>
     </div>
