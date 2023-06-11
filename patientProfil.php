@@ -34,21 +34,10 @@ if (isset($patientID) && !empty($patientID)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
-
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" /> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" /> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous" defer></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script> -->
+
 
     <link rel="stylesheet" href="./PatientCSS.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./formPatientRe.css?v=<?php echo time(); ?>">
@@ -182,29 +171,24 @@ if (isset($patientID) && !empty($patientID)) {
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./dashboardAdmin.php">
+                            <a class="nav-link active" aria-current="page" href="#edit-profile-btn">
                                 <span data-feather="home" class="align-text-bottom"></span>
-                                Statistique
+                                Modifier Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./searchpatientDash.php">
+                            <a class="nav-link" href="#cardContainer">
                                 <span data-feather="file" class="align-text-bottom"></span>
-                                Liste des patients
+                                Médecins préférés
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./DoctorSearchDash.php">
-                                <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                                Liste des Docteurs
+                            <a class="nav-link" href="./HomepagePatient.php">
+                                <span data-feather="file" class="align-text-bottom"></span>
+                                Page D'accueil
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./confirmMedine.php">
-                                <span data-feather="users" class="align-text-bottom"></span>
-                                confirmer les médecins
-                            </a>
-                        </li>
+
 
                     </ul>
 
@@ -216,20 +200,20 @@ if (isset($patientID) && !empty($patientID)) {
 
 
             <div class="modal fade" id="deleteDoctor" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content  ">
-                <div class="modal-header">
+                <div class="modal-dialog ">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
 
-                </div>
-                <div class="modal-body">
-                    <!--  data will be dynamically inserted here -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-custom  text" data-bs-dismiss="modal" style="background-color:#a61057 ;color:white;">Close</button>
+                        </div>
+                        <div class="modal-body">
+                            <!--  data will be dynamically inserted here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-custom  text" data-bs-dismiss="modal" style="background-color:#a61057 ;color:white;">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center ">
@@ -249,32 +233,33 @@ if (isset($patientID) && !empty($patientID)) {
                         <div class="col-md-8">
                             <div class="p-3 py-5">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <button class="btn btn-secondary ms-auto d-none" id="cancel-edit-btn">Cancel</button>
+                                    <button class="btn btn-secondary ms-auto d-none" id="cancel-edit-btn">Annuler</button>
 
-                                    <button class="btn btn-primary ms-auto" id="edit-profile-btn">Edit Profile</button>
+                                    <button class="btn Detail ms-auto" id="edit-profile-btn">Modifier Profile</button>
 
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="name" value="<?php echo $result['nameP']; ?>" disabled>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="lastname" value="<?php echo $result['lastnameP']; ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="email" value="<?php echo $result['emailP']; ?>" disabled>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" value="<?php echo $result['cin']; ?>" disabled>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" name="phone" value="<?php echo $result['phoneP']; ?>" disabled>
                                     </div>
-                                    <div class="col-md-6"><input type="text" id="city-input" class="form-control" value="<?php echo $result['citynameP']; ?>" disabled>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" id="city-input" class="form-control" value="<?php echo $result['citynameP']; ?>" disabled>
 
                                         <!-- City name as select -->
                                         <select class="form-select d-none" id="city-select" name="citynameP">
@@ -311,242 +296,244 @@ if (isset($patientID) && !empty($patientID)) {
 
                                 <!-- <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
                             </div>
+                        </div>
 
 
 
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-                            <script>
-                                $(document).ready(function() {
-                                    let originalData = {
-                                        name: $("input[name='name']").val(),
-                                        lastname: $("input[name='lastname']").val(),
-                                        email: $("input[name='email']").val(),
-                                        phone: $("input[name='phone']").val(),
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                        <script>
+                            $(document).ready(function() {
+                                let originalData = {
+                                    name: $("input[name='name']").val(),
+                                    lastname: $("input[name='lastname']").val(),
+                                    email: $("input[name='email']").val(),
+                                    phone: $("input[name='phone']").val(),
 
-                                        citynameP: $("#city-input").val(),
+                                    citynameP: $("#city-input").val(),
 
-                                        image: $("#profile-img").attr("src") // Added: Save the original image URL
-                                    };
-                                    let originalImg = originalData.image;
+                                    image: $("#profile-img").attr("src") // Added: Save the original image URL
+                                };
+                                let originalImg = originalData.image;
 
-                                    $("#edit-profile-btn").click(function() {
-                                        console.log('Edit profile button clicked');
-                                        var isEdit = $(this).text() === "Edit Profile";
-                                        console.log('Is edit mode:', isEdit);
+                                $("#edit-profile-btn").click(function() {
+                                    console.log('Edit profile button clicked');
+                                    var isEdit = $(this).text() === "Edit Profile";
+                                    console.log('Is edit mode:', isEdit);
 
-                                        if (isEdit) {
+                                    if (isEdit) {
 
-                                            // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
-                                            $("input[name='name'],input[name='lastname'], input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", false);
-                                            $("#city-input").addClass('d-none');
-                                            $("#city-select").removeClass('d-none').val($("#city-input").val());
+                                        // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
+                                        $("input[name='name'],input[name='lastname'], input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", false);
+                                        $("#city-input").addClass('d-none');
+                                        $("#city-select").removeClass('d-none').val($("#city-input").val());
 
 
-                                            $(this).text("Save");
-                                            $("#cancel-edit-btn").removeClass('d-none'); // Show the Cancel button
+                                        $(this).text("Save");
+                                        $("#cancel-edit-btn").removeClass('d-none'); // Show the Cancel button
 
-                                        } else {
-                                            // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
-                                            $("input[name='name'], input[name='lastname'],input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", true);
-                                            $("#city-input").val($("#city-select").val()).removeClass('d-none');
-                                            $("#city-select").addClass('d-none');
-
-                                            $("#profile-img").css('cursor', 'default');
-
-                                            $(this).text("Edit Profile");
-                                            $("#cancel-edit-btn").addClass('d-none'); // Hide the Cancel button
-
-                                            let formData = new FormData();
-                                            let fileData = $("#img-upload")[0].files[0];
-
-                                            if (fileData) {
-                                                formData.append('profile_img', fileData);
-                                            }
-
-                                            // Append the rest of the data to formData
-                                            formData.append('name', $("input[name='name']").val());
-                                            formData.append('lastname', $("input[name='lastname']").val());
-                                            formData.append('email', $("input[name='email']").val());
-                                            formData.append('phone', $("input[name='phone']").val());
-
-                                            formData.append('citynameP', isEdit ? $("#city").val() : $("#city-select").val());
-                                            console.log('Form data:', formData);
-
-                                            // send AJAX POST request to update profile
-                                            $.ajax({
-                                                url: './update_profilePatient.php',
-                                                type: 'POST',
-                                                data: formData,
-                                                contentType: false,
-                                                processData: false,
-                                                success: function(response) {
-                                                    // handle success
-                                                    console.log('Response:', response);
-                                                    location.reload();; // Reload the page to show the new image
-                                                },
-                                                error: function(jqXHR, textStatus, errorThrown) {
-                                                    // handle error
-                                                    console.log('Error:', textStatus, errorThrown);
-                                                }
-                                            });
-                                        }
-                                    });
-                                    $("#cancel-edit-btn").click(function() {
-                                        console.log(originalImg); // log the original image url
-                                        $("input[name='name']").val(originalData.name);
-                                        $("input[name='lastname']").val(originalData.lastname);
-                                        $("input[name='email']").val(originalData.email);
-                                        $("input[name='phone']").val(originalData.phone);
-
-                                        $("#city-input").val(originalData.citynameP);
-                                        $("#city-select").val(originalData.citynameP);
-
-                                        $("#city-input").removeClass('d-none');
+                                    } else {
+                                        // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
+                                        $("input[name='name'], input[name='lastname'],input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", true);
+                                        $("#city-input").val($("#city-select").val()).removeClass('d-none');
                                         $("#city-select").addClass('d-none');
 
+                                        $("#profile-img").css('cursor', 'default');
 
-                                        $("input[name='name'],input[name='lastname'], input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", true);
+                                        $(this).text("Edit Profile");
+                                        $("#cancel-edit-btn").addClass('d-none'); // Hide the Cancel button
 
+                                        let formData = new FormData();
+                                        let fileData = $("#img-upload")[0].files[0];
 
-
-                                        $("#edit-profile-btn").text("Edit Profile");
-                                        $(this).addClass('d-none'); // Hide the Cancel button
-
-                                        // Remove the selected image
-                                        $("#img-upload").val('');
-                                        // Request the original image from the server
-
-                                        $("#profile-img").attr("src", "imagePatient.php?patientID=" + <?php echo $_SESSION['patientID']; ?>);
-
-                                    });
-                                    $("#profile-img").click(function() {
-                                        if ($("#edit-profile-btn").text() === "Save") {
-                                            $("#img-upload").click();
+                                        if (fileData) {
+                                            formData.append('profile_img', fileData);
                                         }
-                                    });
 
-                                    $("#img-upload").change(function() {
-                                        if (this.files && this.files[0]) {
-                                            var reader = new FileReader();
+                                        // Append the rest of the data to formData
+                                        formData.append('name', $("input[name='name']").val());
+                                        formData.append('lastname', $("input[name='lastname']").val());
+                                        formData.append('email', $("input[name='email']").val());
+                                        formData.append('phone', $("input[name='phone']").val());
 
-                                            reader.onload = function(e) {
-                                                $('#profile-img').attr('src', e.target.result);
+                                        formData.append('citynameP', isEdit ? $("#city").val() : $("#city-select").val());
+                                        console.log('Form data:', formData);
+
+                                        // send AJAX POST request to update profile
+                                        $.ajax({
+                                            url: './update_profilePatient.php',
+                                            type: 'POST',
+                                            data: formData,
+                                            contentType: false,
+                                            processData: false,
+                                            success: function(response) {
+                                                // handle success
+                                                console.log('Response:', response);
+                                                location.reload();; // Reload the page to show the new image
+                                            },
+                                            error: function(jqXHR, textStatus, errorThrown) {
+                                                // handle error
+                                                console.log('Error:', textStatus, errorThrown);
                                             }
+                                        });
+                                    }
+                                });
+                                $("#cancel-edit-btn").click(function() {
+                                    console.log(originalImg); // log the original image url
+                                    $("input[name='name']").val(originalData.name);
+                                    $("input[name='lastname']").val(originalData.lastname);
+                                    $("input[name='email']").val(originalData.email);
+                                    $("input[name='phone']").val(originalData.phone);
 
-                                            reader.readAsDataURL(this.files[0]);
-                                        }
-                                    });
+                                    $("#city-input").val(originalData.citynameP);
+                                    $("#city-select").val(originalData.citynameP);
+
+                                    $("#city-input").removeClass('d-none');
+                                    $("#city-select").addClass('d-none');
+
+
+                                    $("input[name='name'],input[name='lastname'], input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", true);
+
+
+
+                                    $("#edit-profile-btn").text("Edit Profile");
+                                    $(this).addClass('d-none'); // Hide the Cancel button
+
+                                    // Remove the selected image
+                                    $("#img-upload").val('');
+                                    // Request the original image from the server
+
+                                    $("#profile-img").attr("src", "imagePatient.php?patientID=" + <?php echo $_SESSION['patientID']; ?>);
+
+                                });
+                                $("#profile-img").click(function() {
+                                    if ($("#edit-profile-btn").text() === "Save") {
+                                        $("#img-upload").click();
+                                    }
                                 });
 
-                                function generateHtml(doctor) {
-                                    return `
-                    <div class="col-sm-6 col-md-6">
-                    <div class="card mb-3 shadow" style="max-width: 560px;">
-                        <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image.php?doctorId=${doctor.doctorID}" class="profile-img img-fluid rounded-start" alt="Doctor's Picture">
-                        </div>
-                        <div class="col-md-7 text-center" style="padding-left: 7%;">
-                            <div class="card-body">
-                            <h65 class="card-title">Dr.${doctor.fullname}</h65>
-                            <p class="card-text" style="color: black; font-size: 12px;">${doctor.specialty}</p>
-                            <p class="card-text" style="color: black;font-size: 12px;">${doctor.citynameD}</p>
-                            <form method="POST" action="PageDetailDoctor.php">
-                                <input type="hidden" name="doctorId" value="${doctor.doctorID}">
-                                <button type="submit" class="btn Detail">Details</button>
-                                <button type="button" class="btn  Detail delete-btn" onclick="deleteDoctor(${doctor.doctorID})" style="margin-left:10px">Delete</button> <!-- Add this delete button -->
+                                $("#img-upload").change(function() {
+                                    if (this.files && this.files[0]) {
+                                        var reader = new FileReader();
 
-                            </form>
-
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                `;
-                                }
-
-
-                               
-                               
-
-                                async function loadSavedDoctors() {
-                                    // Fetch the saved doctor details from the PHP script
-                                    fetch('./getSavedDoctors.php')
-                                        .then(response => {
-                                            if (!response.ok) {
-                                                throw new Error('Network response was not ok');
-                                            }
-                                            return response.json();
-                                        })
-                                        .then(doctors => {
-                                            let html = '';
-                                            doctors.forEach(doctor => {
-                                                html += generateHtml(doctor);
-                                            });
-                                            // Append the generated HTML to the card container
-                                            document.getElementById('cardContainer').innerHTML = html;
-                                        })
-                                        .catch(error => {
-                                            console.error('There has been a problem with your fetch operation:', error);
-                                        });
-                                }
-
-                                window.onload = function() {
-                                    loadSavedDoctors();
-                                };
-                                function deleteDoctor(doctorID) {
-                                    $.ajax({
-                                        url: './deleteDoctor.php',
-                                        type: 'POST',
-                                        data: {
-                                            doctorID: doctorID
-                                        },
-                                        success: function(response) {
-                                            // Handle the response from the PHP script here
-                                            var modalTitle = 'Delete Notice';
-                                            var modalDescription = 'Doctor deleted successfully!';
-
-                                            // Update the modal title and description
-                                            $('#deleteDoctor .modal-title').text(modalTitle);
-                                            $('#deleteDoctor .modal-body').html(modalDescription + '<br>' + response);
-
-                                            // Show the modal
-                                            $('#deleteDoctor').modal('show');
-
-                                            // Automatically hide the modal after 10 seconds
-                                            setTimeout(function() {
-                                                $('#deleteDoctor').modal('hide');
-                                            }, 10000);
-
-                                            // Fade out and remove the doctor card from the UI
-                                            $('#doctorCard_' + doctorID).parent().fadeOut(400, function() {
-                                                $(this).remove();
-                                            });
-                                            loadSavedDoctors();
-                                          
-                                        },
-                                        error: function(jqXHR, textStatus, errorThrown) {
-                                            console.error('An error occurred: ' + textStatus);
+                                        reader.onload = function(e) {
+                                            $('#profile-img').attr('src', e.target.result);
                                         }
-                                      
+
+                                        reader.readAsDataURL(this.files[0]);
+                                    }
+                                });
+                            });
+
+                            function generateHtml(doctor) {
+                                return `
+                                <div class="col-12 col-sm-6 col-md-">
+    <div class="card mb-3 shadow">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="image.php?doctorId=${doctor.doctorID}" class="profile-img img-fluid rounded-start" alt="Doctor's Picture">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Dr. ${doctor.fullname}</h5>
+                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.specialty}</p>
+                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.citynameD}</p>
+                    <form method="POST" action="PageDetailDoctor.php">
+                        <input type="hidden" name="doctorId" value="${doctor.doctorID}">
+                        <button type="submit" class="btn Detail">Details</button>
+                        <button type="button" class="btn Detail delete-btn" onclick="deleteDoctor(${doctor.doctorID})">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+                            }
+
+
+
+
+
+                            async function loadSavedDoctors() {
+                                // Fetch the saved doctor details from the PHP script
+                                fetch('./getSavedDoctors.php')
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(doctors => {
+                                        let html = '';
+                                        doctors.forEach(doctor => {
+                                            html += generateHtml(doctor);
+                                        });
+                                        // Append the generated HTML to the card container
+                                        document.getElementById('cardContainer').innerHTML = html;
+                                    })
+                                    .catch(error => {
+                                        console.error('There has been a problem with your fetch operation:', error);
                                     });
-                                } 
-                            </script>
+                            }
+
+                            window.onload = function() {
+                                loadSavedDoctors();
+                            };
+
+                            function deleteDoctor(doctorID) {
+                                $.ajax({
+                                    url: './deleteDoctor.php',
+                                    type: 'POST',
+                                    data: {
+                                        doctorID: doctorID
+                                    },
+                                    success: function(response) {
+                                        // Handle the response from the PHP script here
+                                        var modalTitle = 'Delete Notice';
+                                        var modalDescription = 'Doctor deleted successfully!';
+
+                                        // Update the modal title and description
+                                        $('#deleteDoctor .modal-title').text(modalTitle);
+                                        $('#deleteDoctor .modal-body').html(modalDescription + '<br>' + response);
+
+                                        // Show the modal
+                                        $('#deleteDoctor').modal('show');
+
+                                        // Automatically hide the modal after 10 seconds
+                                        setTimeout(function() {
+                                            $('#deleteDoctor').modal('hide');
+                                        }, 10000);
+
+                                        // Fade out and remove the doctor card from the UI
+                                        $('#doctorCard_' + doctorID).parent().fadeOut(400, function() {
+                                            $(this).remove();
+                                        });
+                                        loadSavedDoctors();
+
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        console.error('An error occurred: ' + textStatus);
+                                    }
+
+                                });
+                            }
+                        </script>
 
 
 
-                        </div>
                     </div>
-                    <div class="container" id="searchResults" style="margin-top: 5%;">
-                        <div class="row" id="cardContainer">
-                            <!-- Doctor cards will be dynamically inserted here -->
-                        </div>
+                </div>
+                <div class="container" id="searchResults" style="margin-top: 5%;">
+                    <h4 class="card-title mb-5 mt-5" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%">Vos médecins préférés</h4>
 
-                        <div id="paginationContainer" class="text-center d-flex justify-content-center mt-4">
-                            <!-- Pagination links will be dynamically generated here -->
-                        </div>
+                    <div class="row" id="cardContainer">
+                        <!-- Doctor cards will be dynamically inserted here -->
                     </div>
+
+                    <div id="paginationContainer" class="text-center d-flex justify-content-center mt-4">
+                        <!-- Pagination links will be dynamically generated here -->
+                    </div>
+                </div>
 
 
 
