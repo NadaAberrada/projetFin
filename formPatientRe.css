@@ -23,21 +23,40 @@ body {
   .Detail {
     background-color: #a61057;
     white-space: nowrap;
-    border-radius: .7px;
+    border-radius: 5px;
     font-size: 16px;
     color: #fff;
     transition: all .2s ease-out, color .2s ease-out;
     border: 0;
     cursor: pointer;
-    -webkit-border-radius: .7px;
-    -moz-border-radius: .7px;
-    -ms-border-radius: .7px;
-    -o-border-radius: .7px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 .Detail:hover {
   background-color:#2f9ba6;
   color: #fff;
   
+}
+.btn-custom {
+  background-color: #a61057;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  transition: all .2s ease-out, color .2s ease-out;
+  border: 0;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.btn-custom:hover {
+background-color:#2f9ba6;
+color: #fff;
+
 }
   
   

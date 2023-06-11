@@ -27,20 +27,32 @@ if (isset($patientID) && !empty($patientID)) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Dashboard Template Â· Bootstrap v5.3</title>
+    <title>DocMeet</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" /> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" /> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsEhcYf-NZNlL6-FVHfT1GT3XAth8EJk4&callback=initMap" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous" defer></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script> -->
 
+    <link rel="stylesheet" href="./PatientCSS.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./formPatientRe.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./landingpage.css?php echo time(); ?>">
 
 
     <style>
@@ -203,7 +215,21 @@ if (isset($patientID) && !empty($patientID)) {
             </nav>
 
 
+            <div class="modal fade" id="deleteDoctor" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content  ">
+                <div class="modal-header">
 
+                </div>
+                <div class="modal-body">
+                    <!--  data will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom  text" data-bs-dismiss="modal" style="background-color:#a61057 ;color:white;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center ">
@@ -285,6 +311,9 @@ if (isset($patientID) && !empty($patientID)) {
 
                                 <!-- <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div> -->
                             </div>
+
+
+
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <script>
                                 $(document).ready(function() {
@@ -306,7 +335,7 @@ if (isset($patientID) && !empty($patientID)) {
                                         console.log('Is edit mode:', isEdit);
 
                                         if (isEdit) {
-                                            
+
                                             // if the button is in "Edit" mode, enable the fields and change the button text to "Save"
                                             $("input[name='name'],input[name='lastname'], input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", false);
                                             $("#city-input").addClass('d-none');
@@ -315,7 +344,7 @@ if (isset($patientID) && !empty($patientID)) {
 
                                             $(this).text("Save");
                                             $("#cancel-edit-btn").removeClass('d-none'); // Show the Cancel button
-                                            
+
                                         } else {
                                             // if the button is in "Save" mode, disable the fields, save the changes (if necessary), and change the button text back to "Edit"
                                             $("input[name='name'], input[name='lastname'],input[name='email'], input[name='phone'], select[name='citynameP']").prop("disabled", true);
@@ -353,7 +382,7 @@ if (isset($patientID) && !empty($patientID)) {
                                                 success: function(response) {
                                                     // handle success
                                                     console.log('Response:', response);
-                    location.reload();; // Reload the page to show the new image
+                                                    location.reload();; // Reload the page to show the new image
                                                 },
                                                 error: function(jqXHR, textStatus, errorThrown) {
                                                     // handle error
@@ -408,106 +437,118 @@ if (isset($patientID) && !empty($patientID)) {
                                         }
                                     });
                                 });
+
+                                function generateHtml(doctor) {
+                                    return `
+                    <div class="col-sm-6 col-md-6">
+                    <div class="card mb-3 shadow" style="max-width: 560px;">
+                        <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="image.php?doctorId=${doctor.doctorID}" class="profile-img img-fluid rounded-start" alt="Doctor's Picture">
+                        </div>
+                        <div class="col-md-7 text-center" style="padding-left: 7%;">
+                            <div class="card-body">
+                            <h65 class="card-title">Dr.${doctor.fullname}</h65>
+                            <p class="card-text" style="color: black; font-size: 12px;">${doctor.specialty}</p>
+                            <p class="card-text" style="color: black;font-size: 12px;">${doctor.citynameD}</p>
+                            <form method="POST" action="PageDetailDoctor.php">
+                                <input type="hidden" name="doctorId" value="${doctor.doctorID}">
+                                <button type="submit" class="btn Detail">Details</button>
+                                <button type="button" class="btn  Detail delete-btn" onclick="deleteDoctor(${doctor.doctorID})" style="margin-left:10px">Delete</button> <!-- Add this delete button -->
+
+                            </form>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                `;
+                                }
+
+
+                               
+                               
+
+                                async function loadSavedDoctors() {
+                                    // Fetch the saved doctor details from the PHP script
+                                    fetch('./getSavedDoctors.php')
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok');
+                                            }
+                                            return response.json();
+                                        })
+                                        .then(doctors => {
+                                            let html = '';
+                                            doctors.forEach(doctor => {
+                                                html += generateHtml(doctor);
+                                            });
+                                            // Append the generated HTML to the card container
+                                            document.getElementById('cardContainer').innerHTML = html;
+                                        })
+                                        .catch(error => {
+                                            console.error('There has been a problem with your fetch operation:', error);
+                                        });
+                                }
+
+                                window.onload = function() {
+                                    loadSavedDoctors();
+                                };
+                                function deleteDoctor(doctorID) {
+                                    $.ajax({
+                                        url: './deleteDoctor.php',
+                                        type: 'POST',
+                                        data: {
+                                            doctorID: doctorID
+                                        },
+                                        success: function(response) {
+                                            // Handle the response from the PHP script here
+                                            var modalTitle = 'Delete Notice';
+                                            var modalDescription = 'Doctor deleted successfully!';
+
+                                            // Update the modal title and description
+                                            $('#deleteDoctor .modal-title').text(modalTitle);
+                                            $('#deleteDoctor .modal-body').html(modalDescription + '<br>' + response);
+
+                                            // Show the modal
+                                            $('#deleteDoctor').modal('show');
+
+                                            // Automatically hide the modal after 10 seconds
+                                            setTimeout(function() {
+                                                $('#deleteDoctor').modal('hide');
+                                            }, 10000);
+
+                                            // Fade out and remove the doctor card from the UI
+                                            $('#doctorCard_' + doctorID).parent().fadeOut(400, function() {
+                                                $(this).remove();
+                                            });
+                                            loadSavedDoctors();
+                                          
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown) {
+                                            console.error('An error occurred: ' + textStatus);
+                                        }
+                                      
+                                    });
+                                } 
                             </script>
 
 
 
                         </div>
                     </div>
-                    <section>
-                        <div class="container py-5">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="card mb-4 mb-lg-0">
-                                        <div class="card-body p-0">
-                                            <ul class="list-group list-group-flush rounded-3">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                    <i class="fas fa-globe fa-lg text-warning"></i>
-                                                    <p class="mb-0">https://mdbootstrap.com</p>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                                    <p class="mb-0">mdbootstrap</p>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                                    <p class="mb-0">@mdbootstrap</p>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                                    <p class="mb-0">mdbootstrap</p>
-                                                </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                                    <p class="mb-0">mdbootstrap</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="card mb-4 mb-md-0">
-                                                <div class="card-body">
-                                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                                                    </p>
-                                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                                    <div class="progress rounded mb-2" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card mb-4 mb-md-0">
-                                                <div class="card-body">
-                                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                                                    </p>
-                                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                                    <div class="progress rounded" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                                    <div class="progress rounded mb-2" style="height: 5px;">
-                                                        <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="container" id="searchResults" style="margin-top: 5%;">
+                        <div class="row" id="cardContainer">
+                            <!-- Doctor cards will be dynamically inserted here -->
                         </div>
-                    </section>
+
+                        <div id="paginationContainer" class="text-center d-flex justify-content-center mt-4">
+                            <!-- Pagination links will be dynamically generated here -->
+                        </div>
+                    </div>
+
+
 
             </main>
 
@@ -515,9 +556,11 @@ if (isset($patientID) && !empty($patientID)) {
 
 
 
-            </table>
+
+
         </div>
     </div>
+
 </body>
 
 </html>

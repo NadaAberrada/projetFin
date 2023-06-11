@@ -24,4 +24,8 @@ $gender = $result['gender'] ?? 'Femme'; // Default to female if gender is not se
 $image = $gender === 'Homme' ? './img/defaultHomme.jpg' : './img/defaultFemme.jpg';
 header("Content-Type: image/png");
 readfile($image);
+
+
+
+
 ?>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 $patientID = $_SESSION['patientID'];
-$patientname="Null";
-$patientname= $_SESSION['patientName'];
+$patientname = "Null";
+$patientname = $_SESSION['patientName'];
 
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
@@ -41,7 +41,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             $params[":citynameD"] = $searchCity;
         }
         $patientID = $_SESSION['patientID'];
-        
+
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -63,6 +63,10 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./PatientCSS.css?v=<?php echo time(); ?>">
@@ -93,7 +97,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                         <div class="nav-item dropdown me-5 ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="imagePatient.php?patientID=<?php echo $_SESSION['patientID']; ?>" alt="Profile picture" style="width: 2vw; height: 2vw; border-radius: 50%;">
-                               <span class="ps-2" style="color: black;"><?php echo  $patientname; ?></span> 
+                                <span class="ps-2" style="color: black;"><?php echo  $patientname; ?></span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./patientProfil.php">Profile</a></li>
@@ -110,6 +114,21 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
         </nav>
     </header>
 
+    <div class="modal fade" id="SaveDoctor" tabindex="-1" aria-labelledby="SavenoticeModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content  ">
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                    <!--  data will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom  text" data-bs-dismiss="modal" style="background-color:#a61057 ;color:white;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="bg-image d-flex align-items-center flex-column bd-highlight text-center " style="background-image: url('./img/bg_search.jpg');color:white">
         <h1 class="display-5 fw-bold pt-5 bd-highlight mt-5 text-capitalize">
@@ -232,8 +251,11 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                                         <p class="card-text"><?php echo $result['citynameD']; ?></p>
                                         <form method="POST" action="PageDetailDoctor.php">
                                             <input type="hidden" name="doctorId" value="<?php echo $result['doctorID']; ?>">
-                                            <button type="submit" class="btn Detail">Details</button>
+                                            <button type="submit" class="btn  Detail">Details</button>
+                                            <button type="button" class="btn btn-custom" style="margin-left:10px;" onclick="SaveDoctor('<?php echo $result['doctorID']; ?>')">Save</button>
+
                                         </form>
+
 
                                         <!-- <a href="#" class="btn Detail">Details</a> -->
                                     </div>
@@ -250,6 +272,38 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             <p>No results found.</p>
         <?php endif; ?>
     </div>
+    <script>
+        function SaveDoctor(id) {
+            // Functionality for saving the exercise
+            $.ajax({
+                url: './SavedDoctor.php', // Replace this with the actual URL of your PHP page
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // Handle the response from the PHP page here
+                    var modalTitle = 'Save Notice'; // Set the title of the modal
+                    var modalDescription = 'Exercise saved successfully!'; // Set the description
+
+                    // Update the modal title and description
+                    $('#SaveDoctor .modal-title').text(modalTitle);
+                    $('#SaveDoctor .modal-body').html(modalDescription + '<br>' + response);
+
+                    // Show the modal
+                    $('#SaveDoctor').modal('show');
+
+                    // Automatically hide the modal after 10 seconds
+                    setTimeout(function() {
+                        $('#SaveDoctor').modal('hide');
+                    }, 10000);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('An error occurred: ' + textStatus);
+                }
+            });
+        }
+    </script>
 
 
 
@@ -320,7 +374,6 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             <p class="text-white text-center mb-0">© Copyright DocMeet 2023 - Tous droits réservés.</p>
         </div>
     </footer>
-
 
 
 
