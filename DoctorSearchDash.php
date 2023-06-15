@@ -63,15 +63,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.108.0">
-  <title>Dashboard Template · Bootstrap v5.3</title>
+ 
+  <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
-     <a class="nav-link px-3 text-secondary " href="SignOut.php">se déconnecter</a>
+     <a class="nav-link px-3 text-secondary " href="./SignOutAdmin.php">se déconnecter</a>
       </div>
     </div>
   </header>
@@ -289,8 +289,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                         <th scope="col">Nome Complète</th>
                         <th scope="col">Email</th>
                         <th scope="col">CIN</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Specialty</th>
+                        <th scope="col">Tele</th>
+                        <th scope="col">Specialté</th>
                         <th scope="col">Confirmer</th>
                         <th scope="col">Details</th>
                         <th scope="col">Supprimer</th>
@@ -311,7 +311,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                           <td>
                             <form action="" method="POST">
                               <input type="hidden" name="delete_id" value="<?php echo $doctor['doctorID']; ?>">
-                              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                              <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                             </form>
                           </td>
 
@@ -348,7 +348,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                                     <img src="data:image/jpeg;base64,<?php echo base64_encode($doctor['cpemimg']); ?>" alt="CPEM Image" class="img-fluid">
                                   </div>
                                 </div>
-                                <p><strong>Full Name: </strong><?php echo "Dr." . $doctor['fullname']; ?></p>
+                                <p><strong>Full Name: </strong><?php echo  $doctor['fullname']; ?></p>
                                 <p><strong>Email: </strong><?php echo $doctor['emailD']; ?></p>
                                 <p><strong>Phone: </strong><?php echo $doctor['phoneD']; ?></p>
                                 <p><strong>Specialty: </strong><?php echo $doctor['specialty']; ?></p>
@@ -358,33 +358,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                                 <?php if ($doctor['websiteLink'] !== null) : ?>
                                   <p><strong>Website Link: </strong><?php echo $doctor['websiteLink']; ?></p>
                                 <?php endif; ?>
-                                <p><strong>Rating: </strong>
-                                  <?php
-                                  $rating = $doctor['rating'];
-
-                                  if ($rating !== null && $rating !== 0) {
-                                    $wholeStars = floor($rating);
-                                    $halfStar = $rating - $wholeStars;
-
-                                    // Display whole stars
-                                    for ($i = 1; $i <= $wholeStars; $i++) {
-                                      echo '<span class="text-warning">&#9733;</span>';
-                                    }
-
-                                    // Display half star if applicable
-                                    if ($halfStar >= 0.5) {
-                                      echo '<span class="text-warning">&#9733;</span>';
-                                    } elseif ($halfStar > 0) {
-                                      echo '<span class="text-warning">&#189;</span>'; // Half-star representation
-                                    }
-
-                                    // Display the first decimal place
-                                    echo ' ' . number_format($rating, 1);
-                                  } else {
-                                    echo '0'; // Display 0 stars
-                                  }
-                                  ?>
-                                </p>
+                  
 
                                 <div style="width: 100%; height: 400px;">
                                   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?php echo $doctor['localisation']; ?>&z=15&output=embed" aria-label="Embedded Google Map"></iframe>

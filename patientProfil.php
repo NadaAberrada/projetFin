@@ -28,6 +28,7 @@ if (isset($patientID) && !empty($patientID)) {
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
     <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -45,6 +46,12 @@ if (isset($patientID) && !empty($patientID)) {
 
 
     <style>
+        body {
+            background-color: #aeb2b5;
+
+            font-family: 'Poppins', sans-serif;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -158,7 +165,7 @@ if (isset($patientID) && !empty($patientID)) {
 
         <div class="navbar-nav  ">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3 text-secondary " href="SignOut.php">se déconnecter</a>
+                <a class="nav-link px-3 text-secondary " href="./SignOutPatient.php">se déconnecter</a>
             </div>
         </div>
     </header>
@@ -426,28 +433,28 @@ if (isset($patientID) && !empty($patientID)) {
 
                             function generateHtml(doctor) {
                                 return `
-                                <div class="col-12 col-sm-6 col-md-">
-    <div class="card mb-3 shadow">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="image.php?doctorId=${doctor.doctorID}" class="profile-img img-fluid rounded-start" alt="Doctor's Picture">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Dr. ${doctor.fullname}</h5>
-                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.specialty}</p>
-                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.citynameD}</p>
-                    <form method="POST" action="PageDetailDoctor.php">
-                        <input type="hidden" name="doctorId" value="${doctor.doctorID}">
-                        <button type="submit" class="btn Detail">Details</button>
-                        <button type="button" class="btn Detail delete-btn" onclick="deleteDoctor(${doctor.doctorID})">Delete</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-`;
+                                                <div class="col-12 col-sm-6 col-md-6">
+                                                    <div class="card mb-3 shadow">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-4">
+                                                                <img src="image.php?doctorId=${doctor.doctorID}" class="profile-img img-fluid rounded-start" alt="Doctor's Picture">
+                                                            </div>
+                                                            <div class="col-md-7 text-center" style="padding-left:7%;">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">Dr. ${doctor.fullname}</h5>
+                                                                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.specialty}</p>
+                                                                    <p class="card-text" style="color: black; font-size: 12px;">${doctor.citynameD}</p>
+                                                                    <form method="POST" action="PageDetailDoctor.php">
+                                                                        <input type="hidden" name="doctorId" value="${doctor.doctorID}">
+                                                                        <button type="submit" class="btn Detail">Details</button>
+                                                                        <button type="button" class="btn Detail delete-btn" onclick="deleteDoctor(${doctor.doctorID})">Supprimer</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                `;
                             }
 
 
@@ -489,7 +496,7 @@ if (isset($patientID) && !empty($patientID)) {
                                     },
                                     success: function(response) {
                                         // Handle the response from the PHP script here
-                                        var modalTitle = 'Delete Notice';
+                                        var modalTitle = 'Supprimer Médcine';
                                         var modalDescription = 'Doctor deleted successfully!';
 
                                         // Update the modal title and description

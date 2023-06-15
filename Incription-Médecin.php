@@ -61,10 +61,12 @@ try {
         $stmt->execute();
         $last_id = $conn->lastInsertId();
         $_SESSION['DoctorID'] = $last_id;
+        $_SESSION['iddoctor'] = $last_id;
+         $_SESSION['commentsenderID'] = "doctor";
 
-        setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
-        setcookie('medcine_password', $password, time() + (86400 * 30), "/");
-        header("Location:DoctorDash.php");
+        // setcookie('medcine_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
+        // setcookie('medcine_password', $password, time() + (86400 * 30), "/");
+        header("Location:apresInscription.php");
 
         exit();
       }
@@ -84,10 +86,11 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js" defer></script>
@@ -322,6 +325,9 @@ try {
                   <div class="text-center mt-3 small">
                     <p class="">Vous avez déjà un compte? <a href="./ConnexionMédcine.php">Connecter </a></p>
                   </div>
+                  <!-- <div class="text-center mt-3 small">
+                   <a href="./resetpasswrord.php" style="color: black;" >Mot de passe oublié ?</a>
+                  </div> -->
                   <div class="text-center mt-3 small small-and-smaller" style="font-size: 0.8em;">
                     <p class="">CPEM : CARTE PROFESSIONNELLE ELECTRONIQUE DU MEDECIN</p>
                   </div>

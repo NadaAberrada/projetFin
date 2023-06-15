@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -35,8 +35,49 @@ $name = 'Doc meet'; // replace with your name
 $email = 'aberrada.nada.solicode@gmail.com'; // replace with your email
 
 // Define the email content
-$subject = "Confirmation notice";
-$message = "Dear Doctor, \n\nThis is a confirmation notice regarding..."; // replace with your message
+$subject = "Notification de confirmation";
+$message = "
+    <html>
+    <head>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
+
+        <style>
+            .email-content {
+              
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f6f6f6;
+                max-width: 600px;
+                border-radius: 5px;
+            }
+            .email-content h1 {
+                color: #333;
+            }
+            .email-content p {
+                color: #666;
+            }
+            .btn {
+                display: inline-block;
+                background-color: #a61057;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='email-content'>
+            <h1>Cher Docteur,</h1>
+            <p>Nous vous remercions de votre inscription en tant que médecin sur notre plateforme. Nous avons bien reçu et confirmé vos informations.</br> Pour accéder à votre profil et commencer à fournir des services, veuillez vous connecter en utilisant les informations de votre compte.</p>
+         <a href='http://localhost:88/projetFin/ConnexionM%c3%a9dcine.php' class='btn'>Connexion</a>
+        </div>
+    </body>
+    </html>";
+
+
+
 
 // Create a new PHPMailer instance
 $mail = new PHPMailer;
@@ -78,4 +119,4 @@ if (!$mail->send()) {
 } else {
     echo "Message sent!";
 }
-?>
+?> -->

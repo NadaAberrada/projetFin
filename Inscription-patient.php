@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($user) {
-      $error = "User with the same email, CIN, or phone number already exists.";
+      $error = "patient avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
     } else {
       $profilimgData = null;
       if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($check_stmt->rowCount() > 0) {
         // Check if doctor with the same email, CIN, or phone number already exists
 
-        $error = "Un médecin avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
+        $error = "Un patient avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
       } else {
         $stmt = $conn->prepare("INSERT INTO patients (nameP, lastnameP, emailP, passwordP, phoneP, citynameP, imageP,cin,gender) VALUES (:prenom, :nom, :email, :password, :tele, :ville, :img,:cin,:gender)");
         $stmt->bindParam(':prenom', $prenom);
@@ -51,13 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':cin', $cin);
         $stmt->bindParam(':gender', $genre);
         $stmt->execute();
-        $_SESSION['patientID'] = $user['patientID'];
+        $_SESSION['patientID'] =$conn->lastInsertId();;
         $_SESSION['commentsenderID'] = "patient";
+        $_SESSION['patientName'] = $user['nameP'] ;
+        $_SESSION['patientlastName'] =  $user['lastnameP'];
 
 
 
-        setcookie('patient_email', $email, time() + (86400 * 30), "/");
-        setcookie('patient_password', $password, time() + (86400 * 30), "/");
+        // setcookie('patient_email', $email, time() + (86400 * 30), "/");
+        // setcookie('patient_password', $password, time() + (86400 * 30), "/");
 
         header("Location: HomepagePatient.php");
         exit();
@@ -79,10 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js" defer></script>
@@ -276,20 +279,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                   </div>
 
-
-
-
-
-                  <!-- In your HTML file -->
-
-
-
                   <div class="d-flex justify-content-end pt-3">
                     <button type="submit" name="submit" class="btn btn-primary btn-block">Inscrivez-vous</button>
                   </div>
 
                   <div class="text-center mt-3 small">
-                    <p class="">Vous avez déjà un compte? <a href="./ConnexionMédcine.php">Connecter </a></p>
+                    <p class="">Vous avez déjà un compte? <a href="./ConnexionPatient.php">Connecter </a></p>
                   </div>
 
                 </div>

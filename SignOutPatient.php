@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to the desired page
-header("Location: landingpage.php"); // Replace 'index.php' with the appropriate page
+header("Location: ConnexionPatient.php"); // Replace 'index.php' with the appropriate page
 exit();
 ?>

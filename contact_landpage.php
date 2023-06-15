@@ -9,7 +9,7 @@ require './vendor/phpmailer/phpmailer/src/SMTP.php';
 
 
 // Define recipient (doctor's) email admin email hnaya
-$adminEmail = 'hamzalachehabe@gmail.com';;
+$adminEmail = 'docmeetplatform@gmail.com';;
 
 
 
@@ -37,8 +37,8 @@ $mail->SMTPAuth = true;
 
 
 // SMTP username and password
-$mail->Username = 'aberrada.nada.solicode@gmail.com';
-$mail->Password = 'nwsitixpgfiwlity';
+$mail->Username = 'docmeetplatform@gmail.com';
+$mail->Password = 'xlhvhfogitpmagsv';
 
 
 // Enable TLS encryption

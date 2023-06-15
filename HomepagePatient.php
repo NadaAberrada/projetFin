@@ -4,6 +4,8 @@ $patientID = $_SESSION['patientID'];
 $patientname = "Null";
 $patientname = $_SESSION['patientName'];
 
+$patientlastname =$_SESSION['patientlastName'] ;
+
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -13,7 +15,7 @@ try {
 
 // Fetch all doctors if no search criteria provided
 if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_POST["searchCity"])) {
-    $stmt = $pdo->query("SELECT * FROM doctors");
+    $stmt = $pdo->query("SELECT * FROM doctors WHERE confirm='oui'");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
     // Perform search query based on provided search criteria
@@ -40,8 +42,6 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             $sql .= " AND citynameD = :citynameD";
             $params[":citynameD"] = $searchCity;
         }
-        $patientID = $_SESSION['patientID'];
-
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -58,7 +58,8 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
@@ -71,7 +72,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-DdP8jZiJpZ1n6UzA6U1krxrLW/rKvCmAFQaXYw+RX8bT1T19TSPzgXU6fb1UJ8WU/Lj98vFJ79QwYdBBb8WJ0A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./PatientCSS.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./formPatientRe.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./landingpage.css?php echo time(); ?>">
+    <link rel="stylesheet" href="./landingpage.css?v=<?php echo time(); ?>">
 
 
 </head>
@@ -88,20 +89,20 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-right:6%;">
                     <div class="navbar-nav ms-auto">
-                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">page d'accueil</a>
-                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Landing Page</a>
-                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#" style="color:#1b2856">Contact nos</a>
+                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#search" style="color:#1b2856">Trouver médecin</a>
+                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="#searchResults" style="color:#1b2856">Listes des médecins</a>
+                        <a class="nav-link navbar-text active me-5 " aria-current="page" href="./landingpage.php" style="color:#1b2856">Contact nos</a>
 
 
                         <!-- Profile picture section -->
                         <div class="nav-item dropdown me-5 ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="imagePatient.php?patientID=<?php echo $_SESSION['patientID']; ?>" alt="Profile picture" style="width: 2vw; height: 2vw; border-radius: 50%;">
-                                <span class="ps-2" style="color: black;"><?php echo  $patientname; ?></span>
+                                <span class="ps-2" style="color: black;"><?php echo  $patientname." ".$patientlastname; ?></span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./patientProfil.php">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Docteurs favoris</a></li>
+                                <li><a class="dropdown-item" href="./patientProfil.php">Médecins préférés</a></li>
                                 <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
                                 <li><a class="dropdown-item" href="./SignOutPatient.php">Déconnecter</a></li>
                             </ul>
@@ -140,13 +141,13 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
         <p class="sousTitre fw-lighter text-capitalize " searchResults style=" font-size: 35px;"></p>
 
         <div class="s01">
-            <form method=" post">
+            <form method="post">
 
                 <div class="inner-form">
                     <div class="input-field first-wrap">
-                        <input id="search" name="searchName" type="text" placeholder="Nom ou/et prenom " />
+                        <input id="search" name="searchName" type="text" placeholder="Nom ou/et prénom" />
                     </div>
-                    <div class="input-field second-wrap ">
+                    <div class="input-field second-wrap me-2">
 
                         <select id="location" name="searchSpecialty" class="select-field">
                             <option selected disabled>Spécialité</option>
@@ -181,7 +182,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                         </select>
 
                     </div>
-                    <div class="input-field second-wrap ">
+                    <div class="input-field second-wrap">
 
                         <select id="location" name="searchCity" class="select-field" placeholder="location">
                             <option selected disabled>Ville</option>
@@ -210,9 +211,8 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
 
                     </div>
 
-
                     <div class="input-field third-wrap">
-                        <button class="btn-search" type="submit" onclick="searchDoctors()"><i class="fas fa-search"></i> Rechercher</button>
+                        <button class="btn-search" type="submit"><i class="fas fa-search"></i> Rechercher</button>
                     </div>
                 </div>
             </form>
@@ -229,7 +229,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                     <div class="col-sm-6 col-md-6">
                         <div class="card mb-3 shadow" style="max-width: 540px;">
                             <div class="row g-0">
-                                <div class="col-md-4   ">
+                            <div class="col-md-4   ">
                                     <?php if (!empty($result['imageD'])) : ?>
                                         <?php
                                         $imageData = base64_encode($result['imageD']);
@@ -244,20 +244,16 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
-                                <div class="col-md-7 text-center " style="padding-left:7% ;">
+                                <div class="col-md-7 text-center" style="padding-left:7%;">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $result['fullname']; ?></h5>
-                                        <p class="card-text "><?php echo $result['specialty']; ?></p>
+                                        <p class="card-text"><?php echo $result['specialty']; ?></p>
                                         <p class="card-text"><?php echo $result['citynameD']; ?></p>
                                         <form method="POST" action="PageDetailDoctor.php">
                                             <input type="hidden" name="doctorId" value="<?php echo $result['doctorID']; ?>">
                                             <button type="submit" class="btn  Detail">Details</button>
-                                            <button type="button" class="btn btn-custom" style="margin-left:10px;" onclick="SaveDoctor('<?php echo $result['doctorID']; ?>')">Save</button>
-
+                                            <button type="button" class="btn btn-custom" style="margin-left:10px;" onclick="SaveDoctor('<?php echo $result['doctorID']; ?>')">favori</button>
                                         </form>
-
-
-                                        <!-- <a href="#" class="btn Detail">Details</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +344,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                         <ul class="footer-links">
                             <li><a href="./landingpage.php">Services aux patients</a></li>
                             <li><a href="./landingpage.php">Services aux médecins</a></li>
-                            <li><a href="./landingpage.php">Trouver médecin</a></li>
+                            <li><a href="#search">Trouver médecin</a></li>
                             <li><a href="./landingpage.php">Contact nos</a></li>
                         </ul>
                     </div>
@@ -382,7 +378,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
 
     <script>
         // Number of cards to display per page
-        const cardsPerPage = 3;
+        const cardsPerPage = 4;
 
         // Get the card container element
         const cardContainer = document.getElementById('cardContainer');

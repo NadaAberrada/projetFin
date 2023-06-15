@@ -6,15 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="./landingpage.css" rel="stylesheet" />
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+     body {
+      background-color: #aeb2b5;
 
+      font-family: 'Poppins', sans-serif;
+    }
+
+</style>
 
 </head>
 
@@ -32,7 +41,7 @@
                         <a class="nav-link navbar-text active me-5 " aria-current="page" href="#Contact" style="color:#1b2856">Contact nos</a>
                         <a class="nav-link navbar-text active me-5" aria-current="page" href="#ServicesD" style="color:#1b2856">à propos de docteur</a>
                         <a class="nav-link navbar-text active me-5" aria-current="page" href="#ServicesP" style="color:#1b2856">à propos de patient</a>
-                        <a class="nav-link navbar-text active me-5" aria-current="page" href="#" style="color:#1b2856">S'inscrire</a>
+                        <a class="nav-link navbar-text active me-5" aria-current="page" href="./inscriptionquestion.php" style="color:#1b2856">S'inscrire</a>
 
                         <!-- <a class="nav-link navbar-text active question" aria-current="page" href="#" style="background-color: #2f9ba6;color:fff;border-radius: 5px; ">S'inscrire</a> -->
                     </div>
@@ -60,7 +69,7 @@
 
 
 
-    </div>
+
 
 
     <div class="section_block_2 d-flex flex-wrap justify-content-center justify-content-lg-around  text-center" style="box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25); padding-bottom: 3.5%; padding-top: 3%">
@@ -113,7 +122,7 @@
                             la meilleure façon de développer<br>
                             l'activité de votre cabinet
                         </p>
-                        <a href="#" class="rejoin-link">Rejoindre </a>
+                        <a href="./Incription-Médecin.php" class="rejoin-link">Rejoindre </a>
                     </div>
                 </div>
 
@@ -202,37 +211,8 @@
         <h2 class="title-home mt-5">
             LES GENS QUI NOUS AIMENT
         </h2>
-        <!-- <div class="container-fluid mt-5">
-            <div class="row mx-md-5 mt-5">
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item">
-                        <div class="profil ">
-                            <img alt="Dr. Kamal RAFIQI" class="od_img" src="./img/maleProfil.png">
 
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item"></div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item"></div>
-                </div>
-            </div>
-            <div class="row mx-md-5 mt-5">
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item"></div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item"></div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="other_doc_item"></div>
-                </div>
-            </div>
-        </div> -->
-        <div class="container " style="padding-bottom: 8rem;padding-top:7rem">
+        <div class="container " style="padding-bottom: 8rem;padding-top:5rem">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="13000">
@@ -291,43 +271,20 @@
                         </div>
                     </div>
                 </div>
-                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button> -->
+             
             </div>
         </div>
     </div>
 
 
 
-
-    <!-- <section> close ============================-->
-    <!-- ============================================-->
-
-
-
-
-
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-
-    <!--/.bg-holder-->
-
     <div class="section_block_5 py-3 " style="background-color: #2f9ba6;margin-bottom:5rem">
         <p class="text-white text-center mb-0" id="Contact">Vous avez un problème ou une question ? Contactez-nous par E-mail</p>
     </div>
 
-    <!-- end of .container-->
 
-    </section>
-    <!-- <section> close ============================-->
-    <!-- ============================================-->
+
+
 
     <section class="py-8  " style="margin-bottom: 5rem;">
         <div class="container">
@@ -342,24 +299,24 @@
                 <div class="col-lg-6 order-2 order-lg-2 mb-lg-0">
                     <h2 class="text-center mb-5">Contact nos</h2>
                     <form class="row g-3" id="contactForm">
-    <div class="col-md-6">
-        <label class="visually-hidden" for="inputName">Nom</label>
-        <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" name="name" />
-    </div>
-    <div class="col-md-6">
-        <label class="form-label visually-hidden" for="inputEmail">Email</label>
-        <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" name="email" />
-    </div>
-    <div class="col-md-12">
-        <label class="form-label visually-hidden" for="validationTextarea">Message</label>
-        <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required" name="message"></textarea>
-    </div>
-    <div class="col-12">
-        <div class="d-grid">
-            <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
-        </div>
-    </div>
-</form>
+                        <div class="col-md-6">
+                            <label class="visually-hidden" for="inputName">Nom</label>
+                            <input class="form-control form-livedoc-control" id="inputName" type="text" placeholder="Name" name="name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label visually-hidden" for="inputEmail">Email</label>
+                            <input class="form-control form-livedoc-control" id="inputEmail" type="email" placeholder="Email" name="email" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label visually-hidden" for="validationTextarea">Message</label>
+                            <textarea class="form-control form-livedoc-control" id="validationTextarea" placeholder="Message" style="height: 250px;" required="required" name="message"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-grid">
+                                <button class="btn btn-primary rounded-pill" type="submit">Envoyer</button>
+                            </div>
+                        </div>
+
 
                 </div>
             </div>
@@ -397,7 +354,7 @@
                         <ul class="footer-links">
                             <li><a href="#ServicesP">Services aux patients</a></li>
                             <li><a href="#ServicesD">Services aux médecins</a></li>
-                            <li><a href="#DocMeet">Trouver médecin</a></li>
+                            <li><a href="./inscriptionquestion.php">Trouver médecin</a></li>
                             <li><a href="#Contact">Contact nos</a></li>
                         </ul>
                     </div>
@@ -408,35 +365,37 @@
                             <button type="button" class="btnFooter mt-5 col-5 col-lg-5 ">
                                 S'inscrire
                             </button></a></br>
-                        <a href="./connexionquestion.php"> <button type="button" class="btnFooter mt-5 col-5 col-lg-5">S'identifier</button>
+                        <!-- <a href="./connexionquestion.php"> <button type="button" class="btnFooter mt-5 col-5 col-lg-5">S'identifier</button> -->
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="myModalLabel">Message Status</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+      
 
 
 
-        <div class="mt-5  py-4" style="background-color: gray;">
-            <p class="text-white text-center mb-0">© Copyright DocMeet 2023 - Tous droits réservés.</p>
-        </div>
+
+            <div class="mt-5  py-4" style="background-color: gray;">
+                <p class="text-white text-center mb-0">© Copyright DocMeet 2023 - Tous droits réservés.</p>
+            </div>
     </footer>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="myModalLabel">Message Status</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -444,26 +403,25 @@
 
 
     <script>
-$(document).ready(function(){
-    $("#contactForm").submit(function(e){
-        e.preventDefault();
+        $(document).ready(function() {
+            $("#contactForm").submit(function(e) {
+                e.preventDefault();
 
-        $.ajax({
-            url: 'contact_landpage.php',  // Change this to your PHP script URL
-            type: 'POST',
-            data: $(this).serialize(),
-            success: function(response){
-                // Fill the modal body with the response
-                $('#myModal .modal-body').html(response);
+                $.ajax({
+                    url: 'contact_landpage.php', // Change this to your PHP script URL
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        // Fill the modal body with the response
+                        $('#myModal .modal-body').html(response);
 
-                // Show the modal
-                $('#myModal').modal('show');
-            }
+                        // Show the modal
+                        $('#myModal').modal('show');
+                    }
+                });
+            });
         });
-    });
-});
-
-</script>
+    </script>
 </body>
 
 

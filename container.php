@@ -6,6 +6,6 @@
       </div>
     </div>
 	
-	<div class="container" style="min-height:500px;">
+	<div class="container" style="min-height:300px;">
 	<div class=''>
 	</div>

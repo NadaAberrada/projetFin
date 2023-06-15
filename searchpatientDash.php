@@ -5,16 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.108.0">
-  <title>Dashboard Template Â· Bootstrap v5.3</title>
-
+  <title>DocMeet</title>
+    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
-
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" /> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -97,7 +95,7 @@ body {
   
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 text-secondary " href="#"><a class="nav-link px-3 text-secondary " href="SignOut.php">se déconnecter</a></a>
+        <a class="nav-link px-3 text-secondary " href="#"><a class="nav-link px-3 text-secondary " href="./SignOutAdmin.php">se déconnecter</a></a>
       </div>
     </div>
   </header>

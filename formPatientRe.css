@@ -202,12 +202,12 @@ color: #fff;
   
   @media screen and (max-width: 899px) {
    
-    .s01 form .inner-form .input-field.third-wrap .btn-search{ height: 70%;}
+    .s01 form .inner-form .input-field.third-wrap .btn-search{ height: 100%;}
     .s01 form .inner-form {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
       padding: 20px;
-      width: 500px;
+      width: 400px;
       margin-top: 4%;    }
     .s01 form .inner-form .input-field {
       margin-right: 0;
@@ -225,7 +225,7 @@ color: #fff;
       min-width: auto;
     }
     .s01 form .inner-form .input-field.third-wrap {
-      width: calc(50% - 10px);
+      width: calc(100% - 10px);
     }
     .s01 form .inner-form .input-field.third-wrap .btn-search {
       font-size: 16px;
@@ -233,12 +233,16 @@ color: #fff;
   }
   @media screen and (max-width: 499px) {
    
-    .s01 form .inner-form .input-field.third-wrap .btn-search{ height: 70%;}
+    .s01 form .inner-form .input-field.third-wrap .btn-search{ 
+   
+      height: 100%;
+   
+    }
     .s01 form .inner-form {
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
       padding: 20px;
-      width: 300px;
+      width: 250px;
       margin-top: 4%;
     }
     .s01 form .inner-form .input-field {
@@ -246,7 +250,7 @@ color: #fff;
     }
     .s01 form .inner-form .input-field input {
       padding: 5px 15px;
-      font-size: 16px;
+      font-size: 13px;
     }
     .s01 form .inner-form .input-field.first-wrap {
       width: 100%;
@@ -261,7 +265,7 @@ color: #fff;
       width: calc(50% - 10px);
     }
     .s01 form .inner-form .input-field.third-wrap .btn-search {
-      font-size: 16px;
+      font-size: 10px;
     }
   }
   /* ----------------------------------------- */

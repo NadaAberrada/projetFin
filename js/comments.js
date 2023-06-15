@@ -12,13 +12,13 @@ $(document).ready(function(){
 				if(!response.error) {
 					$('#commentForm')[0].reset();
 					$('#commentId').val('0');
-					$('#message').html(response.message);
-					showComments();
-				} else if(response.error){
-					$('#message').html(response.message);
+					$('#messagesss').html(response.message);
+					showComments(); // Call the function to show updated comments
+				} else {
+					$('#messagesss').html(response.message);
 				}
 			}
-		})
+		});
 	});	
 	$(document).on('click', '.reply', function(){
 		var commentId = $(this).attr("id");
@@ -27,6 +27,8 @@ $(document).ready(function(){
 		$('#comment').focus();
 	});
 });
+
+
 // function to show comments
 function showComments()	{
 	$.ajax({
@@ -35,5 +37,5 @@ function showComments()	{
 		success:function(response) {
 			$('#showComments').html(response);
 		}
-	})
+	});
 }
