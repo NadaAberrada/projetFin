@@ -56,9 +56,8 @@ $mail->SMTPAuth = true;
 
 
 // SMTP username and password
-$mail->Username = 'aberrada.nada.solicode@gmail.com';
-$mail->Password = 'nwsitixpgfiwlity';
-
+$mail->Username = 'docmeetplatform@gmail.com';
+$mail->Password = 'xlhvhfogitpmagsv';
 
 // Enable TLS encryption
 $mail->SMTPSecure = 'tls';

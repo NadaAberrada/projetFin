@@ -22,7 +22,7 @@ if(isset($_GET['patientID'])) {
 
         $stmt->execute([':id' => $patienrId]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['patientName'] = $result['nameP']."".$result['lastnameP'];
+        // $_SESSION['patientName'] = $result['nameP']."".$result['lastnameP'];
         if($result['imageP']) {
             error_log("Image found for patient: $patienrId");
             header("Content-Type: image/jpeg");

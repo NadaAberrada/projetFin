@@ -57,33 +57,13 @@ if (!empty($_POST["comment"])) {
             $stmt->bindParam(':sender', $senderID);
             $stmt->bindParam(':doctorid', $doctorId);
             $stmt->bindParam(':writer', $writer);
-        } else{
-            $writer = "0";
-
-            $doctorQuery = "SELECT doctorID FROM doctors WHERE doctorID = :doctorID";
-            $doctorStatement = $conn->prepare($doctorQuery);
-            $doctorStatement->execute(['doctorID' => $doctorId]);
-            $doctor = $doctorStatement->fetch(PDO::FETCH_ASSOC);
-
-            if ($doctor) {
-                $senderID = $doctor['doctorID'];
-            }
-            $insertComments = "INSERT INTO commentaire (parent_id, comment, patientID, doctorID, writer) VALUES (:parent_id, :comment, :idpatient, :sender, :writer)";
-            $stmt = $conn->prepare($insertComments);
-            $stmt->bindParam(':parent_id', $parent_id);
-            $stmt->bindParam(':comment', $comment);
-            $stmt->bindParam(':idpatient', $idPatient);
-            $stmt->bindParam(':sender', $senderID);
-            $stmt->bindParam(':writer', $writer);
-          
-          
-        }
+        } 
     }
 
     // Step 2: Verify Query Execution
     try {
         $stmt->execute();
-        $message = '<label class="text-success">Comment posted Successfully.</label>';
+        $message = '<label class="text-success">Commentaire posté avec succès.</label>';
         $status = array(
             'error' => 0,
             'message' => $message
@@ -91,14 +71,14 @@ if (!empty($_POST["comment"])) {
         // echo "<script>window.location.href = './DoctorDash.php'</script>";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
-        $message = '<label class="text-danger">Error: Comment not posted.</label>';
+        $message = '<label class="text-danger">Erreur : commentaire non publié.</label>';
         $status = array(
             'error' => 1,
             'message' => $message
         );
     }
 } else {
-    $message = '<label class="text-danger">Error: Comment not posted.</label>';
+    $message = '<label class="text-danger">Erreur : commentaire non publié.</label>';
     $status = array(
         'error' => 1,
         'message' => $message

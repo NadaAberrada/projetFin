@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'] ?? null;
     $citynameP = $_POST['citynameP'] ?? null;
 
-    if (!$name || !$lastname || !$email || !$phone || !$citynameDP) {
+    if (!$name || !$lastname || !$email || !$phone || !$citynameP) {
         throw new Exception('Missing post data');
     }
 

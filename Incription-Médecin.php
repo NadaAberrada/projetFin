@@ -15,6 +15,7 @@ try {
     $citynameD = $_POST['citynameD'];
     $genre = $_POST['genre'];
     $cin = $_POST['cin'];
+    $confirm = 'non';
 
     $location = isset($_POST['location']) ? $_POST['location'] : '';
     $location = str_replace(['{', '}', 'lat', 'lng', ':', '"', ' '], '', $location);
@@ -45,7 +46,8 @@ try {
 
         $error = "Un médecin avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
       } else {
-        $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, rating, localisation, websiteLink, cpemimg,gender,cin ,confirm) VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?, NULL, ?,?,?,NULL)";
+        $sql = "INSERT INTO doctors (fullname, emailD, phoneD, passwordD, specialty, citynameD, imageD, localisation, websiteLink, cpemimg,gender,cin ,confirm,description) 
+        VALUES (?,?,?,?,?,?,?,?,NULL,?,?,?,?,NULL)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(1, $fullname);
         $stmt->bindParam(2, $email);
@@ -58,6 +60,7 @@ try {
         $stmt->bindParam(9, $cpemData, PDO::PARAM_LOB);
         $stmt->bindParam(10, $genre);
         $stmt->bindParam(11, $cin);
+        $stmt->bindParam(12, $confirm);
         $stmt->execute();
         $last_id = $conn->lastInsertId();
         $_SESSION['DoctorID'] = $last_id;
@@ -153,11 +156,13 @@ try {
 
   <script>
     // Code for saving location and submitting the form
-    function saveLocationAndSubmit() {
-      const location = JSON.stringify(savedPosition);
-      document.getElementById('location').value = location;
-      document.getElementById('registrationForm').submit();
-    }
+  //   function saveLocationAndSubmit() {
+  //     const location = JSON.stringify(savedPosition);
+  //     document.getElementById('location').value = location;
+  //     document.getElementById('registrationForm').submit();
+  //     console.log("inside");
+  //   }
+  // console.log(saveLocationAndSubmit());
   </script>
 
   <form class="h-100" method="POST" action="" enctype="multipart/form-data">
@@ -297,7 +302,7 @@ try {
                       <input type="file" id="inputGroupFile02" name="profilimg" style="display: none; ">
                     </div>
 
-                    <div class=" col-6 mb-4">
+                    <div class=" col-md-6 mb-4">
 
                       <input type="password" id="Password_Confirm_Inp" placeholder="Password" name="password" class="form-control form-control-lg" style=" height: 38px;" required />
 
@@ -344,7 +349,7 @@ try {
           <div class="modal-header">
             <h5 class="modal-title" id="locationModalLabel">Choose your location</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <input type="hidden" id="location" name="location">
+            <input type="hidden" id="location" name=" ">
           </div>
           <div class="modal-body">
             <div id="map"></div>
@@ -361,6 +366,7 @@ try {
 
   <script>
     let map, marker;
+    //position initiale
     let savedPosition = {
       lat: 31.7917,
       lng: -7.0926
@@ -377,7 +383,7 @@ try {
         map: map,
         draggable: true,
       });
-
+//draggable movement de marker
       marker.addListener("dragend", function(event) {
         savedPosition = {
           lat: event.latLng.lat(),
@@ -386,7 +392,7 @@ try {
         console.log(savedPosition);
       });
     }
-
+//value de saveposition to jason 
     document.getElementById('saveLocationBtn').addEventListener('click', function() {
       console.log(savedPosition);
       this.textContent = "Update Location";

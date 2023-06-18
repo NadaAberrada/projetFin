@@ -1,8 +1,9 @@
 <?php
 session_start();
 $patientID = $_SESSION['patientID'];
-$patientname = "Null";
-$patientname = $_SESSION['patientName'];
+
+
+$patientnam = $_SESSION['patientName'];
 
 $patientlastname =$_SESSION['patientlastName'] ;
 
@@ -98,7 +99,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                         <div class="nav-item dropdown me-5 ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="imagePatient.php?patientID=<?php echo $_SESSION['patientID']; ?>" alt="Profile picture" style="width: 2vw; height: 2vw; border-radius: 50%;">
-                                <span class="ps-2" style="color: black;"><?php echo  $patientname." ".$patientlastname; ?></span>
+                                <span class="ps-2" style="color: black;"><?php echo  $patientnam." ".$patientlastname; ?></span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./patientProfil.php">Profile</a></li>
@@ -138,14 +139,14 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             en un seul clic
         </h1>
 
-        <p class="sousTitre fw-lighter text-capitalize " searchResults style=" font-size: 35px;"></p>
+        <p class="sousTitre fw-lighter text-capitalize "  style=" font-size: 35px;"></p>
 
         <div class="s01">
             <form method="post">
 
                 <div class="inner-form">
                     <div class="input-field first-wrap">
-                        <input id="search" name="searchName" type="text" placeholder="Nom ou/et prénom" />
+                        <input id="search" name="searchName" type="text" placeholder="Nomou/etprénom" />
                     </div>
                     <div class="input-field second-wrap me-2">
 
@@ -279,12 +280,12 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
                 },
                 success: function(response) {
                     // Handle the response from the PHP page here
-                    var modalTitle = 'Save Notice'; // Set the title of the modal
-                    var modalDescription = 'Exercise saved successfully!'; // Set the description
+                    var modalTitle = 'Favori Docteur'; // Set the title of the modal
+                    var modalDescription = 'favori Docteur Sauvegardé avec succès !'; // Set the description
 
                     // Update the modal title and description
                     $('#SaveDoctor .modal-title').text(modalTitle);
-                    $('#SaveDoctor .modal-body').html(modalDescription + '<br>' + response);
+                    $('#SaveDoctor .modal-body').html(modalDescription );
 
                     // Show the modal
                     $('#SaveDoctor').modal('show');
@@ -301,28 +302,9 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
         }
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="mt-5 section_block_5 py-3" style="background-color: #2f9ba6;">
         <p class="text-white text-center mb-0">Vous avez un problème ou une question ? Contactez-nous par E-mail</p>
     </div>
-
-
-
-
-
 
     <footer style="background-color: #f8f8f8;">
         <div class="py-3 text-center"> <!-- Add 'text-center' class here -->
@@ -370,11 +352,6 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
             <p class="text-white text-center mb-0">© Copyright DocMeet 2023 - Tous droits réservés.</p>
         </div>
     </footer>
-
-
-
-
-
 
     <script>
         // Number of cards to display per page

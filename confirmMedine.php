@@ -146,7 +146,12 @@
 
   try {
     $limit = 10; // number of results per page
-    $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+    if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+      $page = $_GET['page'];
+    } else {
+      $page = 1;
+    }
+    
     $offset = ($page - 1) * $limit;
 
     // select doctors with limit and offset
@@ -270,15 +275,29 @@
             <div class="row">
               <?php
 
-              $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+              if (isset($_GET['search'])) {
+                $searchQuery = $_GET['search'];
+              } else {
+                $searchQuery = '';
+              }
 
-              $filteredDoctors = array_filter($doctors, function ($doctor) use ($searchQuery) {
+
+              $filteredDoctors = [];
+              foreach ($doctors as $doctor) {
                 $email = $doctor['emailD'];
                 $cin = $doctor['cin'];
-                return (strpos($email, $searchQuery) !== false) || (strpos($cin, $searchQuery) !== false);
-              });
+                if (strpos($email, $searchQuery) !== false || strpos($cin, $searchQuery) !== false) {
+                  $filteredDoctors[] = $doctor;
+                }
+              }
 
-              $displayDoctors = $searchQuery ? $filteredDoctors : $doctors;
+              if ($searchQuery) {
+                $displayDoctors = $filteredDoctors;
+              } else {
+                $displayDoctors = $doctors;
+              }
+
+
 
               foreach ($displayDoctors as $doctor) :
               ?>
@@ -289,9 +308,9 @@
                         <?php
                         $imageData = $doctor['cpemimg'];
                         if ($imageData !== null) {
+                          //binary data to string 
+                          //make the image jpeg
                           $imageSrc = 'data:image/jpeg;base64,' . base64_encode($imageData);
-                        } else {
-                          $imageSrc = 'default-image.jpg';
                         }
                         ?>
                         <img src="<?php echo $imageSrc; ?>" class="img-fluid rounded-start " alt="Doctor Image">
@@ -340,17 +359,18 @@
                             $profileImage = $doctor['imageD'];
                             if ($profileImage === null) {
                               if ($doctor['gender'] === 'Femme') {
-                                echo '<img src="./img/defaultFemme.jpg" alt="Profile Image" class="img-fluid">';
+                                echo '<img src="./img/defaultFemme.jpg" alt="Profile Image" class="img-fluid" style="max-height: 200px;">';
                               } elseif ($doctor['gender'] === 'Homme') {
-                                echo '<img src="./img/defaultHomme.jpg" alt="Profile Image" class="img-fluid">';
+                                echo '<img src="./img/defaultHomme.jpg" alt="Profile Image" class="img-fluid" style="max-height: 200px;">';
                               } else {
-                                echo '<img src="default-image.jpg" alt="Profile Image" class="img-fluid">';
+                                echo '<img src="default-image.jpg" alt="Profile Image" class="img-fluid" style="max-height: 200px;">';
                               }
                             } else {
-                              echo '<img src="data:image/jpeg;base64,' . base64_encode($profileImage) . '" alt="Profile Image" class="img-fluid">';
+                              echo '<img src="data:image/jpeg;base64,' . base64_encode($profileImage) . '" alt="Profile Image" class="img-fluid" style="max-height: 200px;">';
                             }
                             ?>
                           </div>
+
 
                         </div>
                         <p><strong>Nom et prénom: </strong><?php echo  "Dr." . $doctor['fullname']; ?></p>
@@ -436,32 +456,7 @@
           </div>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-          <script>
-            // $(document).ready(function(){
-            //     $('form').on('submit', function(e){
-            //         e.preventDefault();
 
-            //         var doctorID = $(this).find('input[name="doctorID"]').val();
-
-            //         $.ajax({
-            //             url: 'confirmdocmail.php', // Change this to your PHP script URL
-            //             type: 'POST',
-            //             data: {doctorId: doctorID},
-            //             success: function(response){
-            //                 // This is the response from the PHP script
-            //                 // You can use it to update the page or show a notification, etc.
-
-            //                 // For example, you can fill a modal with the response and show it
-            //                 $('#myModal .modal-body').html(response);
-            //                 $('#myModal').modal('show');
-            //             },
-            //             error: function(jqXHR, textStatus, errorThrown){
-            //                 console.error(textStatus, errorThrown);
-            //             }
-            //         });
-            //     });
-            // });
-          </script>
           <!-- Optional: Place to the bottom of scripts -->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <title>DocMeet</title>
-    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
+  <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
 
@@ -21,12 +21,12 @@
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
+    body {
 
-body {
- 
- font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', sans-serif;
 
-}
+    }
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -86,13 +86,13 @@ body {
 
 <body>
 
-<header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #f8f8f8;">
+  <header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #f8f8f8;">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="./landingpage.php"> <img src="./img/logoDocMeet.png" alt="" srcset="" width="30%">
     </a>
     <button class="navbar-toggler position-absolute  d-md-none collapsed" type="button" data-bs-toggle="collapse" style=" background-color: #267f89; right: 0; margin-right:1.5rem;" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
         <a class="nav-link px-3 text-secondary " href="#"><a class="nav-link px-3 text-secondary " href="./SignOutAdmin.php">se déconnecter</a></a>
@@ -167,7 +167,12 @@ body {
         $perPage = 10; // Number of rows per page
         $totalRows = count($patients);
         $totalPages = ceil($totalRows / $perPage);
-        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+        $currentPage = 1; // Default page is 1
+
+        if (isset($_GET['page'])) {
+          $currentPage = $_GET['page'];
+        }
+
         $offset = ($currentPage - 1) * $perPage;
         $paginatedPatients = array_slice($patients, $offset, $perPage);
         ?>
@@ -230,17 +235,17 @@ body {
                                 if ($profileImage === null) {
                                   if ($patient['gender'] === 'Femme') {
                                     echo '<div class="col-md-12 d-flex justify-content-center">
-                <img src="./img/patientFemmeImg.jpg" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
-              </div>';
+                            <img src="./img/patientFemmeImg.jpg" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
+                          </div>';
                                   } elseif ($patient['gender'] === 'Homme') {
                                     echo '<div class="col-md-12 d-flex justify-content-center">
-                <img src="./img/patientHommeImg.jpg" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
-              </div>';
+                            <img src="./img/patientHommeImg.jpg" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
+                          </div>';
                                   }
                                 } else {
                                   echo '<div class="col-md-12 d-flex justify-content-center">
-              <img src="data:image/jpeg;base64,' . base64_encode($profileImage) . '" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
-            </div>';
+                          <img src="data:image/jpeg;base64,' . base64_encode($profileImage) . '" alt="Profile Image" class="img-fluid" style=" max-height:30vh; ">
+                        </div>';
                                 }
                                 ?>
                               </div>
@@ -260,7 +265,11 @@ body {
               <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center mt-4">
                   <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                    <li class="page-item <?php echo $i == $currentPage ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <li class="page-item <?php echo $i == $currentPage ? 'active' : ''; ?>">
+                      <a class="page-link" href="?page=<?php echo $i; ?>">
+                        <?php echo $i; ?>
+                      </a>
+                    </li>
                   <?php endfor; ?>
                 </ul>
               </nav>

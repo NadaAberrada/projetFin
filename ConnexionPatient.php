@@ -71,14 +71,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (password_verify($password, $hashed_password)) {
         $_SESSION['patientID'] = $user['patientID'];
         $_SESSION['commentsenderID'] = "patient";
-        $_SESSION['patientName'] = $user['nameP'] ;
+
+        $_SESSION['patientName'] = $user['nameP'];
         $_SESSION['patientlastName'] =  $user['lastnameP'];
 
         // If rememberMe checkbox is checked, store email and password in cookies
         // if ($rememberMe) {
         //     setcookie('patient_email', $email, time() + (86400 * 30), "/"); // 86400 = 1 day
         //     setcookie('patient_password', $password, time() + (86400 * 30), "/");
-        // } else {
+        // } else {   
+
         //     // Clear cookies if rememberMe is not checked
         //     setcookie('patient_email', '', time() - 3600, "/");
         //     setcookie('patient_password', '', time() - 3600, "/");
@@ -155,9 +157,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <div class="text-center mt-3 small">
                     Vous n'avez pas de compte ? <a href="./Inscription-patient.php">Inscrivez-Vous</a>
                   </div>
-                  <div class="text-center mt-3 small">
+                  <!-- <div class="text-center mt-3 small">
                     <a href="./resetpasswrord.php" style="color: black;">Mot de passe oublié ?</a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

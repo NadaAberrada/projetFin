@@ -1,6 +1,7 @@
 <?php
 session_start();
 $patientID = $_SESSION['patientID'];
+
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,7 +48,7 @@ if (isset($patientID) && !empty($patientID)) {
 
     <style>
         body {
-            background-color: #aeb2b5;
+          
 
             font-family: 'Poppins', sans-serif;
         }
@@ -321,10 +322,11 @@ if (isset($patientID) && !empty($patientID)) {
                                     image: $("#profile-img").attr("src") // Added: Save the original image URL
                                 };
                                 let originalImg = originalData.image;
-
+                                // console.log(originalData);
                                 $("#edit-profile-btn").click(function() {
+
                                     console.log('Edit profile button clicked');
-                                    var isEdit = $(this).text() === "Edit Profile";
+                                    var isEdit = $(this).text() === "Modifier Profile";
                                     console.log('Is edit mode:', isEdit);
 
                                     if (isEdit) {
@@ -335,7 +337,7 @@ if (isset($patientID) && !empty($patientID)) {
                                         $("#city-select").removeClass('d-none').val($("#city-input").val());
 
 
-                                        $(this).text("Save");
+                                        $(this).text("Sauvgarder");
                                         $("#cancel-edit-btn").removeClass('d-none'); // Show the Cancel button
 
                                     } else {
@@ -346,7 +348,7 @@ if (isset($patientID) && !empty($patientID)) {
 
                                         $("#profile-img").css('cursor', 'default');
 
-                                        $(this).text("Edit Profile");
+                                        $(this).text("Modifier Profile");
                                         $("#cancel-edit-btn").addClass('d-none'); // Hide the Cancel button
 
                                         let formData = new FormData();
@@ -402,18 +404,19 @@ if (isset($patientID) && !empty($patientID)) {
 
 
 
-                                    $("#edit-profile-btn").text("Edit Profile");
+                                    $("#edit-profile-btn").text("Modifier Profile");
                                     $(this).addClass('d-none'); // Hide the Cancel button
 
                                     // Remove the selected image
                                     $("#img-upload").val('');
                                     // Request the original image from the server
 
-                                    $("#profile-img").attr("src", "imagePatient.php?patientID=" + <?php echo $_SESSION['patientID']; ?>);
+                               $("#profile-img").attr("src", "imagePatient.php?patientID=" + <?php echo $_SESSION['patientID'] ?? ''; ?>);
+
 
                                 });
                                 $("#profile-img").click(function() {
-                                    if ($("#edit-profile-btn").text() === "Save") {
+                                    if ($("#edit-profile-btn").text() === "Sauvgarder") {
                                         $("#img-upload").click();
                                     }
                                 });
@@ -496,12 +499,12 @@ if (isset($patientID) && !empty($patientID)) {
                                     },
                                     success: function(response) {
                                         // Handle the response from the PHP script here
-                                        var modalTitle = 'Supprimer Médcine';
-                                        var modalDescription = 'Doctor deleted successfully!';
+                                        var modalTitle = 'Supprimer favori Docteur';
+                                        var modalDescription = 'favori Docteur supprimé avec succès !';
 
                                         // Update the modal title and description
                                         $('#deleteDoctor .modal-title').text(modalTitle);
-                                        $('#deleteDoctor .modal-body').html(modalDescription + '<br>' + response);
+                                        $('#deleteDoctor .modal-body').html(modalDescription );
 
                                         // Show the modal
                                         $('#deleteDoctor').modal('show');

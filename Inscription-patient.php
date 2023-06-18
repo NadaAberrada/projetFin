@@ -1,6 +1,7 @@
 <?php
 session_start();
 $error = '';
+
 try {
   $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -35,9 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (isset($_FILES['profilimg']) && $_FILES['profilimg']['error'] == UPLOAD_ERR_OK) {
         $profilimgData = fopen($_FILES['profilimg']['tmp_name'], 'rb');
       }
-      if ($check_stmt->rowCount() > 0) {
-        // Check if doctor with the same email, CIN, or phone number already exists
 
+      // Execute the check query to see if a doctor with the same email, CIN, or phone number already exists
+      $check_stmt = $conn->prepare("SELECT * FROM doctors WHERE emailD = :email OR cin = :cin OR phoneD = :tele");
+      $check_stmt->bindParam(':email', $email);
+      $check_stmt->bindParam(':cin', $cin);
+      $check_stmt->bindParam(':tele', $tele);
+      $check_stmt->execute();
+
+      if ($check_stmt->rowCount() > 0) {
+        // A doctor with the same email, CIN, or phone number already exists
         $error = "Un patient avec le même e-mail, CIN ou numéro de téléphone existe déjà.";
       } else {
         $stmt = $conn->prepare("INSERT INTO patients (nameP, lastnameP, emailP, passwordP, phoneP, citynameP, imageP,cin,gender) VALUES (:prenom, :nom, :email, :password, :tele, :ville, :img,:cin,:gender)");
@@ -51,15 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':cin', $cin);
         $stmt->bindParam(':gender', $genre);
         $stmt->execute();
-        $_SESSION['patientID'] =$conn->lastInsertId();;
+
+        $_SESSION['patientID'] = $conn->lastInsertId();
         $_SESSION['commentsenderID'] = "patient";
-        $_SESSION['patientName'] = $user['nameP'] ;
-        $_SESSION['patientlastName'] =  $user['lastnameP'];
+
+        $_SESSION['patientName'] = $prenom;
+        $_SESSION['patientlastName'] = $nom;
 
 
-
-        // setcookie('patient_email', $email, time() + (86400 * 30), "/");
-        // setcookie('patient_password', $password, time() + (86400 * 30), "/");
 
         header("Location: HomepagePatient.php");
         exit();
@@ -82,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DocMeet</title>
-    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
+  <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />

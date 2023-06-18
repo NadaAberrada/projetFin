@@ -24,17 +24,26 @@ $doctors = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Specialty filter
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['specialty'])) {
   $specialtyFilter = $_GET['specialty'];
-  $filteredDoctors = array_filter($doctors, function ($doctor) use ($specialtyFilter) {
-    return $doctor['specialty'] == $specialtyFilter;
-  });
-  $doctors = array_values($filteredDoctors); // Reset array keys
+  $filteredDoctors = [];
+  foreach ($doctors as $doctor) {
+    if ($doctor['specialty'] == $specialtyFilter) {
+      $filteredDoctors[] = $doctor;
+    }
+  }
+  $doctors = $filteredDoctors;
+} else {
+  $specialtyFilter = null;
 }
 
 // Pagination
 $perPage = 10; // Number of rows per page
 $totalRows = count($doctors);
 $totalPages = ceil($totalRows / $perPage);
-$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+if (isset($_GET['page'])) {
+  $currentPage = $_GET['page'];
+} else {
+  $currentPage = 1;
+}
 $offset = ($currentPage - 1) * $perPage;
 $paginatedDoctors = array_slice($doctors, $offset, $perPage);
 
@@ -63,9 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
- 
+
   <title>DocMeet</title>
-    <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
+  <link rel="icon" type="image/x-icon" href="./img/logoDocMeet.png">
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
@@ -79,11 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-      body {
- 
- font-family: 'Poppins', sans-serif;
+    body {
 
-}
+      font-family: 'Poppins', sans-serif;
+
+    }
+
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -150,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
-     <a class="nav-link px-3 text-secondary " href="./SignOutAdmin.php">se déconnecter</a>
+        <a class="nav-link px-3 text-secondary " href="./SignOut.php">se déconnecter</a>
       </div>
     </div>
   </header>
@@ -190,46 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
       </nav>
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center">
-        <?php
-        try {
-          $conn = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-          die("Error connecting to the database: " . $e->getMessage());
-        }
-
-        // Search functionality
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          $searchEmail = $_POST['searchEmail'];
-          $stmt = $conn->prepare("SELECT * FROM doctors WHERE emailD LIKE :searchEmail OR cin LIKE :searchCIN");
-          $stmt->bindValue(':searchEmail', "%$searchEmail%", PDO::PARAM_STR);
-          $stmt->bindValue(':searchCIN', "%$searchEmail%", PDO::PARAM_STR);
-          $stmt->execute();
-        } else {
-          // Fetch all doctors
-          $stmt = $conn->prepare("SELECT * FROM doctors");
-          $stmt->execute();
-        }
-
-        $doctors = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Specialty filter
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['specialty'])) {
-          $specialtyFilter = $_GET['specialty'];
-          $filteredDoctors = array_filter($doctors, function ($doctor) use ($specialtyFilter) {
-            return $doctor['specialty'] == $specialtyFilter;
-          });
-          $doctors = array_values($filteredDoctors); // Reset array keys
-        }
-
-        // Pagination
-        $perPage = 10; // Number of rows per page
-        $totalRows = count($doctors);
-        $totalPages = ceil($totalRows / $perPage);
-        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-        $offset = ($currentPage - 1) * $perPage;
-        $paginatedDoctors = array_slice($doctors, $offset, $perPage);
-        ?>
+    
         <h4 class="card-title mb-5 mt-5" style="text-align: left; border-bottom: 1px solid  #267f89;margin-top:15%">Statistiques de la Ville</h4>
 
         <div class="row justify-content-center mb-5 mt-5">
@@ -299,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                     <tbody>
                       <?php foreach ($paginatedDoctors as $doctor) : ?>
                         <tr>
-                          <td><?php echo "Dr"." ".$doctor['fullname']; ?></td>
+                          <td><?php echo "Dr" . " " . $doctor['fullname']; ?></td>
                           <td><?php echo $doctor['emailD']; ?></td>
                           <td><?php echo $doctor['cin']; ?></td>
                           <td><?php echo $doctor['phoneD']; ?></td>
@@ -358,7 +329,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                                 <?php if ($doctor['websiteLink'] !== null) : ?>
                                   <p><strong>Website Link: </strong><?php echo $doctor['websiteLink']; ?></p>
                                 <?php endif; ?>
-                  
+
 
                                 <div style="width: 100%; height: 400px;">
                                   <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=<?php echo $doctor['localisation']; ?>&z=15&output=embed" aria-label="Embedded Google Map"></iframe>
@@ -380,7 +351,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
                 <nav aria-label="Page navigation">
                   <ul class="pagination justify-content-center mt-4">
                     <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                      <li class="page-item <?php echo $i == $currentPage ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                      <li class="page-item <?php echo $i == $currentPage ? 'active' : ''; ?>">
+                        <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                      </li>
                     <?php endfor; ?>
                   </ul>
                 </nav>

@@ -1,9 +1,10 @@
 <?php
 session_start();
-$patientname = "Null";
-$patientname = $_SESSION['patientName'];
 
+$patientnam = $_SESSION['patientName'];
+// echo $patientnam ;
 $patientlastname =$_SESSION['patientlastName'] ;
+// echo $patientlastname ;
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=docmeet;port=3306;charset=UTF8", 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -149,7 +150,7 @@ include('header.php');
                         <div class="nav-item dropdown me-5 ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="imagePatient.php?patientID=<?php echo $_SESSION['patientID']; ?>" alt="Profile picture" style="width: 2vw; height: 2vw; border-radius: 50%;">
-                                <span class="ps-2" style="color: black;"><?php echo  $patientname." ".$patientlastname; ?></span>
+                                <span class="ps-2" style="color: black;"><?php echo  $patientnam." ".$patientlastname; ?></span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="./patientProfil.php">Profile</a></li>
@@ -325,9 +326,6 @@ include('header.php');
                             </div>   </div>
 
     
-
-
-    
             <script>
                 $(document).ready(function() {
                     $("#myForm").on('submit', function(e) {
@@ -383,13 +381,11 @@ include('header.php');
                             success: function(data) {
                                 average_rating = parseFloat(data);
                                 var stars = $('.stars-rating .star');
-                                stars.removeClass('on').removeClass('half');
+                                stars.removeClass('on');
                                 stars.each(function() {
                                     if ($(this).data('value') <= Math.floor(average_rating)) {
                                         $(this).addClass('on');
-                                    } else if ($(this).data('value') <= average_rating) {
-                                        $(this).addClass('half');
-                                    }
+                                    } 
                                 });
                             }
                         });
@@ -419,7 +415,7 @@ include('header.php');
                             if ($(this).data('value') <= hoverVal) {
                                 $(this).addClass('on');
                             } else {
-                                $(this).removeClass('on').removeClass('half');
+                                $(this).removeClass('on');
                             }
                         });
                     }).on('mouseleave', function() {
