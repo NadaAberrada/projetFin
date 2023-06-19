@@ -21,6 +21,7 @@ if (empty($_POST["searchName"]) && empty($_POST["searchSpecialty"]) && empty($_P
 } else {
     // Perform search query based on provided search criteria
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        
         $searchName = $_POST["searchName"] ?? "";
         $searchSpecialty = $_POST["searchSpecialty"] ?? "";
         $searchCity = $_POST["searchCity"] ?? "";

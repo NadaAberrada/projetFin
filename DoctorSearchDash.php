@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 text-secondary " href="./SignOut.php">se déconnecter</a>
+        <a class="nav-link px-3 text-secondary " href="SignOutAdmin.php">se déconnecter</a>
       </div>
     </div>
   </header>

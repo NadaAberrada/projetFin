@@ -97,7 +97,7 @@
                 <div class='email-content'>
                     <h1>Cher Docteur,  $doctorName</h1>
                     <p>Nous vous remercions de votre inscription en tant que médecin sur notre plateforme. Nous avons bien reçu et confirmé vos informations.</br> Pour accéder à votre profil et commencer à fournir des services, veuillez vous connecter en utilisant les informations de votre compte.</p>
-                 <a href='http://localhost:88/projetFin/ConnexionM%c3%a9dcine.php' class='btn text-white'>Connexion</a>
+                 <a href='http://localhost:88/projetFin/ConnexionM%c3%a9dcine.php' class='btn text-white'style='color: white;'>Connexion</a>
                 </div>
             </body>
             </html>
@@ -220,7 +220,7 @@
 
       <div class="navbar-nav  ">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3 text-secondary " href="SignOut.php">se déconnecter</a>
+          <a class="nav-link px-3 text-secondary " href="SignOutAdmin.php">se déconnecter</a>
         </div>
       </div>
     </header>

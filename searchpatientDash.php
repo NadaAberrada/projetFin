@@ -95,7 +95,7 @@
 
     <div class="navbar-nav  ">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 text-secondary " href="#"><a class="nav-link px-3 text-secondary " href="./SignOutAdmin.php">se déconnecter</a></a>
+        <a class="nav-link px-3 text-secondary " href="#"><a class="nav-link px-3 text-secondary " href="SignOutAdmin.php">se déconnecter</a></a>
       </div>
     </div>
   </header>
